@@ -4,6 +4,8 @@
 
 如果你已经知道 Skill 名称，可以直接进入对应目录。如果你只是知道“我现在要做什么”，从下面的场景入口开始。
 
+如果你想先看输入输出样例，可以查看 [示例索引](examples/README.md)。
+
 ## 一句话选择
 
 | 你现在要做什么 | 推荐 Skill |
@@ -194,4 +196,3 @@ weekly-monthly-report-writer
 如果你不确定该用哪个 Skill，先用 `data-requirement-clarifier`。
 
 它会帮你把问题拆清楚，再判断是否需要进入指标、开发、分析或汇报类 Skill。
-

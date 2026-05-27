@@ -27,6 +27,8 @@
 
 如果你不确定该用哪个 Skill，可以先看 [Skill 索引](SKILL_INDEX.md)。
 
+想看具体输入输出，可以从 [示例索引](examples/README.md) 开始。
+
 ## 为谁准备
 
 这个仓库首先为拾穗数据会员准备。
@@ -200,6 +202,8 @@ skills/
 ## 共建方式
 
 欢迎提交 Issue 或 Pull Request。
+
+提交前请先阅读 [贡献指南](CONTRIBUTING.md)。
 
 适合提交的内容包括：
 

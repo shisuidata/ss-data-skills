@@ -10,6 +10,8 @@
 
 如果需要按工作场景选择 Skill，请先看仓库根目录的 [Skill 索引](../SKILL_INDEX.md)。
 
+如果需要参考输入输出样例，请看 [示例索引](../examples/README.md)。
+
 ## 基本结构
 
 ```text
