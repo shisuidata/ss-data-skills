@@ -1,6 +1,12 @@
 # Skills 收录规范
 
-这个目录收录面向数据开发工作的原子 Skill。每个 Skill 都应该是一个可以独立执行的标准动作。
+这个目录收录面向数据从业者真实工作的原子 Skill。每个 Skill 都应该是一个可以独立执行的标准动作。
+
+当前 Skill 覆盖三类场景：
+
+- 数据开发：需求、指标、表设计、SQL、质量规则
+- 数据分析：EDA、漏斗、留存、实验分析
+- 表达交付：分析报告、周报月报、PPT 叙事
 
 ## 基本结构
 
@@ -42,6 +48,9 @@ description: Use when...
 - `sql-reviewer` 只负责 SQL 审查，不负责完整需求澄清
 - `metric-definition-reviewer` 只负责指标口径，不负责设计整套数仓模型
 - `data-quality-rule-generator` 只负责质量规则，不负责调度平台配置
+- `funnel-analysis` 只负责有序转化路径，不负责所有业务归因
+- `data-analysis-report-writer` 只负责报告写作，不负责凭空生成数据结论
+- `data-presentation-architect` 只负责 PPT 叙事结构，不负责视觉美化或制作二进制 PPT 文件
 
 如果一个任务需要多个动作，应新增 Workflow 类 Skill，而不是让原子 Skill 变得臃肿。
 
@@ -66,6 +75,9 @@ description: Use when...
 - SQL 示例
 - 待确认问题
 - 验收标准
+- 数据证据
+- 业务解释
+- 汇报结构
 
 ## 新增 Skill 检查清单
 
@@ -77,4 +89,3 @@ description: Use when...
 - [ ] 有至少一个示例 Prompt
 - [ ] 没有依赖私有上下文
 - [ ] 缺失信息会被标记为假设或待确认
-

@@ -86,7 +86,9 @@
 
 [加入拾穗数据会员](https://pro.ss-data.cc)
 
-## 首批 Skill
+## Skill 地图
+
+### 数据开发
 
 | Skill | 用途 |
 | --- | --- |
@@ -96,10 +98,31 @@
 | `sql-reviewer` | 审查 SQL 的逻辑正确性、性能风险和口径一致性 |
 | `data-quality-rule-generator` | 根据表结构、SQL 或指标定义生成数据质量规则 |
 
-这些 Skill 可以单独使用，也可以组合成一条常见的数据开发链路：
+### 数据分析
+
+| Skill | 用途 |
+| --- | --- |
+| `exploratory-data-analysis` | 对新数据集做结构、质量、分布、异常和关系探索 |
+| `funnel-analysis` | 分析注册、激活、下单、支付等有序转化漏斗 |
+| `retention-cohort-analysis` | 分析留存、复购、活跃回访和 Cohort 差异 |
+| `ab-test-analysis` | 设计、审查或解读 A/B 实验，判断实验是否可信和可推广 |
+
+### 表达与交付
+
+| Skill | 用途 |
+| --- | --- |
+| `data-analysis-report-writer` | 把分析结果整理成可决策的数据分析报告 |
+| `weekly-monthly-report-writer` | 写周报、月报、项目进展和向上同步材料 |
+| `data-presentation-architect` | 把分析报告、项目进展或技术内容整理成 PPT 叙事大纲 |
+
+这些 Skill 可以单独使用，也可以组合成常见的数据工作链路：
 
 ```text
 需求澄清 -> 指标口径 -> 表设计 -> SQL 审查 -> 质量规则
+```
+
+```text
+数据探索 -> 漏斗/留存/实验分析 -> 分析报告 -> PPT 汇报
 ```
 
 ## 设计原则
@@ -121,15 +144,29 @@ skills/
   README.md
   _template/
     SKILL.md
+  ab-test-analysis/
+    SKILL.md
+  data-analysis-report-writer/
+    SKILL.md
   data-requirement-clarifier/
+    SKILL.md
+  exploratory-data-analysis/
+    SKILL.md
+  funnel-analysis/
     SKILL.md
   metric-definition-reviewer/
     SKILL.md
-  table-design-advisor/
+  retention-cohort-analysis/
     SKILL.md
   sql-reviewer/
     SKILL.md
+  table-design-advisor/
+    SKILL.md
   data-quality-rule-generator/
+    SKILL.md
+  weekly-monthly-report-writer/
+    SKILL.md
+  data-presentation-architect/
     SKILL.md
 ```
 
@@ -177,9 +214,9 @@ skills/
 
 ## 后续计划
 
-第一阶段先沉淀数据开发高频动作。
+第一阶段先沉淀数据开发、数据分析和职场交付中的高频动作。
 
-第二阶段可以继续扩展：
+后续可以继续扩展：
 
 - `pipeline-debugger`
 - `backfill-planner`
@@ -189,6 +226,9 @@ skills/
 - `data-dev-pr-reviewer`
 - `warehouse-naming-linter`
 - `data-doc-writer`
+- `dashboard-reviewer`
+- `business-root-cause-analysis`
+- `data-interview-case-coach`
 - `agent-skill-packager`
 
 ## 同步约定
