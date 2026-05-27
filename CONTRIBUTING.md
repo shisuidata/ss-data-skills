@@ -182,6 +182,7 @@ PR 描述建议包含：
 - [ ] Markdown 渲染正常
 - [ ] 没有提交临时文件、缓存、日志
 - [ ] `node scripts/check-library.mjs` 通过
+- [ ] `node scripts/check-tests.mjs` 通过
 
 测试方式见 [TESTING.md](TESTING.md)。
 

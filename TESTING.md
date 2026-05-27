@@ -9,6 +9,8 @@
 
 ```bash
 node scripts/check-library.mjs
+node scripts/check-tests.mjs
+node scripts/summarize-ecommerce-fixture.mjs
 ```
 
 ## 自动化测试检查什么
@@ -25,6 +27,8 @@ node scripts/check-library.mjs
 - 仓库级文档是否存在
 - 上下文模板是否齐全
 - README、索引、贡献指南中关键链接是否存在
+- 测试用例、mock 数据和评测 Rubric 是否存在
+- 电商 mock 数据是否能算出预期漏斗事实
 
 通过示例：
 
@@ -32,6 +36,13 @@ node scripts/check-library.mjs
 Library check passed.
 Skills: 12
 Context templates: 8
+Test check passed.
+Cases: 5
+Fixtures: 5
+Ecommerce fixture summary:
+previous: registered=12, product_view=10, add_to_cart=7, order_submit=5, pay_success=4, pay_rate=33.3%
+current: registered=12, product_view=9, add_to_cart=5, order_submit=3, pay_success=2, pay_rate=16.7%
+Fixture validation passed.
 ```
 
 ## 自动化测试不检查什么
@@ -61,6 +72,14 @@ examples/<skill-name>.md
 3. 指定对应 Skill。
 4. 对照“预期输出”检查结果。
 5. 判断输出是否满足质量标准。
+
+如果要测试更接近真实工作的链路，可以使用：
+
+```text
+tests/fixtures/ecommerce-growth/
+tests/cases/
+tests/rubrics/common.md
+```
 
 评测时重点看：
 
@@ -106,3 +125,6 @@ examples/<skill-name>.md
 
 当前阶段先保证 Skill 库结构完整、示例齐全、上下文契约明确。
 
+## 已完成评测
+
+- [2026-05-27 首轮人工评测记录](tests/results/2026-05-27-manual-eval.md)
