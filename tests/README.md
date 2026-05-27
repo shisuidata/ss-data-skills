@@ -27,6 +27,14 @@ tests/
 ## 运行检查
 
 ```bash
+node scripts/pre-push-check.mjs
+```
+
+这个命令会串行执行结构检查、测试覆盖检查、mock 数据校验和 `git diff --check`。
+
+单独调试时也可以运行：
+
+```bash
 node scripts/check-library.mjs
 node scripts/check-tests.mjs
 node scripts/summarize-ecommerce-fixture.mjs
@@ -39,6 +47,8 @@ node scripts/summarize-ecommerce-fixture.mjs
 3. 指定使用对应 Skill。
 4. 对照“通过标准”和 `tests/rubrics/common.md` 评分。
 5. 把结果记录到 `tests/results/`。
+
+完整测试门禁见 [Skill 测试标准](../docs/testing-standard.md)。
 
 ## 当前覆盖
 
@@ -65,3 +75,4 @@ node scripts/summarize-ecommerce-fixture.mjs
 
 - [2026-05-27 首轮人工评测记录](results/2026-05-27-manual-eval.md)
 - [2026-05-27 全 Skill 覆盖测试记录](results/2026-05-27-full-coverage-eval.md)
+- [2026-05-28 测试门禁基线记录](results/2026-05-28-test-gate-baseline.md)

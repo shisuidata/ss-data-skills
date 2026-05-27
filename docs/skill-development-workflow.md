@@ -115,17 +115,12 @@ SQL 审查（sql-reviewer）
 运行：
 
 ```bash
-node scripts/check-library.mjs
-node scripts/check-tests.mjs
-```
-
-如果涉及 mock 数据：
-
-```bash
-node scripts/summarize-ecommerce-fixture.mjs
+node scripts/pre-push-check.mjs
 ```
 
 检查失败时，先修结构，再讨论内容。
+
+详细标准见 [Skill 测试标准](testing-standard.md)。
 
 ## 阶段八：人工评测
 

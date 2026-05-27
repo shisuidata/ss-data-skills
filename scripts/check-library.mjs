@@ -140,6 +140,7 @@ const requiredDocs = [
   "CONTEXT_GUIDE.md",
   "CONTRIBUTING.md",
   "TESTING.md",
+  "docs/testing-standard.md",
   "docs/skill-development-workflow.md",
   "docs/templates/skill-brief.md",
   "examples/README.md",
@@ -175,12 +176,14 @@ const expectedLinks = [
   ["README.md", "SKILL_INDEX.md"],
   ["README.md", "SOP.md"],
   ["README.md", "CONTEXT_GUIDE.md"],
+  ["README.md", "docs/testing-standard.md"],
   ["README.md", "examples/README.md"],
   ["README.md", "CONTRIBUTING.md"],
   ["SKILL_INDEX.md", "context/README.md"],
   ["CONTRIBUTING.md", "SOP.md"],
   ["CONTRIBUTING.md", "CONTEXT_GUIDE.md"],
   ["TESTING.md", "SOP.md"],
+  ["TESTING.md", "docs/testing-standard.md"],
   ["skills/README.md", "../CONTEXT_GUIDE.md"],
 ];
 

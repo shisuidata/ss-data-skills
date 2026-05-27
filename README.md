@@ -248,6 +248,7 @@ skills/
 
 - `SOP.md`：从需求到开发、测试、发布的标准作业程序
 - `docs/skill-development-workflow.md`：Skill 开发工作流详解
+- `docs/testing-standard.md`：Skill 测试标准和发布门禁
 - `docs/templates/skill-brief.md`：新增 Skill 前的需求定义模板
 - `QUICK_START.md`：面向国内用户的快速开始
 - `CONTEXT_GUIDE.md`：说明技能如何配合上下文使用
@@ -257,9 +258,17 @@ skills/
 - `skills/catalog.json`：中文展示名、英文 ID、分类和别名的结构化目录
 - `scripts/check-library.mjs`：检查 Skill、示例和上下文资源是否齐全
 
-测试方式见 [测试说明](TESTING.md)。
+测试方式见 [测试说明](TESTING.md) 和 [Skill 测试标准](docs/testing-standard.md)。
 
 当前仓库包含一组 mock 测试材料，位于 `tests/`，可用于人工评测 Skill 是否能在具体上下文中工作。
+
+发布前必须运行：
+
+```bash
+node scripts/pre-push-check.mjs
+```
+
+只有通过这个门禁的变更才应该 push。
 
 ## 使用方式
 

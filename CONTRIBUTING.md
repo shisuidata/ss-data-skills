@@ -194,10 +194,12 @@ PR 描述建议包含：
 - [ ] 涉及行业上下文时已更新 `context/README.md` 和 `CONTEXT_GUIDE.md`
 - [ ] Markdown 渲染正常
 - [ ] 没有提交临时文件、缓存、日志
-- [ ] `node scripts/check-library.mjs` 通过
-- [ ] `node scripts/check-tests.mjs` 通过
+- [ ] `node scripts/pre-push-check.mjs` 通过
+- [ ] 重要新增或修改已在 `tests/results/` 记录人工评测结果
 
 测试方式见 [TESTING.md](TESTING.md)。
+
+测试门禁见 [Skill 测试标准](docs/testing-standard.md)。
 
 ## 维护原则
 

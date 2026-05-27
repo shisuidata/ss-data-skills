@@ -1,16 +1,28 @@
 # 测试说明
 
-这个仓库里的 Skill 主要是文档型能力，不是传统代码库。所以测试分两层：
+这个仓库里的 Skill 主要是文档型能力，不是传统代码库。所以测试分四层：
 
-1. 自动化结构测试
-2. 人工样例评测
+1. L0 结构测试
+2. L1 用例覆盖测试
+3. L2 Mock 数据校验
+4. L3 人工输出评测
 
-当前已经提供自动化结构测试脚本：
+完整标准见 [Skill 测试标准](docs/testing-standard.md)。
+
+发布前统一运行：
+
+```bash
+node scripts/pre-push-check.mjs
+```
+
+这个脚本会执行所有基础门禁：
 
 ```bash
 node scripts/check-library.mjs
 node scripts/check-tests.mjs
 node scripts/summarize-ecommerce-fixture.mjs
+git diff --check HEAD
+git diff --check <upstream>..HEAD
 ```
 
 ## 自动化测试检查什么
@@ -30,21 +42,32 @@ node scripts/summarize-ecommerce-fixture.mjs
 - README、索引、贡献指南中关键链接是否存在
 - 测试用例、mock 数据和评测 Rubric 是否存在
 - 电商 mock 数据是否能算出预期漏斗事实
+- Markdown 和代码文本是否存在尾随空白等 diff 问题
 
 通过示例：
 
 ```text
+==> Library structure
 Library check passed.
 Skills: 16
 Context templates: 8
+
+==> Skill test coverage
 Test check passed.
 Cases: 16
 Skills covered: 16
 Fixtures: 5
+
+==> Mock fixture validation
 Ecommerce fixture summary:
 previous: registered=12, product_view=10, add_to_cart=7, order_submit=5, pay_success=4, pay_rate=33.3%
 current: registered=12, product_view=9, add_to_cart=5, order_submit=3, pay_success=2, pay_rate=16.7%
 Fixture validation passed.
+
+==> Git whitespace check: working tree
+
+==> Git whitespace check: unpushed commits
+Pre-push check passed. OK to push.
 ```
 
 ## 自动化测试不检查什么
@@ -58,6 +81,10 @@ Fixture validation passed.
 - 每个 Skill 在不同模型上的表现差异
 
 这些需要人工评测或后续接入模型评测。
+
+所以当前结论必须表述为：
+
+> Skill 已经通过基础测试门禁；真实模型输出质量需要按变更范围持续补充人工评测记录。
 
 ## 人工样例评测
 
@@ -123,13 +150,16 @@ tests/rubrics/common.md
 - `tests/cases/`：保存更多评测用例
 - `tests/rubrics/`：保存每个 Skill 的评分 Rubric
 - `scripts/run-evals.mjs`：调用模型批量跑示例
-- CI：在 PR 中自动运行 `node scripts/check-library.mjs`
+- CI：在 PR 中自动运行 `node scripts/pre-push-check.mjs`
 
 当前阶段先保证 Skill 库结构完整、示例齐全、上下文契约明确。
 
 新增 Skill 的完整生产流程见 [Skill 生产 SOP](SOP.md)。
 
+发布门禁和 Git hook 配置见 [Skill 测试标准](docs/testing-standard.md)。
+
 ## 已完成评测
 
 - [2026-05-27 首轮人工评测记录](tests/results/2026-05-27-manual-eval.md)
 - [2026-05-27 全 Skill 覆盖测试记录](tests/results/2026-05-27-full-coverage-eval.md)
+- [2026-05-28 测试门禁基线记录](tests/results/2026-05-28-test-gate-baseline.md)

@@ -193,18 +193,18 @@ tests/cases/<skill-name>.md
 
 ## 7. 自动检查
 
-提交前必须运行：
+提交和 push 前必须运行统一门禁：
 
 ```bash
-node scripts/check-library.mjs
-node scripts/check-tests.mjs
+node scripts/pre-push-check.mjs
 ```
 
-如果改动了电商 mock 数据，还要运行：
+它会自动执行：
 
-```bash
-node scripts/summarize-ecommerce-fixture.mjs
-```
+- `node scripts/check-library.mjs`
+- `node scripts/check-tests.mjs`
+- `node scripts/summarize-ecommerce-fixture.mjs`
+- 工作区和未推送提交的空白检查
 
 通过标准：
 
@@ -212,7 +212,10 @@ node scripts/summarize-ecommerce-fixture.mjs
 Library check passed.
 Test check passed.
 Fixture validation passed.
+Pre-push check passed. OK to push.
 ```
+
+完整标准见 [Skill 测试标准](docs/testing-standard.md)。
 
 ## 8. 人工评测
 
@@ -273,8 +276,9 @@ Add tests for <skill-name>
 - [ ] 上下文建议完成
 - [ ] 示例完成
 - [ ] 测试用例完成
+- [ ] 必要时已完成人工输出评测
 - [ ] 索引更新
-- [ ] 自动检查通过
+- [ ] `node scripts/pre-push-check.mjs` 通过
 - [ ] 没有敏感信息
 
 ## 维护原则
