@@ -59,6 +59,12 @@ description: Use when writing or polishing weekly reports, monthly reports, proj
 - 需要协作的事项
 - 希望突出或弱化的内容
 
+## 上下文建议
+
+推荐使用 [报告写作上下文模板](../../context/templates/report-context.md) 的简化版本。
+
+最有价值的上下文是：周期、目标读者、事项列表、结果影响、风险阻塞和下周期计划。只有零散事项时，先归类成工作主线，不要按时间顺序写流水账。
+
 ## 写作框架
 
 1. 提取主题：把零散工作归为 2-4 个主线。
@@ -121,4 +127,3 @@ description: Use when writing or polishing weekly reports, monthly reports, proj
 - 写了活动复盘 SQL，但还差退款口径确认
 读者：直属 Leader
 ```
-

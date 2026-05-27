@@ -41,6 +41,26 @@ description: Template for creating a standalone data development skill. Use this
 - 执行引擎
 - 业务约束
 
+## 上下文要求
+
+使用这个 Skill 前，尽量提供：
+
+- 任务目标
+- 业务背景
+- 数据对象
+- 指标口径
+- 输入材料
+- 输出要求
+
+上下文不足时：
+
+- 可以继续处理低风险部分
+- 必须列出假设
+- 必须列出待确认问题
+- 不能编造业务规则、表结构或数据结果
+
+可参考仓库根目录的 `CONTEXT_GUIDE.md` 和 `context/templates/` 中的模板。
+
 ## 工作流程
 
 1. 识别用户要解决的问题。
@@ -82,4 +102,3 @@ description: Template for creating a standalone data development skill. Use this
 
 [粘贴需求、SQL、表结构或上下文]
 ```
-

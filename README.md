@@ -29,6 +29,8 @@
 
 想看具体输入输出，可以从 [示例索引](examples/README.md) 开始。
 
+如果你要把 Skill 用到真实工作里，建议先阅读 [上下文使用指南](CONTEXT_GUIDE.md)，并使用 [上下文模板](context/README.md) 准备材料。
+
 ## 为谁准备
 
 这个仓库首先为拾穗数据会员准备。
@@ -182,6 +184,14 @@ skills/
 - `scripts/`：放可执行脚本
 - `assets/`：放模板、图片、示例文件等资源
 
+仓库级资源：
+
+- `CONTEXT_GUIDE.md`：说明 Skill 如何配合上下文使用
+- `context/templates/`：可复制的上下文模板
+- `context/packs/`：预制演示上下文包
+- `examples/`：脱敏示例输入和预期输出
+- `scripts/check-library.mjs`：检查 Skill、示例和上下文资源是否齐全
+
 ## 使用方式
 
 把某个 Skill 目录复制或安装到支持 Skill 的 Agent 环境中，然后用自然语言触发即可。
@@ -197,6 +207,15 @@ skills/
 ```text
 请用 data-requirement-clarifier 把这个需求整理成数据开发任务：
 老板想看最近转化率为什么下降。
+```
+
+更推荐的方式是同时提供上下文：
+
+```text
+请使用 funnel-analysis 分析下面的问题。
+
+上下文：
+[粘贴并填写 context/templates/analysis-context.md]
 ```
 
 ## 共建方式

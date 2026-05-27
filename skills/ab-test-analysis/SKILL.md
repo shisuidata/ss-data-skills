@@ -60,6 +60,12 @@ description: Use when designing, checking, or interpreting A/B tests and experim
 - 是否有提前停止
 - 埋点或数据口径说明
 
+## 上下文建议
+
+推荐使用 [实验分析上下文模板](../../context/templates/experiment-context.md)。
+
+最有价值的上下文是：实验假设、分组方式、核心指标、护栏指标、样本量、实验周期和显著性结果。缺少护栏指标或分流说明时，不能直接建议全量。
+
 ## 分析框架
 
 1. 明确实验假设：预期影响哪个行为，为什么会影响。
@@ -131,4 +137,3 @@ description: Use when designing, checking, or interpreting A/B tests and experim
 护栏指标：退款率、页面加载时间、客服投诉
 周期：7 天
 ```
-

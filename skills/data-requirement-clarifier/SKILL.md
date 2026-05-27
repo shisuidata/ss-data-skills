@@ -63,6 +63,12 @@ description: Use when a vague data analysis or data development request needs to
 - 下游使用方
 - 截止时间
 
+## 上下文建议
+
+推荐使用 [通用数据任务上下文模板](../../context/templates/data-task-context.md)。
+
+最有价值的上下文是：业务目标、使用方、时间范围、候选指标、期望产出和截止时间。缺少这些信息时，先输出待确认问题，不要直接进入 SQL 或方案设计。
+
 ## 工作流程
 
 1. 识别需求类型：取数、报表、看板、专题分析、异常排查、指标建设或数据开发。
@@ -125,4 +131,3 @@ description: Use when a vague data analysis or data development request needs to
 
 业务想看最近两周新用户购买转化为什么下降，最好能拆到渠道和首购品类。
 ```
-

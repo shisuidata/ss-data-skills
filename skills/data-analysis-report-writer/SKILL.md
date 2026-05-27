@@ -62,6 +62,12 @@ description: Use when turning analysis results, metrics, SQL outputs, dashboards
 - 分析方法
 - 希望推动的决策
 
+## 上下文建议
+
+推荐使用 [报告写作上下文模板](../../context/templates/report-context.md)。
+
+最有价值的上下文是：目标读者、分析主题、关键发现、数据证据、口径限制和希望推动的决策。缺少数据证据时，只能生成报告框架，不能编造结论。
+
 ## 写作框架
 
 1. 定义问题：这份报告要回答什么业务问题。
@@ -135,4 +141,3 @@ description: Use when turning analysis results, metrics, SQL outputs, dashboards
 - 渠道 A 新用户占比提升，但渠道 A 转化率低于平均
 - 支付页加载时间从 1.8s 上升到 3.4s
 ```
-

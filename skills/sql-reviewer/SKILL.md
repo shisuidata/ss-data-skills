@@ -66,6 +66,12 @@ description: Use when reviewing SQL for data development. Checks logic correctne
 - 运行耗时
 - 下游使用场景
 
+## 上下文建议
+
+推荐使用 [SQL 审查上下文模板](../../context/templates/sql-review-context.md)。
+
+最有价值的上下文是：执行引擎、表结构、分区字段、指标口径、期望结果粒度和数据量级。缺少表结构时仍可审查 SQL 结构，但字段唯一性、Join 放大和性能判断必须降级为风险提示。
+
 ## 审查流程
 
 1. 判断 SQL 目标：这段 SQL 想产出什么结果。

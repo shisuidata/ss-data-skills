@@ -57,6 +57,12 @@ description: Use when exploring a dataset before formal analysis, modeling, repo
 - 数据量级
 - 已知异常
 
+## 上下文建议
+
+推荐使用 [数据分析上下文模板](../../context/templates/analysis-context.md)。
+
+最有价值的上下文是：字段列表、数据粒度、时间字段、对象 ID、分析目标和已知异常。缺少真实数据样例时，只能设计 EDA 检查清单，不能声称已经发现具体分布或异常。
+
 ## 工作流程
 
 1. 识别数据对象：一行代表什么，字段大致分为哪些类型。
@@ -121,4 +127,3 @@ description: Use when exploring a dataset before formal analysis, modeling, repo
 字段：user_id, event_time, event_name, page, channel, device, session_id
 目标：判断是否能用于用户转化路径分析
 ```
-

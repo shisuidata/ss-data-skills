@@ -59,6 +59,12 @@ description: Use when analyzing retention, cohort behavior, repeat purchase, act
 - 是否按自然日、滚动 24 小时或自然周统计
 - 复购、续费、活跃等具体行为定义
 
+## 上下文建议
+
+推荐使用 [数据分析上下文模板](../../context/templates/analysis-context.md)。
+
+最有价值的上下文是：Cohort 起点、回访行为、用户 ID、时间字段、留存窗口和分群维度。缺少时间窗口定义时，必须区分自然日、滚动窗口和自然周，不能混用。
+
 ## 分析框架
 
 1. 定义 Cohort：用户按什么时间和什么行为进入同一批次。
@@ -126,4 +132,3 @@ Cohort 起点：注册日期
 窗口：D1、D7、D30
 维度：渠道、设备、首日是否完成关键行为
 ```
-

@@ -39,6 +39,7 @@
 - 有输出格式
 - 有质量标准
 - 有示例 Prompt
+- 有清晰的上下文要求
 - 信息不足时会列假设和待确认问题
 
 目录结构：
@@ -87,6 +88,7 @@ description: Use when...
 - 使用场景
 - 不适用场景
 - 输入信息
+- 上下文要求
 - 工作流程
 - 输出格式
 - 质量标准
@@ -95,6 +97,10 @@ description: Use when...
 可以参考：
 
 [skills/_template/SKILL.md](skills/_template/SKILL.md)
+
+上下文要求可以参考：
+
+[CONTEXT_GUIDE.md](CONTEXT_GUIDE.md)
 
 ## 示例贡献标准
 
@@ -198,4 +204,3 @@ PR 描述建议包含：
 ## License
 
 提交到本仓库的内容默认遵循仓库的 MIT License。
-

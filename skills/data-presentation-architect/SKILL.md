@@ -58,6 +58,12 @@ description: Use when turning data analysis, reports, project updates, or techni
 - 是否需要讲稿
 - 是否需要附录
 
+## 上下文建议
+
+推荐使用 [PPT 汇报上下文模板](../../context/templates/presentation-context.md)。
+
+最有价值的上下文是：目标受众、演示目标、时长、页数限制、核心结论、已有材料和决策诉求。缺少受众时，默认按业务负责人处理，并在输出中标记该假设。
+
 ## 设计框架
 
 1. 明确受众：管理者、业务、产品、研发、数据团队或外部客户。
@@ -129,4 +135,3 @@ description: Use when turning data analysis, reports, project updates, or techni
 页数：10 页以内
 目标：推动移动端支付页优化和渠道投放结构调整
 ```
-

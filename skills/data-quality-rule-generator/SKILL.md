@@ -65,6 +65,12 @@ description: Use when generating data quality rules from a table schema, SQL, me
 - 质量平台类型
 - 告警接收人或处理机制
 
+## 上下文建议
+
+推荐使用 [表设计上下文模板](../../context/templates/table-context.md) 或 [SQL 审查上下文模板](../../context/templates/sql-review-context.md)。
+
+最有价值的上下文是：表粒度、主键、分区字段、更新频率、SLA、核心指标和历史波动范围。缺少历史波动时，可以给出默认监控思路，但阈值必须标记为假设。
+
 ## 规则类型
 
 优先从这些维度生成规则：

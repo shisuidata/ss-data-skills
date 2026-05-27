@@ -62,6 +62,12 @@ description: Use when analyzing conversion funnels across ordered business steps
 - 埋点说明
 - 历史对比周期
 
+## 上下文建议
+
+推荐使用 [数据分析上下文模板](../../context/templates/analysis-context.md)，也可以参考 [电商增长分析示例上下文](../../context/packs/ecommerce-growth-demo.md)。
+
+最有价值的上下文是：漏斗步骤、事件定义、统计对象、时间窗口、去重规则和分群维度。步骤顺序或事件定义不清楚时，先定义漏斗，不要直接解释流失。
+
 ## 分析框架
 
 1. 明确漏斗目标：最终希望用户完成什么行为。
@@ -124,4 +130,3 @@ description: Use when analyzing conversion funnels across ordered business steps
 对象：user_id 去重
 维度：渠道、设备、新客来源
 ```
-

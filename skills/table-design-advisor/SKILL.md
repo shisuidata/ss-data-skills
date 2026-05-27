@@ -63,6 +63,12 @@ description: Use when designing or reviewing a data warehouse table schema. Advi
 - 执行引擎
 - 公司命名规范
 
+## 上下文建议
+
+推荐使用 [表设计上下文模板](../../context/templates/table-context.md)。
+
+最有价值的上下文是：表服务的业务场景、数据粒度、上游数据、下游查询、更新频率、数据量级和保留周期。表粒度不清楚时，必须先澄清“一行代表什么”。
+
 ## 设计框架
 
 逐项设计：
@@ -139,4 +145,3 @@ description: Use when designing or reviewing a data warehouse table schema. Advi
 更新：T+1。
 引擎：Hive/Spark。
 ```
-

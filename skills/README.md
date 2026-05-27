@@ -12,6 +12,8 @@
 
 如果需要参考输入输出样例，请看 [示例索引](../examples/README.md)。
 
+如果需要准备业务、数据、指标或汇报上下文，请看 [上下文使用指南](../CONTEXT_GUIDE.md) 和 [上下文模板](../context/README.md)。
+
 ## 基本结构
 
 ```text
