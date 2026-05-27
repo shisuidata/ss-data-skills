@@ -25,6 +25,8 @@
 
 我们希望把这些动作整理成 AI Agent 可以执行的 Skill。一个 Skill 解决一个明确问题，有独立的使用说明、使用场景、输入要求和输出模板。
 
+如果你不确定该用哪个 Skill，可以先看 [Skill 索引](SKILL_INDEX.md)。
+
 ## 为谁准备
 
 这个仓库首先为拾穗数据会员准备。
@@ -87,6 +89,8 @@
 [加入拾穗数据会员](https://pro.ss-data.cc)
 
 ## Skill 地图
+
+完整选择指南见 [Skill 索引](SKILL_INDEX.md)。
 
 ### 数据开发
 
