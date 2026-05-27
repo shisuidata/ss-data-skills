@@ -19,10 +19,14 @@
 | 设计或审查一张数仓表 | `table-design-advisor` |
 | 审查一段 SQL 是否会算错或跑慢 | `sql-reviewer` |
 | 给一张表或任务补质量规则 | `data-quality-rule-generator` |
+| 审查一个看板是否能支持业务决策 | `dashboard-reviewer` |
 | 拿到一份新数据，先摸清结构和质量 | `exploratory-data-analysis` |
+| 分析某个业务指标为什么异常 | `business-root-cause-analysis` |
 | 分析注册、下单、支付等转化漏斗 | `funnel-analysis` |
 | 分析留存、复购、活跃回访和 Cohort | `retention-cohort-analysis` |
 | 设计或解读 A/B 实验 | `ab-test-analysis` |
+| 给表、任务、指标或看板写数据文档 | `data-doc-writer` |
+| 写数据事故复盘 | `data-incident-postmortem-writer` |
 | 把分析结果写成报告 | `data-analysis-report-writer` |
 | 写周报、月报或项目进展 | `weekly-monthly-report-writer` |
 | 把报告或材料整理成 PPT 大纲 | `data-presentation-architect` |
@@ -35,6 +39,7 @@
 | --- | --- | --- |
 | 业务说“帮我看一下最近为什么下降” | `data-requirement-clarifier` | 目标、指标、维度、范围、任务拆解 |
 | 业务已有指标名，但口径不清楚 | `metric-definition-reviewer` | 指标定义、分子分母、边界条件、待确认问题 |
+| 业务已经确认某个指标异常 | `business-root-cause-analysis` | 异常确认、假设树、验证路径、行动建议 |
 
 ### 2. 做开发
 
@@ -43,15 +48,18 @@
 | 要沉淀一张新表 | `table-design-advisor` | 表粒度、字段、分区、更新策略 |
 | SQL 写完准备上线 | `sql-reviewer` | 逻辑风险、性能风险、改写建议 |
 | 任务上线前要补质量校验 | `data-quality-rule-generator` | 质量规则、告警级别、校验 SQL |
+| 表、指标或任务要交接给别人 | `data-doc-writer` | 数据文档、字段字典、使用边界、待补充项 |
 
 ### 3. 做分析
 
 | 场景 | 推荐 Skill | 产出 |
 | --- | --- | --- |
 | 新拿到一份数据，不知道能不能用 | `exploratory-data-analysis` | 数据画像、质量问题、异常、下一步方向 |
+| 核心指标异常，需要定位原因 | `business-root-cause-analysis` | 指标拆解、归因假设、验证计划 |
 | 想知道用户在哪一步流失 | `funnel-analysis` | 漏斗表现、关键流失点、分群差异 |
 | 想知道用户是不是留下来了 | `retention-cohort-analysis` | 留存矩阵、Cohort 差异、异常批次 |
 | 想判断实验是否可以全量 | `ab-test-analysis` | 实验可信度、指标结果、上线建议 |
+| 看板上线前或改版前要审查 | `dashboard-reviewer` | 看板目标、指标层级、图表和下钻建议 |
 
 ### 4. 做汇报
 
@@ -60,6 +68,7 @@
 | 数据已经算完，要写正式报告 | `data-analysis-report-writer` | 执行摘要、发现、解释、建议 |
 | 每周或每月要向上同步 | `weekly-monthly-report-writer` | 重点进展、价值、风险、下周期计划 |
 | 要把分析讲给老板或业务方 | `data-presentation-architect` | PPT 结构、每页标题、图表建议、讲稿提示 |
+| 数据事故需要复盘和同步 | `data-incident-postmortem-writer` | 影响范围、时间线、根因、预防措施 |
 
 ## 按角色找
 
@@ -70,9 +79,11 @@
 - `data-requirement-clarifier`
 - `metric-definition-reviewer`
 - `exploratory-data-analysis`
+- `business-root-cause-analysis`
 - `funnel-analysis`
 - `retention-cohort-analysis`
 - `ab-test-analysis`
+- `dashboard-reviewer`
 - `data-analysis-report-writer`
 - `data-presentation-architect`
 
@@ -91,6 +102,8 @@
 - `table-design-advisor`
 - `sql-reviewer`
 - `data-quality-rule-generator`
+- `data-doc-writer`
+- `data-incident-postmortem-writer`
 - `weekly-monthly-report-writer`
 
 典型链路：
@@ -104,8 +117,11 @@
 常用 Skill：
 
 - `metric-definition-reviewer`
+- `dashboard-reviewer`
+- `business-root-cause-analysis`
 - `funnel-analysis`
 - `retention-cohort-analysis`
+- `data-doc-writer`
 - `data-analysis-report-writer`
 - `data-presentation-architect`
 
@@ -122,6 +138,9 @@
 - `data-analysis-report-writer`
 - `weekly-monthly-report-writer`
 - `data-presentation-architect`
+- `dashboard-reviewer`
+- `business-root-cause-analysis`
+- `data-incident-postmortem-writer`
 - `data-quality-rule-generator`
 - `sql-reviewer`
 
@@ -140,10 +159,14 @@
 | 表结构或建表想法 | `table-design-advisor` |
 | SQL | `sql-reviewer` |
 | 表结构、SQL 或任务说明 | `data-quality-rule-generator` |
+| 看板截图、指标列表或页面结构 | `dashboard-reviewer` |
 | CSV、Excel、字段列表或数据样例 | `exploratory-data-analysis` |
+| 业务指标异常描述和对比数据 | `business-root-cause-analysis` |
 | 漏斗步骤和每步人数 | `funnel-analysis` |
 | 用户 ID、时间字段、回访行为 | `retention-cohort-analysis` |
 | 实验组、对照组、指标结果 | `ab-test-analysis` |
+| 表结构、SQL、指标说明或看板说明 | `data-doc-writer` |
+| 事故摘要、影响范围和时间线 | `data-incident-postmortem-writer` |
 | 已有分析结论和数据结果 | `data-analysis-report-writer` |
 | 零散工作事项 | `weekly-monthly-report-writer` |
 | 报告、提纲或项目材料 | `data-presentation-architect` |
@@ -158,6 +181,7 @@ data-requirement-clarifier
 -> table-design-advisor
 -> sql-reviewer
 -> data-quality-rule-generator
+-> data-doc-writer
 ```
 
 ### 转化下降分析
@@ -165,9 +189,27 @@ data-requirement-clarifier
 ```text
 data-requirement-clarifier
 -> exploratory-data-analysis
+-> business-root-cause-analysis
 -> funnel-analysis
 -> data-analysis-report-writer
 -> data-presentation-architect
+```
+
+### 经营看板改版
+
+```text
+metric-definition-reviewer
+-> dashboard-reviewer
+-> data-doc-writer
+```
+
+### 指标异常归因
+
+```text
+metric-definition-reviewer
+-> business-root-cause-analysis
+-> exploratory-data-analysis
+-> data-analysis-report-writer
 ```
 
 ### 留存专题分析
@@ -193,6 +235,14 @@ metric-definition-reviewer
 ```text
 weekly-monthly-report-writer
 -> data-presentation-architect
+```
+
+### 数据事故复盘
+
+```text
+sql-reviewer
+-> data-quality-rule-generator
+-> data-incident-postmortem-writer
 ```
 
 ## 不确定用哪个怎么办

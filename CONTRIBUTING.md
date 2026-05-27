@@ -14,6 +14,7 @@
 - 更清晰的使用场景
 - 更准确的输出模板
 - 针对某个数据工作流的边界补充
+- 可公开复用的行业上下文包
 - 发现 Skill 之间职责重叠后的整理建议
 
 不适合提交：
@@ -43,6 +44,7 @@
 - 有示例 Prompt
 - 有清晰的上下文要求
 - 信息不足时会列假设和待确认问题
+- 涉及行业差异时，优先引用行业上下文包，而不是复制出多个行业版 Skill
 
 目录结构：
 
@@ -103,6 +105,10 @@ description: Use when...
 上下文要求可以参考：
 
 [CONTEXT_GUIDE.md](CONTEXT_GUIDE.md)
+
+行业上下文包可以参考：
+
+[context/industries/README.md](context/industries/README.md)
 
 ## 示例贡献标准
 
@@ -181,6 +187,7 @@ PR 描述建议包含：
 - [ ] `description` 能说明什么时候触发
 - [ ] 输出模板可直接复制使用
 - [ ] 示例没有敏感信息
+- [ ] 涉及行业上下文时已更新 `context/README.md` 和 `CONTEXT_GUIDE.md`
 - [ ] Markdown 渲染正常
 - [ ] 没有提交临时文件、缓存、日志
 - [ ] `node scripts/check-library.mjs` 通过

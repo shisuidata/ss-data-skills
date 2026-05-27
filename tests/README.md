@@ -42,13 +42,17 @@ node scripts/summarize-ecommerce-fixture.mjs
 
 ## 当前覆盖
 
-当前测试覆盖全部 12 个 Skill：
+当前测试覆盖全部 16 个 Skill：
 
 - `ab-test-analysis`
+- `business-root-cause-analysis`
 - `data-analysis-report-writer`
+- `data-doc-writer`
+- `data-incident-postmortem-writer`
 - `data-presentation-architect`
 - `data-quality-rule-generator`
 - `data-requirement-clarifier`
+- `dashboard-reviewer`
 - `exploratory-data-analysis`
 - `funnel-analysis`
 - `metric-definition-reviewer`

@@ -15,6 +15,8 @@ Skill 名称：
 - [ ] 数据开发
 - [ ] 数据分析
 - [ ] 数据治理
+- [ ] BI / 数据产品
+- [ ] 文档协作
 - [ ] 表达交付
 - [ ] 职业成长
 - [ ] Agent 工作流
@@ -88,6 +90,14 @@ Skill 名称：
 - [ ] `context/templates/presentation-context.md`
 - [ ] 需要新增模板：
 
+是否需要行业上下文：
+
+- [ ] 不需要
+- [ ] 电商：`context/industries/ecommerce.md`
+- [ ] SaaS：`context/industries/saas.md`
+- [ ] 内容社区：`context/industries/content-community.md`
+- [ ] 需要新增行业包：
+
 信息不足时如何降级：
 
 ## 8. 输出要求
@@ -140,5 +150,5 @@ Skill 名称：
 - [ ] SKILL_INDEX 更新
 - [ ] examples/README 更新
 - [ ] tests/README 更新
+- [ ] CONTEXT_GUIDE / context/README 更新（如涉及上下文变化）
 - [ ] 自动检查通过
-

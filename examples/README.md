@@ -18,10 +18,14 @@
 | `table-design-advisor` | [table-design-advisor.md](table-design-advisor.md) |
 | `sql-reviewer` | [sql-reviewer.md](sql-reviewer.md) |
 | `data-quality-rule-generator` | [data-quality-rule-generator.md](data-quality-rule-generator.md) |
+| `dashboard-reviewer` | [dashboard-reviewer.md](dashboard-reviewer.md) |
 | `exploratory-data-analysis` | [exploratory-data-analysis.md](exploratory-data-analysis.md) |
+| `business-root-cause-analysis` | [business-root-cause-analysis.md](business-root-cause-analysis.md) |
 | `funnel-analysis` | [funnel-analysis.md](funnel-analysis.md) |
 | `retention-cohort-analysis` | [retention-cohort-analysis.md](retention-cohort-analysis.md) |
 | `ab-test-analysis` | [ab-test-analysis.md](ab-test-analysis.md) |
+| `data-doc-writer` | [data-doc-writer.md](data-doc-writer.md) |
+| `data-incident-postmortem-writer` | [data-incident-postmortem-writer.md](data-incident-postmortem-writer.md) |
 | `data-analysis-report-writer` | [data-analysis-report-writer.md](data-analysis-report-writer.md) |
 | `weekly-monthly-report-writer` | [weekly-monthly-report-writer.md](weekly-monthly-report-writer.md) |
 | `data-presentation-architect` | [data-presentation-architect.md](data-presentation-architect.md) |
@@ -36,4 +40,3 @@
 - 使用说明
 
 所有示例都必须是脱敏数据，不要提交真实公司、客户、账号、表名、截图或日志。
-

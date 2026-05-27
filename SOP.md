@@ -113,6 +113,10 @@ skills/<skill-name>/SKILL.md
 - [context/templates/report-context.md](context/templates/report-context.md)
 - [context/templates/presentation-context.md](context/templates/presentation-context.md)
 
+如果 Skill 涉及明显行业差异，优先复用或新增行业上下文包，而不是复制出多个行业版 Skill：
+
+- [context/industries/README.md](context/industries/README.md)
+
 如果现有模板不够，先扩展 `context/templates/`，再写 Skill。
 
 产物：
@@ -120,6 +124,7 @@ skills/<skill-name>/SKILL.md
 ```text
 Skill 中的“上下文建议”小节
 必要时新增 context/templates/<template>.md
+必要时新增 context/industries/<industry>.md
 ```
 
 ## 5. 示例编写
@@ -236,6 +241,12 @@ tests/results/YYYY-MM-DD-<name>.md
 - [CONTEXT_GUIDE.md](CONTEXT_GUIDE.md)
 - [context/README.md](context/README.md)
 
+如果新增行业上下文包，还要更新：
+
+- [CONTEXT_GUIDE.md](CONTEXT_GUIDE.md)
+- [context/README.md](context/README.md)
+- [context/industries/README.md](context/industries/README.md)
+
 ## 10. 发布
 
 提交信息建议：
@@ -263,4 +274,3 @@ Add tests for <skill-name>
 > 它能不能让一个数据人更稳定地完成一个真实工作动作？
 
 如果答案不清楚，就不要急着新增。
-

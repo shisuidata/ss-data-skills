@@ -20,6 +20,10 @@
 - 设计一张表，怎么守住粒度、分区和更新策略
 - 审查一段 SQL，怎么发现漏算、重复计算和性能风险
 - 上线一个数据任务，怎么补齐质量规则
+- 一个经营看板，怎么判断它能不能支持业务决策
+- 一个业务指标异常，怎么拆成可验证的归因路径
+- 一张表或一个任务，怎么写成别人能接手的数据文档
+- 一次数据事故，怎么复盘到机制改进而不是停在“这次修了”
 
 这些不是“提示词技巧”，而是数据从业者每天都要面对的基本功。
 
@@ -44,6 +48,10 @@
 - 数据需求澄清
 - 数仓表设计
 - 数据质量规则生成
+- BI 看板审查
+- 业务指标异常归因
+- 数据文档与交接
+- 数据事故复盘
 - 面试项目复盘
 - AI Agent 工作流练习
 
@@ -113,9 +121,23 @@
 | Skill | 用途 |
 | --- | --- |
 | `exploratory-data-analysis` | 对新数据集做结构、质量、分布、异常和关系探索 |
+| `business-root-cause-analysis` | 对 GMV、激活、留存、收入等业务指标异常做归因分析 |
 | `funnel-analysis` | 分析注册、激活、下单、支付等有序转化漏斗 |
 | `retention-cohort-analysis` | 分析留存、复购、活跃回访和 Cohort 差异 |
 | `ab-test-analysis` | 设计、审查或解读 A/B 实验，判断实验是否可信和可推广 |
+
+### BI 与数据产品
+
+| Skill | 用途 |
+| --- | --- |
+| `dashboard-reviewer` | 审查看板是否能支持业务决策、定位问题和推动行动 |
+
+### 文档、协作与复盘
+
+| Skill | 用途 |
+| --- | --- |
+| `data-doc-writer` | 为表、指标、SQL 任务、看板或数据产品生成可交接的数据文档 |
+| `data-incident-postmortem-writer` | 写数据事故复盘，沉淀影响、时间线、根因和预防措施 |
 
 ### 表达与交付
 
@@ -133,6 +155,14 @@
 
 ```text
 数据探索 -> 漏斗/留存/实验分析 -> 分析报告 -> PPT 汇报
+```
+
+```text
+业务异常 -> 归因分析 -> 看板审查 -> 分析报告 / PPT 汇报
+```
+
+```text
+表设计 -> SQL 审查 -> 质量规则 -> 数据文档 -> 交接 / 复盘
 ```
 
 ## 设计原则
@@ -156,9 +186,17 @@ skills/
     SKILL.md
   ab-test-analysis/
     SKILL.md
+  business-root-cause-analysis/
+    SKILL.md
   data-analysis-report-writer/
     SKILL.md
+  data-doc-writer/
+    SKILL.md
+  data-incident-postmortem-writer/
+    SKILL.md
   data-requirement-clarifier/
+    SKILL.md
+  dashboard-reviewer/
     SKILL.md
   exploratory-data-analysis/
     SKILL.md

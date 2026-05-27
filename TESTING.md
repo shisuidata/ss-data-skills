@@ -34,11 +34,11 @@ node scripts/summarize-ecommerce-fixture.mjs
 
 ```text
 Library check passed.
-Skills: 12
+Skills: 16
 Context templates: 8
 Test check passed.
-Cases: 12
-Skills covered: 12
+Cases: 16
+Skills covered: 16
 Fixtures: 5
 Ecommerce fixture summary:
 previous: registered=12, product_view=10, add_to_cart=7, order_submit=5, pay_success=4, pay_rate=33.3%

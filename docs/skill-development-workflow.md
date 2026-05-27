@@ -54,6 +54,7 @@ sql-reviewer 负责 SQL 审查。
 - 推荐输入
 - 信息不足时如何降级
 - 应使用哪个上下文模板
+- 是否需要行业上下文包
 
 ## 阶段四：输出标准
 
@@ -139,6 +140,7 @@ node scripts/summarize-ecommerce-fixture.mjs
 - examples/README 是否有示例链接
 - tests/README 是否有测试覆盖
 - CONTEXT_GUIDE 是否需要更新
+- context/README 和 context/industries/README 是否需要更新
 
 ## 完成定义
 
@@ -152,4 +154,3 @@ node scripts/summarize-ecommerce-fixture.mjs
 - 测试可跑
 - 索引可找到
 - 贡献者知道如何继续维护
-

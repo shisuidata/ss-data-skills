@@ -2,10 +2,12 @@
 
 这个目录收录面向数据从业者真实工作的原子 Skill。每个 Skill 都应该是一个可以独立执行的标准动作。
 
-当前 Skill 覆盖三类场景：
+当前 Skill 覆盖几类场景：
 
 - 数据开发：需求、指标、表设计、SQL、质量规则
 - 数据分析：EDA、漏斗、留存、实验分析
+- BI 与数据产品：看板审查、业务归因
+- 文档协作：数据文档、事故复盘
 - 表达交付：分析报告、周报月报、PPT 叙事
 
 如果需要按工作场景选择 Skill，请先看仓库根目录的 [Skill 索引](../SKILL_INDEX.md)。
@@ -54,6 +56,10 @@ description: Use when...
 - `sql-reviewer` 只负责 SQL 审查，不负责完整需求澄清
 - `metric-definition-reviewer` 只负责指标口径，不负责设计整套数仓模型
 - `data-quality-rule-generator` 只负责质量规则，不负责调度平台配置
+- `dashboard-reviewer` 只负责看板审查，不负责完整 BI 页面制作
+- `business-root-cause-analysis` 只负责业务归因框架，不负责凭空确认唯一原因
+- `data-doc-writer` 只负责数据文档，不负责反向设计不存在的表结构
+- `data-incident-postmortem-writer` 只负责事故复盘写作，不负责实时排障
 - `funnel-analysis` 只负责有序转化路径，不负责所有业务归因
 - `data-analysis-report-writer` 只负责报告写作，不负责凭空生成数据结论
 - `data-presentation-architect` 只负责 PPT 叙事结构，不负责视觉美化或制作二进制 PPT 文件
