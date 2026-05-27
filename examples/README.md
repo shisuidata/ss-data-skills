@@ -11,24 +11,24 @@
 
 ## 示例列表
 
-| Skill | 示例 |
-| --- | --- |
-| `data-requirement-clarifier` | [data-requirement-clarifier.md](data-requirement-clarifier.md) |
-| `metric-definition-reviewer` | [metric-definition-reviewer.md](metric-definition-reviewer.md) |
-| `table-design-advisor` | [table-design-advisor.md](table-design-advisor.md) |
-| `sql-reviewer` | [sql-reviewer.md](sql-reviewer.md) |
-| `data-quality-rule-generator` | [data-quality-rule-generator.md](data-quality-rule-generator.md) |
-| `dashboard-reviewer` | [dashboard-reviewer.md](dashboard-reviewer.md) |
-| `exploratory-data-analysis` | [exploratory-data-analysis.md](exploratory-data-analysis.md) |
-| `business-root-cause-analysis` | [business-root-cause-analysis.md](business-root-cause-analysis.md) |
-| `funnel-analysis` | [funnel-analysis.md](funnel-analysis.md) |
-| `retention-cohort-analysis` | [retention-cohort-analysis.md](retention-cohort-analysis.md) |
-| `ab-test-analysis` | [ab-test-analysis.md](ab-test-analysis.md) |
-| `data-doc-writer` | [data-doc-writer.md](data-doc-writer.md) |
-| `data-incident-postmortem-writer` | [data-incident-postmortem-writer.md](data-incident-postmortem-writer.md) |
-| `data-analysis-report-writer` | [data-analysis-report-writer.md](data-analysis-report-writer.md) |
-| `weekly-monthly-report-writer` | [weekly-monthly-report-writer.md](weekly-monthly-report-writer.md) |
-| `data-presentation-architect` | [data-presentation-architect.md](data-presentation-architect.md) |
+| 中文名称 | 英文 ID | 示例 |
+| --- | --- | --- |
+| 数据需求澄清 | `data-requirement-clarifier` | [data-requirement-clarifier.md](data-requirement-clarifier.md) |
+| 指标口径审查 | `metric-definition-reviewer` | [metric-definition-reviewer.md](metric-definition-reviewer.md) |
+| 数仓表设计建议 | `table-design-advisor` | [table-design-advisor.md](table-design-advisor.md) |
+| SQL 审查 | `sql-reviewer` | [sql-reviewer.md](sql-reviewer.md) |
+| 数据质量规则生成 | `data-quality-rule-generator` | [data-quality-rule-generator.md](data-quality-rule-generator.md) |
+| 看板审查 | `dashboard-reviewer` | [dashboard-reviewer.md](dashboard-reviewer.md) |
+| 探索性数据分析 | `exploratory-data-analysis` | [exploratory-data-analysis.md](exploratory-data-analysis.md) |
+| 业务归因分析 | `business-root-cause-analysis` | [business-root-cause-analysis.md](business-root-cause-analysis.md) |
+| 漏斗分析 | `funnel-analysis` | [funnel-analysis.md](funnel-analysis.md) |
+| 留存 Cohort 分析 | `retention-cohort-analysis` | [retention-cohort-analysis.md](retention-cohort-analysis.md) |
+| A/B 实验分析 | `ab-test-analysis` | [ab-test-analysis.md](ab-test-analysis.md) |
+| 数据文档写作 | `data-doc-writer` | [data-doc-writer.md](data-doc-writer.md) |
+| 数据事故复盘 | `data-incident-postmortem-writer` | [data-incident-postmortem-writer.md](data-incident-postmortem-writer.md) |
+| 数据分析报告写作 | `data-analysis-report-writer` | [data-analysis-report-writer.md](data-analysis-report-writer.md) |
+| 周报月报写作 | `weekly-monthly-report-writer` | [weekly-monthly-report-writer.md](weekly-monthly-report-writer.md) |
+| 数据汇报 PPT 架构 | `data-presentation-architect` | [data-presentation-architect.md](data-presentation-architect.md) |
 
 ## 示例规范
 

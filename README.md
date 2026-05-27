@@ -1,15 +1,34 @@
-# 拾穗数据 Skills
+# 拾穗数据技能库（AI Agent Skills）
 
-为拾穗数据会员和数据从业者共同维护的 AI Agent Skill 开源库。
+为拾穗数据会员和数据从业者共同维护的 AI Agent 技能库。
 
-这个仓库由 **拾穗数据工作室** 发起。我们会把日常数据开发、数据分析、数据治理和 AI Agent 实践中可复用的标准动作，沉淀成一个个独立可用的 Skill。
+这个仓库由 **拾穗数据工作室** 发起。我们会把日常数据开发、数据分析、数据治理和 AI Agent 实践中可复用的标准动作，沉淀成一个个独立可用的技能。
 
-这些 Skill 会优先服务拾穗数据会员的学习、工作和项目实践；同时，我们也把它们免费开源出来，供更多数据从业者直接使用、修改和共建。
+这些技能会优先服务拾穗数据会员的学习、工作和项目实践；同时，我们也把它们免费开源出来，供更多数据从业者直接使用、修改和共建。
 
 - 拾穗数据主站：[ss-data.cc](https://ss-data.cc)
 - 数据从业者全栈知识库：[pro.ss-data.cc](https://pro.ss-data.cc)
 
 ![拾穗数据主站](assets/screenshots/ss-data-home.png)
+
+## 项目命名
+
+面向国内用户时，这个项目统一叫：
+
+> **拾穗数据技能库**
+
+副标题：
+
+> 面向数据从业者的 AI Agent 工作技能库
+
+命名约定：
+
+- **中文技能名**面向用户，例如“SQL 审查”“看板审查”“业务归因分析”
+- **英文 Skill ID** 面向工具和目录，例如 `sql-reviewer`、`dashboard-reviewer`
+- GitHub 仓库名保持 `ss-data-skills`，用于 URL、安装和版本管理
+- 文档、示例和入口优先使用中文；代码目录和 frontmatter 保持英文，避免破坏 Agent 兼容性
+
+第一次使用请看 [快速开始](QUICK_START.md)。
 
 ## 这个仓库是什么
 
@@ -27,15 +46,15 @@
 
 这些不是“提示词技巧”，而是数据从业者每天都要面对的基本功。
 
-我们希望把这些动作整理成 AI Agent 可以执行的 Skill。一个 Skill 解决一个明确问题，有独立的使用说明、使用场景、输入要求和输出模板。
+我们希望把这些动作整理成 AI Agent 可以执行的技能。一个技能解决一个明确问题，有独立的使用说明、使用场景、输入要求和输出模板。
 
-如果你不确定该用哪个 Skill，可以先看 [Skill 索引](SKILL_INDEX.md)。
+如果你不确定该用哪个技能，可以先看 [技能索引](SKILL_INDEX.md)。
 
 想看具体输入输出，可以从 [示例索引](examples/README.md) 开始。
 
-如果你要把 Skill 用到真实工作里，建议先阅读 [上下文使用指南](CONTEXT_GUIDE.md)，并使用 [上下文模板](context/README.md) 准备材料。
+如果你要把技能用到真实工作里，建议先阅读 [上下文使用指南](CONTEXT_GUIDE.md)，并使用 [上下文模板](context/README.md) 准备材料。
 
-如果你要新增或维护 Skill，请按 [Skill 生产 SOP](SOP.md) 执行。
+如果你要新增或维护技能，请按 [Skill 生产 SOP](SOP.md) 执行。
 
 ## 为谁准备
 
@@ -55,7 +74,7 @@
 - 面试项目复盘
 - AI Agent 工作流练习
 
-同时，它也是一个免费开源项目。即使你不是会员，也可以直接使用这些 Skill。好的方法不应该只躺在少数人的笔记里。
+同时，它也是一个免费开源项目。即使你不是会员，也可以直接使用这些技能。好的方法不应该只躺在少数人的笔记里。
 
 ## 拾穗数据在做什么
 
@@ -102,52 +121,52 @@
 
 [加入拾穗数据会员](https://pro.ss-data.cc)
 
-## Skill 地图
+## 技能地图
 
-完整选择指南见 [Skill 索引](SKILL_INDEX.md)。
+完整选择指南见 [技能索引](SKILL_INDEX.md)。英文 ID 是稳定目录名，中文名称是推荐给国内用户看的入口名。
 
 ### 数据开发
 
-| Skill | 用途 |
-| --- | --- |
-| `data-requirement-clarifier` | 把模糊的数据需求澄清成可开发任务 |
-| `metric-definition-reviewer` | 审查指标口径、统计粒度、边界条件和业务风险 |
-| `table-design-advisor` | 设计或审查数仓表结构、分层、粒度、分区和更新策略 |
-| `sql-reviewer` | 审查 SQL 的逻辑正确性、性能风险和口径一致性 |
-| `data-quality-rule-generator` | 根据表结构、SQL 或指标定义生成数据质量规则 |
+| 中文名称 | 英文 ID | 用途 |
+| --- | --- | --- |
+| 数据需求澄清 | `data-requirement-clarifier` | 把模糊的数据需求澄清成可开发任务 |
+| 指标口径审查 | `metric-definition-reviewer` | 审查指标口径、统计粒度、边界条件和业务风险 |
+| 数仓表设计建议 | `table-design-advisor` | 设计或审查数仓表结构、分层、粒度、分区和更新策略 |
+| SQL 审查 | `sql-reviewer` | 审查 SQL 的逻辑正确性、性能风险和口径一致性 |
+| 数据质量规则生成 | `data-quality-rule-generator` | 根据表结构、SQL 或指标定义生成数据质量规则 |
 
 ### 数据分析
 
-| Skill | 用途 |
-| --- | --- |
-| `exploratory-data-analysis` | 对新数据集做结构、质量、分布、异常和关系探索 |
-| `business-root-cause-analysis` | 对 GMV、激活、留存、收入等业务指标异常做归因分析 |
-| `funnel-analysis` | 分析注册、激活、下单、支付等有序转化漏斗 |
-| `retention-cohort-analysis` | 分析留存、复购、活跃回访和 Cohort 差异 |
-| `ab-test-analysis` | 设计、审查或解读 A/B 实验，判断实验是否可信和可推广 |
+| 中文名称 | 英文 ID | 用途 |
+| --- | --- | --- |
+| 探索性数据分析 | `exploratory-data-analysis` | 对新数据集做结构、质量、分布、异常和关系探索 |
+| 业务归因分析 | `business-root-cause-analysis` | 对 GMV、激活、留存、收入等业务指标异常做归因分析 |
+| 漏斗分析 | `funnel-analysis` | 分析注册、激活、下单、支付等有序转化漏斗 |
+| 留存 Cohort 分析 | `retention-cohort-analysis` | 分析留存、复购、活跃回访和 Cohort 差异 |
+| A/B 实验分析 | `ab-test-analysis` | 设计、审查或解读 A/B 实验，判断实验是否可信和可推广 |
 
 ### BI 与数据产品
 
-| Skill | 用途 |
-| --- | --- |
-| `dashboard-reviewer` | 审查看板是否能支持业务决策、定位问题和推动行动 |
+| 中文名称 | 英文 ID | 用途 |
+| --- | --- | --- |
+| 看板审查 | `dashboard-reviewer` | 审查看板是否能支持业务决策、定位问题和推动行动 |
 
 ### 文档、协作与复盘
 
-| Skill | 用途 |
-| --- | --- |
-| `data-doc-writer` | 为表、指标、SQL 任务、看板或数据产品生成可交接的数据文档 |
-| `data-incident-postmortem-writer` | 写数据事故复盘，沉淀影响、时间线、根因和预防措施 |
+| 中文名称 | 英文 ID | 用途 |
+| --- | --- | --- |
+| 数据文档写作 | `data-doc-writer` | 为表、指标、SQL 任务、看板或数据产品生成可交接的数据文档 |
+| 数据事故复盘 | `data-incident-postmortem-writer` | 写数据事故复盘，沉淀影响、时间线、根因和预防措施 |
 
 ### 表达与交付
 
-| Skill | 用途 |
-| --- | --- |
-| `data-analysis-report-writer` | 把分析结果整理成可决策的数据分析报告 |
-| `weekly-monthly-report-writer` | 写周报、月报、项目进展和向上同步材料 |
-| `data-presentation-architect` | 把分析报告、项目进展或技术内容整理成 PPT 叙事大纲 |
+| 中文名称 | 英文 ID | 用途 |
+| --- | --- | --- |
+| 数据分析报告写作 | `data-analysis-report-writer` | 把分析结果整理成可决策的数据分析报告 |
+| 周报月报写作 | `weekly-monthly-report-writer` | 写周报、月报、项目进展和向上同步材料 |
+| 数据汇报 PPT 架构 | `data-presentation-architect` | 把分析报告、项目进展或技术内容整理成 PPT 叙事大纲 |
 
-这些 Skill 可以单独使用，也可以组合成常见的数据工作链路：
+这些技能可以单独使用，也可以组合成常见的数据工作链路：
 
 ```text
 需求澄清 -> 指标口径 -> 表设计 -> SQL 审查 -> 质量规则
@@ -167,11 +186,11 @@
 
 ## 设计原则
 
-1. 每个 Skill 必须独立可用
-2. 每个 Skill 只解决一个明确问题
-3. 每个 Skill 必须有清晰的输入、输出和使用场景
-4. Skill 不依赖私有上下文，缺失信息要显式列为假设或待确认问题
-5. 多个 Skill 可以自然组合，但不能互相强依赖
+1. 每个技能必须独立可用
+2. 每个技能只解决一个明确问题
+3. 每个技能必须有清晰的输入、输出和使用场景
+4. 技能不依赖私有上下文，缺失信息要显式列为假设或待确认问题
+5. 多个技能可以自然组合，但不能互相强依赖
 
 一句话：
 
@@ -182,6 +201,7 @@
 ```text
 skills/
   README.md
+  catalog.json
   _template/
     SKILL.md
   ab-test-analysis/
@@ -218,7 +238,7 @@ skills/
     SKILL.md
 ```
 
-每个 Skill 目录都以 `SKILL.md` 作为核心文件。必要时可以增加：
+每个技能目录都以 `SKILL.md` 作为核心文件。必要时可以增加：
 
 - `references/`：放较长的领域参考资料
 - `scripts/`：放可执行脚本
@@ -229,10 +249,12 @@ skills/
 - `SOP.md`：从需求到开发、测试、发布的标准作业程序
 - `docs/skill-development-workflow.md`：Skill 开发工作流详解
 - `docs/templates/skill-brief.md`：新增 Skill 前的需求定义模板
-- `CONTEXT_GUIDE.md`：说明 Skill 如何配合上下文使用
+- `QUICK_START.md`：面向国内用户的快速开始
+- `CONTEXT_GUIDE.md`：说明技能如何配合上下文使用
 - `context/templates/`：可复制的上下文模板
 - `context/packs/`：预制演示上下文包
 - `examples/`：脱敏示例输入和预期输出
+- `skills/catalog.json`：中文展示名、英文 ID、分类和别名的结构化目录
 - `scripts/check-library.mjs`：检查 Skill、示例和上下文资源是否齐全
 
 测试方式见 [测试说明](TESTING.md)。
@@ -241,25 +263,52 @@ skills/
 
 ## 使用方式
 
+你可以按两种方式使用。
+
+### 方式一：直接复制使用
+
+这是最适合国内用户的方式，不依赖特定 Agent 平台。
+
+1. 在 [技能索引](SKILL_INDEX.md) 中找到对应技能。
+2. 打开 `skills/<skill-id>/SKILL.md`。
+3. 把 `SKILL.md` 的内容、你的任务和上下文一起发给 AI 助手。
+
+通用模板：
+
+```text
+请按【中文技能名】这个技能的工作方式处理下面的问题。
+
+技能说明：
+[粘贴 skills/<skill-id>/SKILL.md]
+
+我的任务：
+[写清楚你要解决的问题]
+
+上下文：
+[粘贴或填写 context/templates/ 中的模板]
+```
+
+### 方式二：安装到支持 Skill 的 Agent 环境
+
 把某个 Skill 目录复制或安装到支持 Skill 的 Agent 环境中，然后用自然语言触发即可。
 
 例如：
 
 ```text
-请用 sql-reviewer 帮我审查下面这段 Spark SQL，重点看指标口径和性能风险。
+请用 SQL 审查（sql-reviewer）帮我审查下面这段 Spark SQL，重点看指标口径和性能风险。
 ```
 
 或者：
 
 ```text
-请用 data-requirement-clarifier 把这个需求整理成数据开发任务：
+请用数据需求澄清（data-requirement-clarifier）把这个需求整理成数据开发任务：
 老板想看最近转化率为什么下降。
 ```
 
 更推荐的方式是同时提供上下文：
 
 ```text
-请使用 funnel-analysis 分析下面的问题。
+请使用漏斗分析（funnel-analysis）分析下面的问题。
 
 上下文：
 [粘贴并填写 context/templates/analysis-context.md]
@@ -273,8 +322,8 @@ skills/
 
 适合提交的内容包括：
 
-- 新的 Skill 场景
-- 现有 Skill 的输出改进
+- 新的技能场景
+- 现有技能的输出改进
 - 数据开发真实案例脱敏后的整理
 - 更好的示例输入和示例输出
 - 针对某个引擎或平台的补充说明
@@ -296,20 +345,17 @@ skills/
 - `backfill-planner`
 - `lineage-explainer`
 - `flink-job-reviewer`
-- `data-incident-postmortem-writer`
 - `data-dev-pr-reviewer`
 - `warehouse-naming-linter`
-- `data-doc-writer`
-- `dashboard-reviewer`
-- `business-root-cause-analysis`
 - `data-interview-case-coach`
 - `agent-skill-packager`
+- 国内常见平台上下文包：阿里云 DataWorks、火山引擎、腾讯云、观远、帆软等
 
 ## 同步约定
 
 这个仓库面向 GitHub 公共发布。可以同步的内容包括：
 
-- 可独立使用的 Skill
+- 可独立使用的技能
 - 面向用户的说明文档
 - 可复用示例
 - 经过整理的脚本、模板和参考资料
@@ -326,6 +372,6 @@ skills/
 
 ## License
 
-本仓库采用 MIT License 开源。你可以免费使用、复制、修改和分发这些 Skill。
+本仓库采用 MIT License 开源。你可以免费使用、复制、修改和分发这些技能。
 
 如果这些内容帮到了你，也欢迎访问 [ss-data.cc](https://ss-data.cc) 或加入 [拾穗数据会员](https://pro.ss-data.cc)。

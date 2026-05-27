@@ -36,6 +36,7 @@
 
 - 可以独立使用
 - 只解决一个明确问题
+- 有面向国内用户的中文展示名
 - 有清晰触发场景
 - 有输入要求
 - 有工作流程
@@ -55,16 +56,17 @@ skills/skill-name/
 
 命名规则：
 
-- 使用小写英文
-- 单词之间用连字符
-- 名称要表达动作，不要太抽象
+- 英文 ID 使用小写英文，单词之间用连字符
+- 英文 ID 要表达动作，不要太抽象
+- 中文展示名要短、直接、像真实工作动作
+- 文档中优先展示中文名，并在括号中保留英文 ID
 
 好的例子：
 
 ```text
-dashboard-reviewer
-business-root-cause-analysis
-data-incident-postmortem-writer
+看板审查（dashboard-reviewer）
+业务归因分析（business-root-cause-analysis）
+数据事故复盘（data-incident-postmortem-writer）
 ```
 
 不好的例子：
@@ -178,12 +180,14 @@ PR 描述建议包含：
 - 改了什么
 - 为什么改
 - 影响哪些 Skill
+- 中文展示名和英文 ID
 - 是否新增示例
 - 是否涉及脱敏材料
 
 提交前检查：
 
 - [ ] Skill 名称和目录名一致
+- [ ] 中文展示名清楚、稳定、已写入索引
 - [ ] `description` 能说明什么时候触发
 - [ ] 输出模板可直接复制使用
 - [ ] 示例没有敏感信息

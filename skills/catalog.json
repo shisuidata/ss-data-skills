@@ -1,0 +1,105 @@
+{
+  "project": {
+    "displayName": "拾穗数据技能库",
+    "subtitle": "面向数据从业者的 AI Agent 工作技能库",
+    "repositoryName": "ss-data-skills"
+  },
+  "skills": [
+    {
+      "id": "data-requirement-clarifier",
+      "displayName": "数据需求澄清",
+      "category": "数据开发",
+      "aliases": ["需求澄清", "数据需求分析", "需求转开发任务"]
+    },
+    {
+      "id": "metric-definition-reviewer",
+      "displayName": "指标口径审查",
+      "category": "数据开发",
+      "aliases": ["指标审查", "口径审查", "指标定义检查"]
+    },
+    {
+      "id": "table-design-advisor",
+      "displayName": "数仓表设计建议",
+      "category": "数据开发",
+      "aliases": ["表设计", "数仓建模建议", "表结构审查"]
+    },
+    {
+      "id": "sql-reviewer",
+      "displayName": "SQL 审查",
+      "category": "数据开发",
+      "aliases": ["SQL Review", "SQL 检查", "SQL 逻辑审查"]
+    },
+    {
+      "id": "data-quality-rule-generator",
+      "displayName": "数据质量规则生成",
+      "category": "数据开发",
+      "aliases": ["质量规则", "数据质量检查", "质量校验生成"]
+    },
+    {
+      "id": "exploratory-data-analysis",
+      "displayName": "探索性数据分析",
+      "category": "数据分析",
+      "aliases": ["EDA", "数据探索", "探索分析"]
+    },
+    {
+      "id": "business-root-cause-analysis",
+      "displayName": "业务归因分析",
+      "category": "数据分析",
+      "aliases": ["指标归因", "异常归因", "业务指标诊断"]
+    },
+    {
+      "id": "funnel-analysis",
+      "displayName": "漏斗分析",
+      "category": "数据分析",
+      "aliases": ["转化漏斗", "转化分析", "流失分析"]
+    },
+    {
+      "id": "retention-cohort-analysis",
+      "displayName": "留存 Cohort 分析",
+      "category": "数据分析",
+      "aliases": ["留存分析", "Cohort 分析", "复购分析"]
+    },
+    {
+      "id": "ab-test-analysis",
+      "displayName": "A/B 实验分析",
+      "category": "数据分析",
+      "aliases": ["AB 实验", "实验分析", "实验解读"]
+    },
+    {
+      "id": "dashboard-reviewer",
+      "displayName": "看板审查",
+      "category": "BI 与数据产品",
+      "aliases": ["BI 看板审查", "经营看板审查", "看板优化"]
+    },
+    {
+      "id": "data-doc-writer",
+      "displayName": "数据文档写作",
+      "category": "文档协作",
+      "aliases": ["数据文档", "数据资产文档", "交接文档"]
+    },
+    {
+      "id": "data-incident-postmortem-writer",
+      "displayName": "数据事故复盘",
+      "category": "文档协作",
+      "aliases": ["事故复盘", "数据问题复盘", "数据事故报告"]
+    },
+    {
+      "id": "data-analysis-report-writer",
+      "displayName": "数据分析报告写作",
+      "category": "表达交付",
+      "aliases": ["分析报告", "数据报告", "报告写作"]
+    },
+    {
+      "id": "weekly-monthly-report-writer",
+      "displayName": "周报月报写作",
+      "category": "表达交付",
+      "aliases": ["周报", "月报", "项目进展汇报"]
+    },
+    {
+      "id": "data-presentation-architect",
+      "displayName": "数据汇报 PPT 架构",
+      "category": "表达交付",
+      "aliases": ["PPT 大纲", "汇报结构", "数据汇报"]
+    }
+  ]
+}

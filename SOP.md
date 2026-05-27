@@ -40,6 +40,8 @@
 必须说清楚：
 
 - 这个 Skill 解决什么问题
+- 中文展示名是什么
+- 英文 Skill ID 是什么
 - 用户是谁
 - 典型输入是什么
 - 预期输出是什么
@@ -74,6 +76,13 @@ Skill 的使用场景、不适用场景、输入信息、上下文建议
 ## 3. Skill 开发
 
 在 `skills/<skill-name>/SKILL.md` 中开发 Skill。
+
+命名约定：
+
+- 中文展示名面向国内用户，例如“SQL 审查”“看板审查”
+- 英文 Skill ID 面向目录和 Agent 工具，例如 `sql-reviewer`
+- 目录名、frontmatter `name`、示例文件名、测试文件名必须使用同一个英文 ID
+- README、SKILL_INDEX、示例 Prompt 中应优先展示中文名，并在括号中保留英文 ID
 
 必须包含：
 
@@ -233,6 +242,7 @@ tests/results/YYYY-MM-DD-<name>.md
 
 - [README.md](README.md)
 - [SKILL_INDEX.md](SKILL_INDEX.md)
+- [QUICK_START.md](QUICK_START.md)
 - [examples/README.md](examples/README.md)
 - [tests/README.md](tests/README.md)
 

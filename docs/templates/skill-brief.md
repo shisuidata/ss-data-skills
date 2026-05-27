@@ -8,6 +8,8 @@
 
 Skill 名称：
 
+中文展示名：
+
 建议目录名：
 
 所属分类：
@@ -148,6 +150,7 @@ Skill 名称：
 - [ ] `tests/cases/<skill-name>.md`
 - [ ] README 更新
 - [ ] SKILL_INDEX 更新
+- [ ] 中文展示名和英文 ID 的映射已更新
 - [ ] examples/README 更新
 - [ ] tests/README 更新
 - [ ] CONTEXT_GUIDE / context/README 更新（如涉及上下文变化）

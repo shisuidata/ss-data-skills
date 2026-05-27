@@ -25,6 +25,7 @@ node scripts/summarize-ecommerce-fixture.mjs
 - 每个 Skill 是否有对应示例
 - 每个示例是否包含适用场景、示例输入、预期输出和使用说明
 - 仓库级文档是否存在
+- 快速开始、技能索引、上下文指南等用户入口是否存在
 - 上下文模板是否齐全
 - README、索引、贡献指南中关键链接是否存在
 - 测试用例、mock 数据和评测 Rubric 是否存在

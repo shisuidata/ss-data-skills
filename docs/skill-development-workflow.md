@@ -27,6 +27,8 @@
 
 必须定义：
 
+- 中文展示名
+- 英文 Skill ID
 - 这个 Skill 负责什么
 - 这个 Skill 不负责什么
 - 哪些任务应该转给其他 Skill
@@ -36,6 +38,14 @@
 ```text
 sql-reviewer 负责 SQL 审查。
 它不负责从零澄清业务需求，也不负责完整表设计。
+```
+
+中文展示名面向国内用户，英文 Skill ID 面向目录和 Agent 工具。示例：
+
+```text
+SQL 审查（sql-reviewer）
+看板审查（dashboard-reviewer）
+业务归因分析（business-root-cause-analysis）
 ```
 
 ## 阶段三：上下文契约

@@ -35,6 +35,19 @@ description: Use when...
 ---
 ```
 
+## 命名约定
+
+面向国内用户时，每个 Skill 都需要同时维护两套名称：
+
+- 中文展示名：给用户阅读和传播，例如“SQL 审查”“看板审查”
+- 英文 ID：给目录、文件和 Agent 工具使用，例如 `sql-reviewer`
+
+目录名、frontmatter `name`、示例文件名、测试文件名必须使用同一个英文 ID。
+
+README、索引和示例 Prompt 中应优先写中文展示名，并在括号中保留英文 ID。
+
+中文展示名、分类和常用别名统一维护在 [catalog.json](catalog.json)。
+
 ## 写作要求
 
 每个 Skill 必须说明：
@@ -93,7 +106,8 @@ description: Use when...
 
 ## 新增 Skill 检查清单
 
-- [ ] Skill 名称使用小写英文和连字符
+- [ ] Skill 英文 ID 使用小写英文和连字符
+- [ ] 有清晰的中文展示名
 - [ ] `description` 明确写出触发场景
 - [ ] 可以独立使用
 - [ ] 有输入和输出说明

@@ -6,6 +6,7 @@ import { join } from "node:path";
 const root = process.cwd();
 const skillsDir = join(root, "skills");
 const examplesDir = join(root, "examples");
+const catalogPath = join(skillsDir, "catalog.json");
 
 const errors = [];
 const warnings = [];
@@ -97,8 +98,43 @@ for (const skillDir of listSkillDirs()) {
   }
 }
 
+if (!existsSync(catalogPath)) {
+  errors.push("Missing skill catalog: skills/catalog.json");
+} else {
+  let catalog;
+  try {
+    catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
+  } catch (error) {
+    errors.push(`Invalid JSON in skills/catalog.json: ${error.message}`);
+  }
+
+  if (catalog) {
+    const catalogSkills = Array.isArray(catalog.skills) ? catalog.skills : [];
+    const catalogIds = new Set(catalogSkills.map((skill) => skill.id));
+
+    for (const skillDir of listSkillDirs()) {
+      if (!catalogIds.has(skillDir)) {
+        errors.push(`Missing skill in catalog: ${skillDir}`);
+      }
+    }
+
+    for (const skill of catalogSkills) {
+      if (!skill.id || !existsSync(join(skillsDir, skill.id, "SKILL.md"))) {
+        errors.push(`Catalog references missing skill: ${skill.id ?? "(missing id)"}`);
+      }
+      if (!skill.displayName) {
+        errors.push(`Catalog skill missing displayName: ${skill.id}`);
+      }
+      if (!skill.category) {
+        errors.push(`Catalog skill missing category: ${skill.id}`);
+      }
+    }
+  }
+}
+
 const requiredDocs = [
   "README.md",
+  "QUICK_START.md",
   "SOP.md",
   "SKILL_INDEX.md",
   "CONTEXT_GUIDE.md",
@@ -135,6 +171,7 @@ for (const template of requiredContextTemplates) {
 }
 
 const expectedLinks = [
+  ["README.md", "QUICK_START.md"],
   ["README.md", "SKILL_INDEX.md"],
   ["README.md", "SOP.md"],
   ["README.md", "CONTEXT_GUIDE.md"],
