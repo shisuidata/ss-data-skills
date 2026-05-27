@@ -1,0 +1,42 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Agent and local workspace state
+.agent/
+.codex/
+.claude/
+
+# Intermediate work
+tmp/
+temp/
+scratch/
+workbench/
+.cache/
+
+# Logs
+*.log
+logs/
+
+# Dependency and build output
+node_modules/
+dist/
+build/
+coverage/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Editor files
+*.swp
+*.swo
+*.tmp
+*.bak
+
