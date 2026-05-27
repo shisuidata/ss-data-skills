@@ -181,6 +181,9 @@ PR 描述建议包含：
 - [ ] 示例没有敏感信息
 - [ ] Markdown 渲染正常
 - [ ] 没有提交临时文件、缓存、日志
+- [ ] `node scripts/check-library.mjs` 通过
+
+测试方式见 [TESTING.md](TESTING.md)。
 
 ## 维护原则
 

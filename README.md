@@ -192,6 +192,8 @@ skills/
 - `examples/`：脱敏示例输入和预期输出
 - `scripts/check-library.mjs`：检查 Skill、示例和上下文资源是否齐全
 
+测试方式见 [测试说明](TESTING.md)。
+
 ## 使用方式
 
 把某个 Skill 目录复制或安装到支持 Skill 的 Agent 环境中，然后用自然语言触发即可。

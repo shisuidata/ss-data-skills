@@ -8,6 +8,25 @@ const skillsDir = join(root, "skills");
 const examplesDir = join(root, "examples");
 
 const errors = [];
+const warnings = [];
+
+const requiredSkillSections = [
+  "## 目标",
+  "## 使用场景",
+  "## 不适用场景",
+  "## 输入信息",
+  "## 上下文建议",
+  "## 输出格式",
+  "## 质量标准",
+  "## 示例 Prompt",
+];
+
+const requiredExampleSections = [
+  "## 适用场景",
+  "## 示例输入",
+  "## 预期输出",
+  "## 使用说明",
+];
 
 function listSkillDirs() {
   return readdirSync(skillsDir)
@@ -16,7 +35,7 @@ function listSkillDirs() {
     .sort();
 }
 
-function readSkillName(skillDir) {
+function readSkill(skillDir) {
   const skillPath = join(skillsDir, skillDir, "SKILL.md");
   if (!existsSync(skillPath)) {
     errors.push(`Missing SKILL.md: skills/${skillDir}/SKILL.md`);
@@ -30,20 +49,51 @@ function readSkillName(skillDir) {
     return null;
   }
 
-  return match[1].trim();
+  return {
+    content,
+    name: match[1].trim(),
+    path: skillPath,
+  };
 }
 
 for (const skillDir of listSkillDirs()) {
-  const skillName = readSkillName(skillDir);
-  if (!skillName) continue;
+  const skill = readSkill(skillDir);
+  if (!skill) continue;
 
-  if (skillName !== skillDir) {
-    errors.push(`Skill name mismatch: directory=${skillDir}, name=${skillName}`);
+  if (skill.name !== skillDir) {
+    errors.push(`Skill name mismatch: directory=${skillDir}, name=${skill.name}`);
+  }
+
+  const description = skill.content.match(/^description:\s*(.+)$/m)?.[1]?.trim();
+  if (!description) {
+    errors.push(`Missing frontmatter description: skills/${skillDir}/SKILL.md`);
+  } else if (!description.startsWith("Use when ")) {
+    warnings.push(`Description should start with "Use when": skills/${skillDir}/SKILL.md`);
+  }
+
+  for (const section of requiredSkillSections) {
+    if (!skill.content.includes(section)) {
+      errors.push(`Missing section "${section}": skills/${skillDir}/SKILL.md`);
+    }
+  }
+
+  if (!skill.content.includes("../../context/templates/")) {
+    warnings.push(`No context template link found: skills/${skillDir}/SKILL.md`);
   }
 
   const examplePath = join(examplesDir, `${skillDir}.md`);
   if (!existsSync(examplePath)) {
     errors.push(`Missing example: examples/${skillDir}.md`);
+  } else {
+    const example = readFileSync(examplePath, "utf8");
+    for (const section of requiredExampleSections) {
+      if (!example.includes(section)) {
+        errors.push(`Missing section "${section}": examples/${skillDir}.md`);
+      }
+    }
+    if (!example.includes(`请用 ${skillDir}`) && !example.includes(`使用 ${skillDir}`)) {
+      warnings.push(`Example may not show direct skill invocation: examples/${skillDir}.md`);
+    }
   }
 }
 
@@ -80,6 +130,25 @@ for (const template of requiredContextTemplates) {
   }
 }
 
+const expectedLinks = [
+  ["README.md", "SKILL_INDEX.md"],
+  ["README.md", "CONTEXT_GUIDE.md"],
+  ["README.md", "examples/README.md"],
+  ["README.md", "CONTRIBUTING.md"],
+  ["SKILL_INDEX.md", "context/README.md"],
+  ["CONTRIBUTING.md", "CONTEXT_GUIDE.md"],
+  ["skills/README.md", "../CONTEXT_GUIDE.md"],
+];
+
+for (const [file, link] of expectedLinks) {
+  const path = join(root, file);
+  if (!existsSync(path)) continue;
+  const content = readFileSync(path, "utf8");
+  if (!content.includes(link)) {
+    errors.push(`Missing expected link "${link}" in ${file}`);
+  }
+}
+
 if (errors.length > 0) {
   console.error("Library check failed:\n");
   for (const error of errors) {
@@ -91,4 +160,9 @@ if (errors.length > 0) {
 console.log("Library check passed.");
 console.log(`Skills: ${listSkillDirs().length}`);
 console.log(`Context templates: ${requiredContextTemplates.length}`);
-
+if (warnings.length > 0) {
+  console.log(`Warnings: ${warnings.length}`);
+  for (const warning of warnings) {
+    console.log(`- ${warning}`);
+  }
+}
