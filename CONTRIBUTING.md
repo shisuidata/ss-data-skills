@@ -29,6 +29,8 @@
 
 新增 Skill 前，先判断它是不是一个“可重复的标准动作”。
 
+完整流程请按 [Skill 生产 SOP](SOP.md) 执行。需求定义建议先填写 [Skill Brief 模板](docs/templates/skill-brief.md)。
+
 一个合格的 Skill 应该满足：
 
 - 可以独立使用

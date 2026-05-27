@@ -31,6 +31,8 @@
 
 如果你要把 Skill 用到真实工作里，建议先阅读 [上下文使用指南](CONTEXT_GUIDE.md)，并使用 [上下文模板](context/README.md) 准备材料。
 
+如果你要新增或维护 Skill，请按 [Skill 生产 SOP](SOP.md) 执行。
+
 ## 为谁准备
 
 这个仓库首先为拾穗数据会员准备。
@@ -186,6 +188,9 @@ skills/
 
 仓库级资源：
 
+- `SOP.md`：从需求到开发、测试、发布的标准作业程序
+- `docs/skill-development-workflow.md`：Skill 开发工作流详解
+- `docs/templates/skill-brief.md`：新增 Skill 前的需求定义模板
 - `CONTEXT_GUIDE.md`：说明 Skill 如何配合上下文使用
 - `context/templates/`：可复制的上下文模板
 - `context/packs/`：预制演示上下文包

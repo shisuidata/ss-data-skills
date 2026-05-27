@@ -126,6 +126,8 @@ tests/rubrics/common.md
 
 当前阶段先保证 Skill 库结构完整、示例齐全、上下文契约明确。
 
+新增 Skill 的完整生产流程见 [Skill 生产 SOP](SOP.md)。
+
 ## 已完成评测
 
 - [2026-05-27 首轮人工评测记录](tests/results/2026-05-27-manual-eval.md)

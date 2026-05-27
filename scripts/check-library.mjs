@@ -99,9 +99,13 @@ for (const skillDir of listSkillDirs()) {
 
 const requiredDocs = [
   "README.md",
+  "SOP.md",
   "SKILL_INDEX.md",
   "CONTEXT_GUIDE.md",
   "CONTRIBUTING.md",
+  "TESTING.md",
+  "docs/skill-development-workflow.md",
+  "docs/templates/skill-brief.md",
   "examples/README.md",
   "context/README.md",
 ];
@@ -132,11 +136,14 @@ for (const template of requiredContextTemplates) {
 
 const expectedLinks = [
   ["README.md", "SKILL_INDEX.md"],
+  ["README.md", "SOP.md"],
   ["README.md", "CONTEXT_GUIDE.md"],
   ["README.md", "examples/README.md"],
   ["README.md", "CONTRIBUTING.md"],
   ["SKILL_INDEX.md", "context/README.md"],
+  ["CONTRIBUTING.md", "SOP.md"],
   ["CONTRIBUTING.md", "CONTEXT_GUIDE.md"],
+  ["TESTING.md", "SOP.md"],
   ["skills/README.md", "../CONTEXT_GUIDE.md"],
 ];
 
