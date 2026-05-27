@@ -37,7 +37,8 @@ Library check passed.
 Skills: 12
 Context templates: 8
 Test check passed.
-Cases: 5
+Cases: 12
+Skills covered: 12
 Fixtures: 5
 Ecommerce fixture summary:
 previous: registered=12, product_view=10, add_to_cart=7, order_submit=5, pay_success=4, pay_rate=33.3%
@@ -128,3 +129,4 @@ tests/rubrics/common.md
 ## 已完成评测
 
 - [2026-05-27 首轮人工评测记录](tests/results/2026-05-27-manual-eval.md)
+- [2026-05-27 全 Skill 覆盖测试记录](tests/results/2026-05-27-full-coverage-eval.md)

@@ -42,16 +42,22 @@ node scripts/summarize-ecommerce-fixture.mjs
 
 ## 当前覆盖
 
-第一批测试覆盖 5 个代表性 Skill：
+当前测试覆盖全部 12 个 Skill：
 
-- `data-requirement-clarifier`
-- `sql-reviewer`
-- `funnel-analysis`
+- `ab-test-analysis`
 - `data-analysis-report-writer`
 - `data-presentation-architect`
-
-后续可以继续补齐 12 个 Skill 的完整测试矩阵。
+- `data-quality-rule-generator`
+- `data-requirement-clarifier`
+- `exploratory-data-analysis`
+- `funnel-analysis`
+- `metric-definition-reviewer`
+- `retention-cohort-analysis`
+- `sql-reviewer`
+- `table-design-advisor`
+- `weekly-monthly-report-writer`
 
 ## 评测记录
 
 - [2026-05-27 首轮人工评测记录](results/2026-05-27-manual-eval.md)
+- [2026-05-27 全 Skill 覆盖测试记录](results/2026-05-27-full-coverage-eval.md)

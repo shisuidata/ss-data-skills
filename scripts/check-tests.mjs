@@ -6,6 +6,7 @@ import { join } from "node:path";
 const root = process.cwd();
 const testsDir = join(root, "tests");
 const casesDir = join(testsDir, "cases");
+const skillsDir = join(root, "skills");
 const fixturesDir = join(testsDir, "fixtures", "ecommerce-growth");
 const rubricsDir = join(testsDir, "rubrics");
 
@@ -37,6 +38,13 @@ function fail(message) {
   errors.push(message);
 }
 
+function listSkillDirs() {
+  return readdirSync(skillsDir)
+    .filter((name) => name !== "_template")
+    .filter((name) => statSync(join(skillsDir, name)).isDirectory())
+    .sort();
+}
+
 for (const path of requiredTopLevel) {
   if (!existsSync(join(root, path))) {
     fail(`Missing required test file: ${path}`);
@@ -55,9 +63,16 @@ if (!existsSync(casesDir)) {
   const cases = readdirSync(casesDir)
     .filter((name) => name.endsWith(".md"))
     .sort();
+  const caseNames = new Set(cases.map((name) => name.replace(/\.md$/, "")));
 
   if (cases.length === 0) {
     fail("No test cases found in tests/cases");
+  }
+
+  for (const skill of listSkillDirs()) {
+    if (!caseNames.has(skill)) {
+      fail(`Missing test case for skill "${skill}": tests/cases/${skill}.md`);
+    }
   }
 
   for (const file of cases) {
@@ -98,5 +113,5 @@ if (errors.length > 0) {
 
 console.log("Test check passed.");
 console.log(`Cases: ${readdirSync(casesDir).filter((name) => name.endsWith(".md")).length}`);
+console.log(`Skills covered: ${listSkillDirs().length}`);
 console.log(`Fixtures: ${requiredFixtures.length}`);
-
