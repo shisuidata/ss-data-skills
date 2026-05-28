@@ -32,6 +32,8 @@
 
 第一次使用建议从 [快速开始](QUICK_START.md) 进入。
 
+如果你还不了解 Skill 是什么、为什么不是普通提示词，可以先看 [Skill 入门教程](docs/skill-tutorial.md)。
+
 如果你已经知道自己要做什么，可以直接看 [技能索引](SKILL_INDEX.md)。
 
 如果你要把技能用到真实工作里，建议同时使用 [上下文使用指南](CONTEXT_GUIDE.md) 和 [上下文模板](context/README.md)。
@@ -114,6 +116,8 @@
 4. 交给你正在使用的工具执行。
 
 推荐同时准备上下文。上下文模板见 [context/README.md](context/README.md)。
+
+如果你是第一次接触 Skill，建议先读 [Skill 入门教程](docs/skill-tutorial.md)，再回到这里选择具体技能。
 
 ## 质量说明
 

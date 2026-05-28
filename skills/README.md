@@ -10,6 +10,8 @@
 
 ## 如何查找
 
+如果你还不清楚 Skill 的原理，先看 [Skill 入门教程](../docs/skill-tutorial.md)。
+
 如果你已经知道要处理的工作，可以直接从 [技能索引](../SKILL_INDEX.md) 选择。
 
 如果你想先看具体输入输出，可以从 [示例索引](../examples/README.md) 开始。

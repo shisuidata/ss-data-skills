@@ -2,6 +2,8 @@
 
 Skill 不是孤立的提示词。
 
+如果你还不熟悉 Skill 的基本概念，建议先看 [Skill 入门教程](docs/skill-tutorial.md)。
+
 一个真正可用的 Skill，至少由三部分组成：
 
 ```text

@@ -4,6 +4,8 @@
 
 如果你是第一次使用，建议先看 [快速开始](QUICK_START.md)。
 
+如果你还不知道 Skill 是什么，先看 [Skill 入门教程](docs/skill-tutorial.md)。
+
 如果你要准备更完整的业务、指标、表结构或汇报上下文，可以查看 [上下文使用指南](CONTEXT_GUIDE.md) 和 [上下文模板](context/README.md)。
 
 如果你想先看输入输出样例，可以查看 [示例索引](examples/README.md)。
