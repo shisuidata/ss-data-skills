@@ -2,21 +2,21 @@
 
 这份说明面向第一次使用“拾穗数据技能库”的数据从业者。
 
-你不需要先理解所有 Agent、Skill、MCP 的概念。把它当成一套“数据工作标准动作说明书”就可以。
+你不需要先理解任何复杂概念。把它当成一套“数据工作标准动作说明书”就可以。
 
 ## 30 秒用起来
 
 1. 打开 [技能索引](SKILL_INDEX.md)，按你正在做的事情选一个技能。
-2. 打开对应的 `skills/<skill-id>/SKILL.md`。
-3. 复制技能说明、你的任务和上下文，发给你正在使用的 AI 助手。
+2. 进入对应技能文档，复制其中的说明。
+3. 把技能说明、你的任务材料和上下文一起发给你正在使用的工具。
 
 推荐 Prompt：
 
 ```text
-请按【技能中文名】这个技能的工作方式处理下面的问题。
+请按下面这个技能的工作方式处理我的任务。
 
 技能说明：
-[粘贴 skills/<skill-id>/SKILL.md]
+[粘贴对应技能文档]
 
 我的任务：
 [写清楚你要解决的问题]
@@ -32,33 +32,19 @@
 
 先从这几个入口选：
 
-| 你的任务 | 中文技能名 | 英文 ID |
-| --- | --- | --- |
-| 业务需求很模糊 | 数据需求澄清 | `data-requirement-clarifier` |
-| 指标口径说不清 | 指标口径审查 | `metric-definition-reviewer` |
-| SQL 写完怕算错 | SQL 审查 | `sql-reviewer` |
-| 表要上线或交接 | 数据文档写作 | `data-doc-writer` |
-| 看板没人用 | 看板审查 | `dashboard-reviewer` |
-| 指标突然下降 | 业务归因分析 | `business-root-cause-analysis` |
-| 要写分析报告 | 数据分析报告写作 | `data-analysis-report-writer` |
-| 要做汇报 PPT | 数据汇报 PPT 架构 | `data-presentation-architect` |
+| 你的任务 | 推荐技能 |
+| --- | --- |
+| 业务需求很模糊 | [数据需求澄清](skills/data-requirement-clarifier/SKILL.md) |
+| 指标口径说不清 | [指标口径审查](skills/metric-definition-reviewer/SKILL.md) |
+| SQL 写完怕算错 | [SQL 审查](skills/sql-reviewer/SKILL.md) |
+| 表要上线或交接 | [数据文档写作](skills/data-doc-writer/SKILL.md) |
+| 看板没人用 | [看板审查](skills/dashboard-reviewer/SKILL.md) |
+| 指标突然下降 | [业务归因分析](skills/business-root-cause-analysis/SKILL.md) |
+| 要写日报、周报或月报 | [日报写作](skills/daily-report-writer/SKILL.md) / [周报月报写作](skills/weekly-monthly-report-writer/SKILL.md) |
+| 要做行业或竞品研究 | [行业市场调研](skills/market-research-analyst/SKILL.md) |
+| 要做汇报 PPT | [数据汇报 PPT 架构](skills/data-presentation-architect/SKILL.md) |
 
 完整选择方式见 [技能索引](SKILL_INDEX.md)。
-
-## 中文名和英文 ID 怎么理解
-
-这个项目有两套名称：
-
-- 中文名：给人看的，例如“SQL 审查”“看板审查”
-- 英文 ID：给工具和目录用的，例如 `sql-reviewer`、`dashboard-reviewer`
-
-你和 AI 对话时，建议同时写：
-
-```text
-请用 SQL 审查（sql-reviewer）处理下面的问题。
-```
-
-这样既符合国内用户的阅读习惯，也能让支持 Skill 的 Agent 更稳定地识别。
 
 ## 上下文怎么给
 
@@ -84,6 +70,7 @@ SQL / 表结构 / 指标口径 / 看板说明 / 数据结果。
 - [表设计上下文](context/templates/table-context.md)
 - [SQL 审查上下文](context/templates/sql-review-context.md)
 - [数据分析上下文](context/templates/analysis-context.md)
+- [工具集成上下文](context/templates/tool-integration-context.md)
 - [报告写作上下文](context/templates/report-context.md)
 - [PPT 汇报上下文](context/templates/presentation-context.md)
 
@@ -98,7 +85,7 @@ SQL / 表结构 / 指标口径 / 看板说明 / 数据结果。
 ### SQL 审查
 
 ```text
-请用 SQL 审查（sql-reviewer）帮我审查下面这段 Spark SQL。
+请用 SQL 审查帮我检查下面这段 Spark SQL。
 
 背景：
 计算每天每个渠道的新用户首购转化率。
@@ -116,7 +103,7 @@ SQL：
 ### 业务归因分析
 
 ```text
-请用业务归因分析（business-root-cause-analysis）分析下面的问题。
+请用业务归因分析处理下面的问题。
 
 异常指标：
 新用户 7 日激活率从 42% 降到 31%。
@@ -134,7 +121,7 @@ SQL：
 ### 数据汇报 PPT
 
 ```text
-请用数据汇报 PPT 架构（data-presentation-architect）把下面的分析结果整理成 8 页 PPT 大纲。
+请用数据汇报 PPT 架构把下面的分析结果整理成 8 页 PPT 大纲。
 
 受众：
 业务负责人。
@@ -152,4 +139,3 @@ SQL：
 - 不确定的信息可以留空，但要让 AI 标记为待确认。
 - 一个任务太复杂时，拆成多个技能串起来用。
 - 真实公司数据、截图、日志和表结构要先脱敏。
-

@@ -2,7 +2,7 @@
 
 这个目录提供 Skill 使用时可复制的上下文模板和预制上下文包。
 
-Skill 可以独立使用，但不应该脱离上下文。上下文越清楚，Agent 给出的结论越可靠。
+Skill 可以独立使用，但不应该脱离上下文。上下文越清楚，输出结论越可靠。
 
 ## 模板列表
 
@@ -16,6 +16,7 @@ Skill 可以独立使用，但不应该脱离上下文。上下文越清楚，Ag
 | [experiment-context.md](templates/experiment-context.md) | A/B 实验设计、实验结果解读 |
 | [report-context.md](templates/report-context.md) | 分析报告、复盘报告、经营分析 |
 | [presentation-context.md](templates/presentation-context.md) | PPT 大纲、管理层汇报、项目演示 |
+| [tool-integration-context.md](templates/tool-integration-context.md) | 数据库、API、BI、调度和消息工具接入 |
 
 ## 预制上下文包
 
@@ -35,7 +36,7 @@ Skill 可以独立使用，但不应该脱离上下文。上下文越清楚，Ag
 
 ## 使用方式
 
-复制对应模板，填入你已知的信息，然后和 Skill 一起发给 Agent。
+复制对应模板，填入你已知的信息，然后和 Skill 一起交给你正在使用的工具。
 
 ```text
 请使用 funnel-analysis 分析下面的问题。

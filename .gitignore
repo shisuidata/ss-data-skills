@@ -12,6 +12,19 @@ Thumbs.db
 .codex/
 .claude/
 
+# Internal maintenance and validation
+/.githooks/
+/scripts/
+/tests/
+/SOP.md
+/TESTING.md
+/docs/testing-standard.md
+/docs/skill-development-workflow.md
+/docs/target-audience-skill-map.md
+/docs/templates/
+/skills/_template/
+/skills/catalog.json
+
 # Intermediate work
 tmp/
 temp/
@@ -39,4 +52,3 @@ __pycache__/
 *.swo
 *.tmp
 *.bak
-

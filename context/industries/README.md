@@ -20,7 +20,7 @@
 
 ## 使用方式
 
-把行业上下文和具体 Skill 的上下文模板一起提供给 Agent。
+把行业上下文和具体 Skill 的上下文模板一起使用。
 
 ```text
 请使用 business-root-cause-analysis 分析下面的问题。

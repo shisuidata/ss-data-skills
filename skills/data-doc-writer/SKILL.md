@@ -7,7 +7,7 @@ description: Use when writing or improving data documentation for warehouse tabl
 
 ## 目标
 
-把表结构、SQL、指标口径、看板说明或任务逻辑整理成可交接、可维护、可被 Agent 使用的数据文档。
+把表结构、SQL、指标口径、看板说明或任务逻辑整理成可交接、可维护、可复用的数据文档。
 
 这个 Skill 的重点不是写漂亮文案，而是降低数据资产使用和维护成本。
 
@@ -19,7 +19,7 @@ description: Use when writing or improving data documentation for warehouse tabl
 - 给指标、看板或数据产品补使用说明
 - 把 SQL 任务逻辑整理成交接文档
 - 做数据资产盘点、知识库沉淀或新人 onboarding
-- 为 Agent、RAG 或语义层准备结构化数据说明
+- 为检索系统、语义层或自动化工具准备结构化数据说明
 
 ## 不适用场景
 
@@ -68,7 +68,7 @@ description: Use when writing or improving data documentation for warehouse tabl
 
 ## 写作流程
 
-1. 识别文档对象和目标读者：开发、分析、业务、管理者或 Agent。
+1. 识别文档对象和目标读者：开发、分析、业务、管理者或工具使用方。
 2. 提炼数据用途、业务含义、统计粒度和使用边界。
 3. 整理字段字典、指标口径、计算逻辑、上下游关系。
 4. 标记风险：易误用字段、延迟、历史变更、口径限制、权限限制。
