@@ -141,6 +141,10 @@ PR 描述建议包含：
 - [ ] Markdown 渲染正常
 - [ ] 没有提交临时文件、缓存、日志或本地配置
 
+## 维护者与仓库归属
+
+本仓库归属 [`shisuidata`](https://github.com/shisuidata) 组织，由 [`rockythink`](https://github.com/rockythink) 负责主要维护、Issue 与 Pull Request 管理。
+
 ## License
 
 提交到本仓库的内容默认遵循仓库的 MIT License。

@@ -165,6 +165,10 @@
 
 提交前请阅读 [贡献指南](CONTRIBUTING.md)。
 
+## 维护者
+
+本仓库归属 [`shisuidata`](https://github.com/shisuidata) 组织，由 [`rockythink`](https://github.com/rockythink) 负责主要维护和 GitHub 日常操作。
+
 ## License
 
 本仓库采用 MIT License 开源。你可以免费使用、复制、修改和分发这些技能。
