@@ -1,0 +1,27 @@
+{
+  "name": "新版移动端支付页实验",
+  "hypothesis": "减少支付页加载和表单步骤，可以提升提交订单后的支付成功率",
+  "alpha": 0.05,
+  "power": 0.8,
+  "control": "旧版支付页",
+  "allocation": {"旧版支付页": 0.5, "新版支付页": 0.5},
+  "days": 7,
+  "planned_days": 14,
+  "groups": {
+    "旧版支付页": {"users": 5000},
+    "新版支付页": {"users": 5020}
+  },
+  "metrics": [
+    {
+      "name": "支付成功率",
+      "role": "primary",
+      "type": "proportion",
+      "higher_is_better": true,
+      "data": {
+        "旧版支付页": {"successes": 350},
+        "新版支付页": {"successes": 390}
+      }
+    }
+  ],
+  "guardrails_pending": ["支付页错误率", "页面加载时间", "客服投诉", "退款率"]
+}

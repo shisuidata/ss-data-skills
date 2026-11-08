@@ -13,6 +13,7 @@ Thumbs.db
 .claude/
 
 # Internal maintenance and validation
+/CLAUDE.md
 /.githooks/
 /scripts/
 /tests/

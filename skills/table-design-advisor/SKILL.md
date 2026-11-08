@@ -1,6 +1,9 @@
 ---
 name: table-design-advisor
-description: Use when designing or reviewing a data warehouse table schema. Advises on warehouse layer, table grain, fact or dimension modeling, fields, primary key, partitioning, update strategy, lifecycle, naming, downstream usage, and data quality checks.
+description: Use when designing or reviewing a data warehouse table schema. Advises on warehouse layer, table grain, fact or dimension modeling, fields, primary key, partitioning, update strategy, lifecycle, naming, downstream usage, and data quality checks. 中文触发词：表设计、数仓建模、表结构审查、表粒度、分区设计。
+metadata:
+  category: 数据开发
+  aliases: 表设计、数仓建模建议、表结构审查
 ---
 
 # Table Design Advisor
@@ -86,6 +89,8 @@ description: Use when designing or reviewing a data warehouse table schema. Advi
 11. 数据质量：非空、唯一、枚举、波动、关联完整性等。
 12. 生命周期：保留周期、归档策略、重刷成本。
 
+快照、拉链、宽表等模式的取舍见 [建模模式](references/modeling-patterns.md)。
+
 ## 输出格式
 
 ```markdown
@@ -122,6 +127,10 @@ description: Use when designing or reviewing a data warehouse table schema. Advi
 ### 8. 风险点
 
 ### 9. 待确认问题
+
+### 10. 建表 DDL
+
+<按执行引擎给出，包含字段注释和分区；引擎未知时按 Hive/Spark 写，并注明>
 ```
 
 ## 质量标准
@@ -133,7 +142,15 @@ description: Use when designing or reviewing a data warehouse table schema. Advi
 - 给出主键、分区和更新策略建议
 - 不凭空确认不存在的上游表
 - 对不确定的业务规则列为假设或待确认
-- 避免过度设计
+- 避免过度设计：说明为什么需要这一层、这张宽表，只有一个下游时不提前抽象
+- 业务规则确定后给出可执行的 DDL，未确认的字段在注释中标记
+
+## 完成后的下一步
+
+- 表上线前审查生产 SQL：`sql-reviewer`
+- 补质量规则：`data-quality-rule-generator`
+- 写表文档：`data-doc-writer`
+- 改的是已有表：`data-lineage-impact-analyzer` 评估下游
 
 ## 示例 Prompt
 
@@ -144,4 +161,14 @@ description: Use when designing or reviewing a data warehouse table schema. Advi
 粒度：希望能按天、渠道、活动查看。
 更新：T+1。
 引擎：Hive/Spark。
+```
+
+```text
+请用 table-design-advisor 设计一张 SaaS 客户健康度快照表：
+
+场景：客户成功团队的续费风险看板，需要综合活跃度、功能使用覆盖率、付款状态和 NPS 判断客户是否有流失风险。
+粒度：企业客户 + 月快照。
+更新：每月初产出上个月数据。
+引擎：PostgreSQL。
+下游：CSM 工具 API + 续费预测模型特征。
 ```

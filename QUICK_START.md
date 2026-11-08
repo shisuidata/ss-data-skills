@@ -45,6 +45,20 @@
 | 要写日报、周报或月报 | [日报写作](skills/daily-report-writer/SKILL.md) / [周报月报写作](skills/weekly-monthly-report-writer/SKILL.md) |
 | 要做行业或竞品研究 | [行业市场调研](skills/market-research-analyst/SKILL.md) |
 | 要做汇报 PPT | [数据汇报 PPT 架构](skills/data-presentation-architect/SKILL.md) |
+| 拿到一份新数据 | [探索性数据分析](skills/exploratory-data-analysis/SKILL.md) |
+| 想知道用户在哪一步流失 | [漏斗分析](skills/funnel-analysis/SKILL.md) |
+| 想知道用户留下来没有 | [留存 Cohort 分析](skills/retention-cohort-analysis/SKILL.md) |
+| 想判断实验能不能全量 | [A/B 实验分析](skills/ab-test-analysis/SKILL.md) |
+| 要把分析写成报告 | [数据分析报告写作](skills/data-analysis-report-writer/SKILL.md) |
+| 要画图或出 HTML 报告 | [拾穗图表规范](skills/data-viz-kit/SKILL.md) |
+| 要设计或审查一张表 | [数仓表设计建议](skills/table-design-advisor/SKILL.md) |
+| 表或任务要补校验 | [数据质量规则生成](skills/data-quality-rule-generator/SKILL.md) |
+| 字段或口径要变更 | [血缘影响分析](skills/data-lineage-impact-analyzer/SKILL.md) |
+| 数据出了事故要复盘 | [数据事故复盘](skills/data-incident-postmortem-writer/SKILL.md) |
+| 要接数据库、API 或 BI | [数据工具集成规划](skills/data-tool-integration-planner/SKILL.md) |
+| 要做实时数据管道 | [实时管道设计](skills/stream-pipeline-designer/SKILL.md) |
+| 要设计模型特征 | [特征工程建议](skills/feature-engineering-advisor/SKILL.md) |
+| 模型要评估上线 | [模型评估审查](skills/model-evaluation-reviewer/SKILL.md) |
 
 完整选择方式见 [技能索引](SKILL_INDEX.md)。
 
@@ -73,6 +87,8 @@ SQL / 表结构 / 指标口径 / 看板说明 / 数据结果。
 - [SQL 审查上下文](context/templates/sql-review-context.md)
 - [数据分析上下文](context/templates/analysis-context.md)
 - [工具集成上下文](context/templates/tool-integration-context.md)
+- [实时管道上下文](context/templates/stream-context.md)
+- [机器学习上下文](context/templates/ml-context.md)
 - [报告写作上下文](context/templates/report-context.md)
 - [PPT 汇报上下文](context/templates/presentation-context.md)
 

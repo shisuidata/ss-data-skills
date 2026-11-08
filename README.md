@@ -49,22 +49,30 @@
 | [数据需求澄清](skills/data-requirement-clarifier/SKILL.md) | 把模糊的数据需求整理成可开发、可分析、可验收的任务 |
 | [指标口径审查](skills/metric-definition-reviewer/SKILL.md) | 审查指标定义、分子分母、时间窗口、边界条件和业务风险 |
 | [数仓表设计建议](skills/table-design-advisor/SKILL.md) | 设计或审查数仓表结构、分层、粒度、分区和更新策略 |
-| [SQL 审查](skills/sql-reviewer/SKILL.md) | 审查 SQL 的逻辑正确性、性能风险和口径一致性 |
-| [数据质量规则生成](skills/data-quality-rule-generator/SKILL.md) | 为表、任务或指标生成数据质量规则和告警建议 |
-| [血缘影响分析](skills/data-lineage-impact-analyzer/SKILL.md) | 评估表、字段、指标或任务变更对下游的影响 |
+| [SQL 审查](skills/sql-reviewer/SKILL.md) | 用静态检查发现典型错误，再审查逻辑、性能和口径一致性 |
+| [数据质量规则生成](skills/data-quality-rule-generator/SKILL.md) | 从表结构或体检结果生成质量规则，输出 SQL、dbt 和 Great Expectations |
+| [血缘影响分析](skills/data-lineage-impact-analyzer/SKILL.md) | 从边表、dbt manifest 或 SQL 计算下游影响，分级并给出通知清单 |
 | [数据工具集成规划](skills/data-tool-integration-planner/SKILL.md) | 规划数据库、API、BI、调度、消息等工具接入方案 |
+| [实时管道设计](skills/stream-pipeline-designer/SKILL.md) | 设计或审查 Flink、Spark Streaming、Kafka、CDC 管道，估算 State、分区和 Checkpoint |
 
 ### 数据分析与业务判断
 
 | 技能 | 适用场景 |
 | --- | --- |
-| [探索性数据分析](skills/exploratory-data-analysis/SKILL.md) | 对新数据集做结构、质量、分布、异常和关系探索 |
-| [业务归因分析](skills/business-root-cause-analysis/SKILL.md) | 对 GMV、激活、留存、收入等业务指标异常做归因分析 |
-| [漏斗分析](skills/funnel-analysis/SKILL.md) | 分析注册、激活、下单、支付等有序转化路径 |
-| [留存 Cohort 分析](skills/retention-cohort-analysis/SKILL.md) | 分析留存、复购、活跃回访和 Cohort 差异 |
-| [A/B 实验分析](skills/ab-test-analysis/SKILL.md) | 设计、审查或解读 A/B 实验，判断实验是否可信 |
-| [看板审查](skills/dashboard-reviewer/SKILL.md) | 审查看板是否能支持业务决策、定位问题和推动行动 |
+| [探索性数据分析](skills/exploratory-data-analysis/SKILL.md) | 一键体检 CSV 和 xlsx：编码、伪缺失、文本型数字、Excel 科学计数法、主键重复、晚到数据、关联孤儿，问题分级给出处理建议 |
+| [业务归因分析](skills/business-root-cause-analysis/SKILL.md) | 判断异常是否真实，计算因子和维度贡献，建立可验证的归因路径 |
+| [漏斗分析](skills/funnel-analysis/SKILL.md) | 重建有序漏斗，拆出变化来自哪一步、是渠道结构还是转化本身 |
+| [留存 Cohort 分析](skills/retention-cohort-analysis/SKILL.md) | 计算留存矩阵和曲线，判断批次变差是用户构成还是产品留存的问题 |
+| [A/B 实验分析](skills/ab-test-analysis/SKILL.md) | 计算显著性、SRM、功效和样本量，支持比率指标，判断实验是否可信，生成实验报告 |
+| [看板审查](skills/dashboard-reviewer/SKILL.md) | 给看板打分、列问题，并生成改版 HTML 原型 |
 | [行业市场调研](skills/market-research-analyst/SKILL.md) | 为行业、竞品、产品机会和用户需求建立调研框架 |
+
+### 数据科学与模型
+
+| 技能 | 适用场景 |
+| --- | --- |
+| [特征工程建议](skills/feature-engineering-advisor/SKILL.md) | 设计、审查和筛选特征，筛查数据泄漏 |
+| [模型评估审查](skills/model-evaluation-reviewer/SKILL.md) | 计算 AUC、校准、基线差异和漂移，审查测试集、指标和上线风险 |
 
 ### 表达、协作与复盘
 
@@ -72,9 +80,10 @@
 | --- | --- |
 | [日报写作](skills/daily-report-writer/SKILL.md) | 把当天零散工作整理成清楚、可同步的日报 |
 | [周报月报写作](skills/weekly-monthly-report-writer/SKILL.md) | 写周报、月报、项目进展和向上同步材料 |
-| [数据分析报告写作](skills/data-analysis-report-writer/SKILL.md) | 把分析结果整理成可决策的数据分析报告 |
+| [数据分析报告写作](skills/data-analysis-report-writer/SKILL.md) | 把分析脚本的结果拼成报告，每个数字可溯源，并检查证据、因果措辞和空洞建议 |
 | [数据汇报 PPT 架构](skills/data-presentation-architect/SKILL.md) | 把报告、项目进展或技术内容整理成 PPT 叙事大纲 |
-| [数据文档写作](skills/data-doc-writer/SKILL.md) | 为表、指标、SQL 任务、看板或数据产品生成可交接的数据文档 |
+| [拾穗图表规范](skills/data-viz-kit/SKILL.md) | 按中文业务习惯选图、配色、格式化数字，生成自包含 HTML 数据报告 |
+| [数据文档写作](skills/data-doc-writer/SKILL.md) | 从 DDL、SQL 和体检结果生成文档草稿，输出 Markdown、YAML 和 dbt |
 | [数据事故复盘](skills/data-incident-postmortem-writer/SKILL.md) | 写数据事故复盘，沉淀影响、时间线、根因和预防措施 |
 
 ## 常见工作流
@@ -95,6 +104,14 @@
 字段或口径变更 -> 血缘影响分析 -> 通知协作 -> 上线验证 -> 事故复盘
 ```
 
+```text
+数据探索 -> 特征工程 -> 模型评估 -> A/B 实验验证 -> 效果报告
+```
+
+```text
+实时需求 -> 实时管道设计 -> SQL 审查 -> 质量规则 -> 数据文档
+```
+
 ## 如何使用
 
 每个技能都包含：
@@ -106,7 +123,10 @@
 - 工作流程
 - 输出格式
 - 质量标准
+- 完成后的下一步
 - 示例 Prompt
+
+带计算的技能还附带只依赖 Python 标准库的脚本，数字由脚本算，模型负责判断。
 
 最简单的方式：
 

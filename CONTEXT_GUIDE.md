@@ -113,6 +113,8 @@ L2 适合复杂分析、上线评审、事故复盘、管理层汇报等场景�
 | 分析报告 | 主题、读者、关键发现、数据证据、希望推动的决策 |
 | 周报月报 | 周期、读者、事项列表、结果、风险、下周期计划 |
 | PPT 叙事 | 主题、受众、时长、页数、核心结论、决策诉求 |
+| 实时管道 | 峰值量级、延迟要求、Key 基数、时间语义、乱序、一致性、下游写入能力 |
+| 特征与模型 | 预测目标、预测时间点、标签定义、样本切分、基线、上线用途 |
 
 ## 行业上下文
 
@@ -147,6 +149,8 @@ L2 适合复杂分析、上线评审、事故复盘、管理层汇报等场景�
 - [SQL 审查上下文](context/templates/sql-review-context.md)
 - [数据分析上下文](context/templates/analysis-context.md)
 - [实验分析上下文](context/templates/experiment-context.md)
+- [实时管道上下文](context/templates/stream-context.md)
+- [机器学习上下文](context/templates/ml-context.md)
 - [报告写作上下文](context/templates/report-context.md)
 - [PPT 汇报上下文](context/templates/presentation-context.md)
 

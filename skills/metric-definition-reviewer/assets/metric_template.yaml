@@ -1,0 +1,33 @@
+# 指标定义模板。未确认的项写“待确认”，不要补全。
+metric:
+  name: new_user_first_purchase_rate
+  display_name: 新用户首购转化率
+  business_meaning: 新注册用户在窗口内完成首次支付的比例
+  owner: 待确认
+  status: draft            # draft / confirmed / deprecated
+  type: ratio              # count / sum / ratio / average
+  entity: user
+  grain: [dt, channel_id]
+  time:
+    attribution: register_time   # 按哪个时间归属
+    window_days: 7
+    boundary: natural_day        # natural_day / rolling_24h
+    timezone: "+08:00"
+  numerator:
+    description: 窗口内支付成功的新用户数
+    expression: count(distinct user_id)
+    filters: ["pay_status = 'success'"]
+  denominator:
+    description: 当日新注册用户数
+    expression: count(distinct user_id)
+    filters: []
+  exclusions: [内部账号, 测试账号]
+  dedup_key: user_id
+  edge_cases:
+    - case: 退款订单是否算转化
+      decision: 待确认
+  source_tables: [dwd_user_register_d, dwd_order_detail_d]
+  refresh: T+1
+  version:
+    effective_from: 待确认
+    change_note: 首次定义

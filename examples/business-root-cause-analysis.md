@@ -71,3 +71,4 @@
 ## 使用说明
 
 这个示例展示如何区分“现象、假设、证据和待验证问题”，避免把相关性直接写成因果。
+- 有数据时用 `skills/business-root-cause-analysis/scripts/decompose.py`：`confirm` 判断异常是否真实，`factors` 拆公式，`dimensions` 排维度贡献。这些结果只说明变化集中在哪里，原因还要靠假设验证。

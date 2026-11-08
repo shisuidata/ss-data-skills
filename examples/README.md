@@ -20,6 +20,7 @@
 | [数据质量规则生成](../skills/data-quality-rule-generator/SKILL.md) | [data-quality-rule-generator.md](data-quality-rule-generator.md) |
 | [血缘影响分析](../skills/data-lineage-impact-analyzer/SKILL.md) | [data-lineage-impact-analyzer.md](data-lineage-impact-analyzer.md) |
 | [数据工具集成规划](../skills/data-tool-integration-planner/SKILL.md) | [data-tool-integration-planner.md](data-tool-integration-planner.md) |
+| [实时管道设计](../skills/stream-pipeline-designer/SKILL.md) | [stream-pipeline-designer.md](stream-pipeline-designer.md) |
 | [探索性数据分析](../skills/exploratory-data-analysis/SKILL.md) | [exploratory-data-analysis.md](exploratory-data-analysis.md) |
 | [业务归因分析](../skills/business-root-cause-analysis/SKILL.md) | [business-root-cause-analysis.md](business-root-cause-analysis.md) |
 | [漏斗分析](../skills/funnel-analysis/SKILL.md) | [funnel-analysis.md](funnel-analysis.md) |
@@ -27,10 +28,13 @@
 | [A/B 实验分析](../skills/ab-test-analysis/SKILL.md) | [ab-test-analysis.md](ab-test-analysis.md) |
 | [看板审查](../skills/dashboard-reviewer/SKILL.md) | [dashboard-reviewer.md](dashboard-reviewer.md) |
 | [行业市场调研](../skills/market-research-analyst/SKILL.md) | [market-research-analyst.md](market-research-analyst.md) |
+| [特征工程建议](../skills/feature-engineering-advisor/SKILL.md) | [feature-engineering-advisor.md](feature-engineering-advisor.md) |
+| [模型评估审查](../skills/model-evaluation-reviewer/SKILL.md) | [model-evaluation-reviewer.md](model-evaluation-reviewer.md) |
 | [日报写作](../skills/daily-report-writer/SKILL.md) | [daily-report-writer.md](daily-report-writer.md) |
 | [周报月报写作](../skills/weekly-monthly-report-writer/SKILL.md) | [weekly-monthly-report-writer.md](weekly-monthly-report-writer.md) |
 | [数据分析报告写作](../skills/data-analysis-report-writer/SKILL.md) | [data-analysis-report-writer.md](data-analysis-report-writer.md) |
 | [数据汇报 PPT 架构](../skills/data-presentation-architect/SKILL.md) | [data-presentation-architect.md](data-presentation-architect.md) |
+| [拾穗图表规范](../skills/data-viz-kit/SKILL.md) | [data-viz-kit.md](data-viz-kit.md) |
 | [数据文档写作](../skills/data-doc-writer/SKILL.md) | [data-doc-writer.md](data-doc-writer.md) |
 | [数据事故复盘](../skills/data-incident-postmortem-writer/SKILL.md) | [data-incident-postmortem-writer.md](data-incident-postmortem-writer.md) |
 

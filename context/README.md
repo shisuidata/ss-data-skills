@@ -13,10 +13,14 @@ Skill 可以独立使用，但不应该脱离上下文。上下文越清楚，�
 | [table-context.md](templates/table-context.md) | 表设计、表结构审查、数仓建模 |
 | [sql-review-context.md](templates/sql-review-context.md) | SQL 审查、SQL 优化、上线前 Review |
 | [analysis-context.md](templates/analysis-context.md) | EDA、漏斗、留存、专题分析 |
+| [funnel-context.md](templates/funnel-context.md) | 漏斗定义、步骤口径、流失定位、分群对比 |
+| [cohort-context.md](templates/cohort-context.md) | 留存 Cohort 定义、回访行为、观察窗口、批次对比 |
 | [experiment-context.md](templates/experiment-context.md) | A/B 实验设计、实验结果解读 |
 | [report-context.md](templates/report-context.md) | 分析报告、复盘报告、经营分析 |
 | [presentation-context.md](templates/presentation-context.md) | PPT 大纲、管理层汇报、项目演示 |
 | [tool-integration-context.md](templates/tool-integration-context.md) | 数据库、API、BI、调度和消息工具接入 |
+| [stream-context.md](templates/stream-context.md) | 实时管道设计、容量估算、CDC 接入 |
+| [ml-context.md](templates/ml-context.md) | 特征工程、模型评估、上线判断 |
 
 ## 预制上下文包
 

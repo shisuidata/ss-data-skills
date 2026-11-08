@@ -66,3 +66,4 @@ P1：
 ## 使用说明
 
 这个示例展示了 `dashboard-reviewer` 的重点：先判断看板是否支持决策，再审查指标层级、图表结构和下钻能力。
+- 能执行代码时，把看板整理成 JSON 后运行 `python3 skills/dashboard-reviewer/scripts/dashboard_kit.py review --spec dashboard.json --html prototype.html`，得到评分、问题清单和改版原型。原型里的数字只来自用户材料。

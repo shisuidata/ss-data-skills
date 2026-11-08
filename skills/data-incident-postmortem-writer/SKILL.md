@@ -1,6 +1,9 @@
 ---
 name: data-incident-postmortem-writer
-description: Use when writing a data incident postmortem for failed partitions, wrong dashboard numbers, metric definition changes, SQL logic bugs, backfill mistakes, SLA misses, or data pipeline incidents.
+description: Use when writing a data incident postmortem for failed partitions, wrong dashboard numbers, metric definition changes, SQL logic bugs, backfill mistakes, SLA misses, or data pipeline incidents. 中文触发词：数据事故复盘、事故报告、看板数字错了、补数事故。
+metadata:
+  category: 文档协作
+  aliases: 事故复盘、数据问题复盘、数据事故报告
 ---
 
 # Data Incident Postmortem Writer
@@ -29,6 +32,7 @@ description: Use when writing a data incident postmortem for failed partitions, 
 - 审查 SQL 是否正确，应使用 `sql-reviewer`
 - 设计质量规则，应使用 `data-quality-rule-generator`
 - 写常规项目周报，应使用 `weekly-monthly-report-writer`
+- 变更前评估下游影响，应使用 `data-lineage-impact-analyzer`
 - 在缺少事实时间线时编造事故经过
 
 ## 输入信息
@@ -44,7 +48,8 @@ description: Use when writing a data incident postmortem for failed partitions, 
 
 - 详细时间线：发生、发现、响应、修复、恢复、通知
 - 影响对象：表、指标、看板、报表、业务方、用户群体
-- 影响程度：错误数据、延迟时长、影响日期、错误口径、决策影响
+- 影响程度：错误数据、延迟时长、影响日期、错误口径
+- 已经基于错误数据做出的决策、对外披露或结算
 - 发现方式：告警、业务反馈、人工巡检、下游报错
 - 根因分析：代码、调度、依赖、权限、口径、沟通、流程
 - 修复过程和补数方案
@@ -66,11 +71,21 @@ description: Use when writing a data incident postmortem for failed partitions, 
 
 上下文不足时，先输出复盘草稿和待补充事实，不要编造精确时间、影响人数或责任人。
 
+## 严重等级
+
+| 等级 | 判断标准 |
+| --- | --- |
+| S1 | 错误数据已用于对外披露、财务结算或重大决策，或核心数据长时间不可用 |
+| S2 | 核心看板或指标出错，业务已受影响，但可以修正 |
+| S3 | 非核心数据异常，或发现及时、没有造成实际影响 |
+
+等级依据必须写明。信息不足时写“待确认”，不要为了显得严重或不严重而下结论。
+
 ## 写作流程
 
 1. 先确认事故状态：已恢复、部分恢复、仍在处理中。
-2. 梳理影响范围：影响哪些数据、哪些日期、哪些用户或业务流程。
-3. 还原时间线，区分事实和推断。
+2. 梳理影响范围：影响哪些数据、哪些日期、哪些用户或业务流程，判断严重等级。
+3. 还原时间线，区分事实和推断，计算发现时长和恢复时长。
 4. 分析根因，至少区分直接原因、深层原因和机制缺口。
 5. 描述修复动作和验证方式。
 6. 输出预防措施：监控、质量规则、发布流程、回滚、文档、权限、沟通。
@@ -83,6 +98,8 @@ description: Use when writing a data incident postmortem for failed partitions, 
 
 ## 1. 摘要
 
+<严重等级及依据>
+
 ## 2. 当前状态
 
 ## 3. 影响范围
@@ -90,10 +107,18 @@ description: Use when writing a data incident postmortem for failed partitions, 
 | 影响对象 | 影响时间 | 影响程度 | 处理状态 |
 | --- | --- | --- | --- |
 
+### 受影响的决策
+
+| 决策或对外信息 | 依据的错误数据 | 是否需要更正 | 负责人 |
+| --- | --- | --- | --- |
+
 ## 4. 时间线
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+
+发现时长（发生到发现）：
+恢复时长（发现到确认恢复）：
 
 ## 5. 根因分析
 
@@ -120,11 +145,20 @@ description: Use when writing a data incident postmortem for failed partitions, 
 输出必须：
 
 - 先写影响和状态，再写原因
+- 写明已经基于错误数据做出的决策，以及是否需要更正
+- 时间线完整时计算发现时长和恢复时长，不完整时标记待确认
 - 时间线只写已知事实，推断要标记
 - 根因不能停留在“某人忘了”或“代码写错了”
 - 预防措施要能验收，避免只写“加强检查”
 - 对外同步口径要克制、清楚、可复制
 - 对缺失信息列待确认，不补故事
+
+## 完成后的下一步
+
+- 补预防性校验：`data-quality-rule-generator`
+- 评估还有哪些下游受影响：`data-lineage-impact-analyzer`
+- 修复 SQL：`sql-reviewer`
+- 更新文档：`data-doc-writer`
 
 ## 示例 Prompt
 
@@ -137,4 +171,15 @@ description: Use when writing a data incident postmortem for failed partitions, 
 原因初步判断：订单明细表新增 pay_status = partial_refund 状态，但看板 SQL 只统计 success。
 修复状态：已在 2026-05-21 13:40 修复 SQL 并补数，14:10 业务确认恢复。
 希望输出：面向数据团队内部复盘，同时给业务方一段同步口径。
+```
+
+```text
+请用 data-incident-postmortem-writer 写一份数据事故复盘。
+
+事故：SaaS 客户健康度看板 2026-06-01 至 2026-06-10 活跃用户数偏低约 35%。
+发现方式：CSM 团队在 2026-06-12 对比 CRM 系统发现数据与实际不符。
+影响范围：客户健康度评分、续费风险预警名单、本月 CSM KPI 报告。
+原因初步判断：活跃用户口径从"任意登录"切换为"完成核心任务"后，历史分区未做回填。
+修复状态：2026-06-13 完成历史补数，2026-06-14 CSM 团队确认数据恢复正常。
+希望输出：面向数据团队复盘 + 给 CSM 团队和管理层的同步口径。
 ```

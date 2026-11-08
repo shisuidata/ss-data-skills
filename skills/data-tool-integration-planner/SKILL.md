@@ -1,6 +1,9 @@
 ---
 name: data-tool-integration-planner
-description: Use when planning integration with databases, BI tools, data platforms, APIs, workflow systems, storage services, or third-party tools, including connection requirements, API availability, auth strategy, configuration questions, and validation steps.
+description: Use when planning integration with databases, BI tools, data platforms, APIs, workflow systems, storage services, or third-party tools, including connection requirements, API availability, auth strategy, configuration questions, and validation steps. 中文触发词：工具接入、数据库连接、API 对接、BI 接入、密钥配置。
+metadata:
+  category: 基础 Infra
+  aliases: 工具接入、数据库连接规划、API 对接规划
 ---
 
 # Data Tool Integration Planner
@@ -27,9 +30,10 @@ description: Use when planning integration with databases, BI tools, data platfo
 
 - 实际保存明文密码、Token 或密钥
 - 在没有授权的情况下连接生产数据库
-- 写完整业务 SQL，应使用 `sql-reviewer`
+- 编写业务 SQL（本 Skill 不写 SQL；已有 SQL 的审查请使用 `sql-reviewer`）
 - 设计数据表，应使用 `table-design-advisor`
-- 排查具体任务失败，应使用后续专门的 pipeline debug 类 Skill
+- 排查具体任务失败（本库暂无对应 Skill，不要用本 Skill 代替）
+- 设计实时计算逻辑，应使用 `stream-pipeline-designer`
 
 ## 输入信息
 
@@ -65,10 +69,12 @@ description: Use when planning integration with databases, BI tools, data platfo
 本 Skill 附带一个配置校验脚本：
 
 ```bash
-node skills/data-tool-integration-planner/scripts/validate_integration_config.mjs <config.json>
+node scripts/validate_integration_config.mjs <config.json>
 ```
 
-脚本只做本地 JSON 结构校验，不连接真实服务，不读取密钥值。
+在本 Skill 目录下运行。脚本只做本地 JSON 校验，不连接真实服务。配置里任何位置出现明文密码、Token、API Key，或连接串带密码，都会报错。
+
+配置格式见 [配置格式](references/config-schema.md)，示例见 `assets/example_database_config.json`。
 
 ## 工作流程
 
@@ -116,6 +122,12 @@ node skills/data-tool-integration-planner/scripts/validate_integration_config.mj
 - 提供可复制的配置模板
 - 不能假设某个工具一定有 API
 
+## 完成后的下一步
+
+- 接入后建实时链路：`stream-pipeline-designer`
+- 接入后建表：`table-design-advisor`
+- 写接入说明：`data-doc-writer`
+
 ## 示例 Prompt
 
 ```text
@@ -136,4 +148,17 @@ node skills/data-tool-integration-planner/scripts/validate_integration_config.mj
 - 需要记录连接配置模板和验证步骤
 
 请输出配置方案、待确认问题和本地配置 JSON 示例。
+```
+
+```text
+请用 data-tool-integration-planner 规划这个 BI 工具接入方案。
+
+工具名称：Metabase
+工具类型：BI
+接入目标：连接公司 PostgreSQL 数仓，支持数据团队自助查询和 SaaS 经营看板搭建。
+环境：prod
+认证方式：数据库账号 + 密码
+安全要求：Metabase 只读权限，禁止修改数仓表，敏感字段（salary、contact）需要脱敏
+
+请输出接入步骤、权限配置建议、安全检查清单和验证步骤。
 ```

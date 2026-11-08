@@ -82,3 +82,4 @@
 ## 使用说明
 
 这个示例展示了 `data-doc-writer` 不只是整理字段，而是要写清用途、粒度、逻辑、风险和待补充信息。
+- 有 DDL 时用 `skills/data-doc-writer/scripts/doc_gen.py draft` 生成草稿，可输出 Markdown、YAML 或 dbt。业务含义写成【待补充】，不要猜。

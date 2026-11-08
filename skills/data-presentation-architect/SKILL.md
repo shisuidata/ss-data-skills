@@ -1,6 +1,9 @@
 ---
 name: data-presentation-architect
-description: Use when turning data analysis, reports, project updates, or technical material into a slide deck outline or PPT narrative. Builds audience-specific storyline, slide-by-slide structure, chart recommendations, speaker notes, and appendix plan.
+description: Use when turning data analysis, reports, project updates, or technical material into a slide deck outline or PPT narrative. Builds audience-specific storyline, slide-by-slide structure, chart recommendations, speaker notes, and appendix plan. 中文触发词：PPT 大纲、汇报结构、讲稿、数据汇报、管理层汇报。
+metadata:
+  category: 表达交付
+  aliases: PPT 大纲、汇报结构、数据汇报
 ---
 
 # Data Presentation Architect
@@ -36,7 +39,8 @@ description: Use when turning data analysis, reports, project updates, or techni
 - 原始数据分析，请使用对应分析 Skill
 - 完整数据分析报告，请使用 `data-analysis-report-writer`
 - 周报或月报，请使用 `weekly-monthly-report-writer`
-- 视觉设计系统或具体 PPTX 文件制作，后续可由专门演示文稿工具处理
+- 视觉设计系统或具体 PPTX 文件制作，请交给专门的演示文稿工具
+- 图表选型、配色和数字格式，请使用 `data-viz-kit`
 
 如果用户没有说明受众，先假设为“业务负责人”，并标记该假设。
 
@@ -71,9 +75,27 @@ description: Use when turning data analysis, reports, project updates, or techni
 3. 提炼主线：一句话说明这场演示想让听众记住什么。
 4. 组织结构：背景、问题、发现、原因、方案、收益、风险、下一步。
 5. 逐页设计：每页一个结论式标题，不用“数据概览”这类空标题。
-6. 匹配图表：趋势用折线，对比用柱状，结构用树/流程，路径用漏斗。
+6. 匹配图表：先写这张图要说明的结论，再按 `data-viz-kit` 的选图规则选图形。
 7. 处理细节：正文只放关键证据，复杂口径、SQL、明细表放附录。
 8. 写讲稿提示：每页说明要讲什么，不把所有话塞进页面。
+
+## 页数与时长
+
+| 演示时长 | 正文页 | 说明 |
+| --- | --- | --- |
+| 5 分钟 | 3 到 4 页 | 结论、关键证据、需要的决策 |
+| 10 分钟 | 5 到 7 页 | 增加原因和方案 |
+| 15 分钟 | 8 到 10 页 | 完整叙事 |
+| 20 分钟 | 10 到 12 页 | 预留 5 分钟讨论 |
+| 30 分钟 | 12 到 15 页 | 预留 10 分钟讨论 |
+
+用户的页数限制和时长冲突时，优先按时长，并说明原因。
+
+## 数字来源
+
+- 页面上的数字只能来自用户提供的材料或分析脚本的结果。
+- 用户只给了主题、没给数据时，输出结构和“需要补充的素材”，数据位置写“待补充”，不要举例编数。
+- 有 `data-analysis-report-writer` 的规格或报告时，直接引用其中的结论和数字。
 
 ## 输出格式
 
@@ -123,6 +145,12 @@ description: Use when turning data analysis, reports, project updates, or techni
 - 每页标题尽量是结论式表达
 - 区分正文页和附录页
 - 给出图表建议和讲稿提示
+- 没有编造任何数字，缺数据的位置写“待补充”
+
+## 完成后的下一步
+
+- 图表选型、配色和数字格式：`data-viz-kit`
+- 缺分析结论：`data-analysis-report-writer`
 
 ## 示例 Prompt
 
@@ -134,4 +162,22 @@ description: Use when turning data analysis, reports, project updates, or techni
 时长：15 分钟
 页数：10 页以内
 目标：推动移动端支付页优化和渠道投放结构调整
+核心结论（来自分析报告）：
+- 新用户首购转化 8.2% 降到 6.9%
+- 移动端支付页加载 P75 从 1.8 秒升到 3.4 秒
+- 渠道 A 新用户占比 35% 升到 52%，渠道 A 转化 5.1%
+```
+
+```text
+请用 data-presentation-architect 把下面这份分析整理成 PPT 大纲：
+
+主题：Q2 SaaS 客户流失分析与 H2 留存改善方案
+受众：CEO、产品负责人、销售 VP
+时长：20 分钟
+页数：12 页以内
+目标：推动中小企业 onboarding 改版和 CSM 资源重新分配
+核心结论：
+- Q2 Churn 率从 3.1% 升到 4.9%，主因是中小企业早期流失
+- 4 月新增投放渠道质量偏低，带来大量低意向客户
+- 流失前 45 天内活跃度下降信号明显，预警机制有改善空间
 ```

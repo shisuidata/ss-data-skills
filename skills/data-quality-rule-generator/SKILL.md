@@ -1,6 +1,9 @@
 ---
 name: data-quality-rule-generator
-description: Use when generating data quality rules from a table schema, SQL, metric definition, or data pipeline description. Produces validation rules for freshness, row count, uniqueness, nulls, enums, ranges, referential integrity, metric fluctuation, reconciliation, and SQL checks.
+description: Use when generating data quality rules from a table schema, SQL, metric definition, or data pipeline description. Produces validation rules for freshness, row count, uniqueness, nulls, enums, ranges, referential integrity, metric fluctuation, reconciliation, and SQL checks. 中文触发词：数据质量规则、质量校验、DQC、校验 SQL、上线验收。
+metadata:
+  category: 数据开发
+  aliases: 质量规则、数据质量检查、质量校验生成
 ---
 
 # Data Quality Rule Generator
@@ -9,7 +12,7 @@ description: Use when generating data quality rules from a table schema, SQL, me
 
 根据表结构、SQL、指标定义或任务说明，生成可落地的数据质量规则。
 
-这个 Skill 关注质量规则设计，不负责替代调度平台、质量平台或监控系统。默认输出通用 SQL 校验规则；如果用户指定 dbt、Great Expectations、DataWorks、DolphinScheduler 等平台，可以按对应形式改写。
+这个 Skill 关注质量规则设计，不负责替代调度平台、质量平台或监控系统。默认输出通用 SQL 校验规则，脚本可以同时生成 dbt `schema.yml` 和 Great Expectations 1.x 规则集。DataWorks、DolphinScheduler 等平台按 SQL 规则改写。
 
 ## 使用场景
 
@@ -51,6 +54,7 @@ description: Use when generating data quality rules from a table schema, SQL, me
 - SQL
 - 指标定义
 - 数据任务说明
+- `eda.py` 的体检结果
 
 可选输入：
 
@@ -75,7 +79,7 @@ description: Use when generating data quality rules from a table schema, SQL, me
 
 优先从这些维度生成规则：
 
-1. 产出及时性：分区是否按时产出，数据延迟是否可接受。
+1. 产出及时性与新鲜度：分区是否按时产出，最新事件时间是否满足 SLA。
 2. 数据量：行数是否为 0，日环比或周同比是否异常。
 3. 唯一性：主键、业务键、分区内唯一键是否重复。
 4. 非空：关键维度、主键、金额、状态、时间字段是否为空。
@@ -85,7 +89,19 @@ description: Use when generating data quality rules from a table schema, SQL, me
 8. 关联完整性：事实表外键是否能关联到维表。
 9. 指标波动：核心指标是否出现异常升降。
 10. 上下游对账：汇总表与明细表、源表与目标表是否一致。
-11. 新鲜度：最新分区、最新事件时间是否满足 SLA。
+
+## 可用脚本
+
+有表结构或体检结果时，用脚本生成规则：
+
+```bash
+python3 scripts/dq_rules.py generate --schema table.json --sql rules.sql --dbt schema.yml --ge suite.json
+python3 scripts/dq_rules.py generate --eda eda.json --table orders --partition dt --sql rules.sql
+```
+
+表结构格式见 [表结构格式](references/schema-format.md)，示例见 `assets/example_schema.json`，全部参数见 [命令行参数](references/cli.md)。
+
+`assumptions` 里的规则依据是假设，比如阈值不是用户给的，或者规则来自样本体检。把它们列进“设计假设”，上线前确认。
 
 ## 输出格式
 
@@ -137,7 +153,7 @@ where dt = '${bizdate}'
   and critical_field is null;
 ```
 
-如果规则需要判断波动，默认用近 7 天或近 30 天作为参考窗口，但必须标记为可调整假设。
+如果规则需要判断波动，默认用近 7 天或近 30 天作为参考窗口，但必须标记为可调整假设。唯一性、波动和对账的 SQL 写法见 [表结构格式](references/schema-format.md)。
 
 ## 质量标准
 
@@ -149,6 +165,12 @@ where dt = '${bizdate}'
 - 不虚构历史阈值，把阈值假设写清楚
 - 覆盖产出、唯一、非空、枚举、范围、波动和对账中的关键项
 
+## 完成后的下一步
+
+- 把规则和 SLA 写进文档：`data-doc-writer`
+- 规则暴露了线上错误：`data-incident-postmortem-writer`
+- 规则涉及的 SQL 需要修改：`sql-reviewer`
+
 ## 示例 Prompt
 
 ```text
@@ -159,4 +181,15 @@ where dt = '${bizdate}'
 分区：dt
 字段：dt, channel_id, register_user_cnt, first_purchase_user_cnt, conversion_rate
 更新：每天 T+1 08:00 前产出
+```
+
+```text
+请用 data-quality-rule-generator 为下面这张 SaaS 订阅快照表设计质量规则：
+
+表：dws_saas_subscription_snapshot_m
+粒度：month + company_id
+字段：month, company_id, plan, mrr_amount, start_date, end_date, status, seats
+更新：每月 1 日 8 点产出上月数据
+下游：NRR 指标计算、续费预测模型、CSM 风险看板
+SLA：下游 NRR 指标在月初 10 点前必须就绪
 ```

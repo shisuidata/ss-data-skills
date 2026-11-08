@@ -1,0 +1,31 @@
+{
+  "name": "电商经营日看板",
+  "audience": "电商运营负责人",
+  "decisions": ["GMV 下降时决定优先排查渠道、商品还是转化", "判断是否调整当周投放预算"],
+  "refresh": "T+1，每天 09:00 更新",
+  "owner": "数据分析组",
+  "filters": ["日期", "渠道"],
+  "modules": [
+    {"name": "GMV", "question": "今天的整体交易是否正常", "chart": "kpi", "level": "primary", "metrics": [{"name": "GMV", "definition": "支付成功金额，不扣退款"}], "drilldown": "按渠道、类目下钻", "action": "同比下降超过 10% 时由运营负责人发起归因"},
+    {"name": "订单数与客单价", "question": "GMV 变化来自单量还是客单价", "chart": "line", "level": "process", "metrics": [{"name": "订单数", "definition": "支付成功订单数"}, {"name": "客单价"}], "dimensions": ["渠道"]},
+    {"name": "渠道 GMV 趋势", "question": "", "chart": "dual_axis", "level": "explain", "metrics": [{"name": "渠道 GMV"}], "dimensions": ["渠道"]},
+    {"name": "类目 GMV Top 10", "question": "哪些类目贡献了变化", "chart": "pie", "categories": 10, "level": "explain", "metrics": [{"name": "类目 GMV"}], "dimensions": ["类目"]},
+    {"name": "退款金额趋势", "question": "增长是否伴随退款恶化", "chart": "line", "level": "guardrail", "metrics": [{"name": "退款金额", "definition": "当日发起并成功的退款金额"}]}
+  ],
+  "redesign": {
+    "title": "电商经营日看板（改版原型）",
+    "headline": "首屏先回答“今天是否正常”，第二屏回答“问题在哪”，下钻路径直接连到归因分析",
+    "kpis": [
+      {"label": "GMV", "value": "待接入", "note": "主指标，异常阈值 10%"},
+      {"label": "订单数", "value": "待接入", "note": "过程指标"},
+      {"label": "客单价", "value": "待接入", "note": "过程指标"},
+      {"label": "退款率", "value": "待接入", "note": "护栏指标"}
+    ],
+    "sections": [
+      {"title": "第二屏：定位问题", "lead": "把双轴图拆成两张，把饼图改成排序条形图。", "rows": [
+        {"chart": "bar", "title": "渠道 GMV 环比变化", "question": "哪个渠道拖累了整体？", "categories": ["自然搜索", "信息流", "裂变"], "values": []},
+        {"chart": "bar", "title": "类目 GMV Top 10", "question": "哪些类目贡献了变化？", "categories": [], "values": []}
+      ]}
+    ]
+  }
+}

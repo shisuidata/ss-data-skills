@@ -1,0 +1,192 @@
+{
+  "title": "4 月试用转付费下降分析",
+  "subtitle": "SaaS 试用到付费漏斗 · 4 月 vs 3 月",
+  "audience": "增长负责人、产品负责人",
+  "date": "数据截至 2026-04-30",
+  "question": "4 月试用用户转付费变差了吗？变差发生在哪一步、哪类用户？下一步先查什么？",
+  "background": "4 月起信息流广告预算上调，同月上线了新版团队邀请流程。业务需要判断转付费下降是否真实、是否与这两件事有关。",
+  "decision": "是否暂停新版邀请流程中的企业邮箱验证，以及信息流广告是否维持当前预算。",
+  "sources": {
+    "funnel": "example_funnel.json"
+  },
+  "facts": {
+    "invite_release": {
+      "value": "4 月 8 日上线新版邀请流程：邀请成员前需要先验证企业邮箱",
+      "source": "产品发版记录（示例）"
+    },
+    "ad_spend_mom": {
+      "value": 0.62,
+      "label": "信息流广告 4 月消耗环比",
+      "source": "投放后台（示例数据）"
+    },
+    "rel_drop": {
+      "expr": "{funnel:comparison.overall.diff} / {funnel:periods.3 月.overall}",
+      "label": "整体转化相对变化"
+    },
+    "lost_paid": {
+      "expr": "-{funnel:comparison.overall.diff} * {funnel:periods.4 月.counts[0]}",
+      "label": "按 3 月转化率估算，4 月少转化的付费客户数"
+    },
+    "top2_share": {
+      "expr": "{funnel:comparison.steps[transition=注册试用 → 完成 onboarding].share_of_change} + {funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].share_of_change}",
+      "label": "前两步合计贡献的下降占比"
+    },
+    "mix_share": {
+      "expr": "{funnel:comparison.segments.注册渠道.mix_effect} / {funnel:comparison.overall.diff}",
+      "label": "渠道结构变化解释的下降占比"
+    }
+  },
+  "headline": "4 月试用转付费从 {{funnel:periods.3 月.overall|pct}} 降到 {{funnel:periods.4 月.overall|pct}}（{{funnel:comparison.overall.diff|pp}}），下降主要集中在 onboarding 之后的两步和信息流广告用户",
+  "level": "bad",
+  "kpis": [
+    {
+      "label": "整体转化（4 月）",
+      "value": "{{funnel:periods.4 月.overall|pct}}",
+      "delta": "{{funnel:comparison.overall.diff|pp}}",
+      "tone": "bad",
+      "note": "3 月 {{funnel:periods.3 月.overall|pct}}"
+    },
+    {
+      "label": "少转化的付费客户",
+      "value": "{{lost_paid|int}}",
+      "note": "按 3 月转化率估算"
+    },
+    {
+      "label": "邀请团队成员这一步",
+      "value": "{{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].rate_current|pct}}",
+      "delta": "{{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].test.diff|pp}}",
+      "tone": "bad",
+      "note": "贡献整体下降的 {{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].share_of_change|pct.0}}"
+    }
+  ],
+  "summary": [
+    "下降是真实的：整体转化相对下降 {{rel_drop|abs|pct.0}}，95% 区间 {{funnel:comparison.overall.ci|pp}} 不含 0，按 3 月水平估算 4 月少转化约 {{lost_paid|int}} 个付费客户。",
+    "下降集中在「完成 onboarding → 邀请团队成员」和「注册试用 → 完成 onboarding」两步，合计贡献约 {{top2_share|pct.0}}；后两步没有显著变化。",
+    "信息流广告用户占比从 {{funnel:comparison.segments.注册渠道.rows[segment=信息流广告].share_baseline|pct.0}} 升到 {{funnel:comparison.segments.注册渠道.rows[segment=信息流广告].share_current|pct.0}}，结构变化解释了约 {{mix_share|pct.0}} 的下降；其余来自各渠道自身转化变差，信息流广告最明显。"
+  ],
+  "scope": [
+    [
+      "对比",
+      "4 月 vs 3 月，按注册（入口）时间划分"
+    ],
+    [
+      "漏斗",
+      "注册试用 → 完成 onboarding → 邀请团队成员 → 创建核心工作流 → 升级付费"
+    ],
+    [
+      "核心指标",
+      "整体转化 = 升级付费人数 / 注册试用人数"
+    ],
+    [
+      "数据来源",
+      "funnel-analysis 汇总输出（上游 SQL 按用户有序统计）"
+    ],
+    [
+      "分群",
+      "注册渠道：自然搜索、信息流广告、合作伙伴"
+    ]
+  ],
+  "findings": [
+    {
+      "title": "转付费下降是真实变化，不是正常波动",
+      "type": "fact",
+      "confidence": "high",
+      "evidence": [
+        "整体转化 {{funnel:periods.3 月.overall|pct}} → {{funnel:periods.4 月.overall|pct}}，差值 {{funnel:comparison.overall.diff|pp}}，95% 区间 {{funnel:comparison.overall.ci|pp}}，{{funnel:comparison.overall.p_value|p}}",
+        "注册试用人数 {{funnel:periods.3 月.counts[0]|int}} → {{funnel:periods.4 月.counts[0]|int}}，但升级付费人数 {{funnel:periods.3 月.counts[4]|int}} → {{funnel:periods.4 月.counts[4]|int}}，量涨了，付费没涨"
+      ],
+      "interpretation": "多投放带来了更多试用，但没有带来更多付费客户。",
+      "impact": "按 3 月转化率估算，4 月少转化约 {{lost_paid|int}} 个付费客户。"
+    },
+    {
+      "title": "下降集中在 onboarding 前后两步，后两步基本持平",
+      "type": "fact",
+      "confidence": "high",
+      "evidence": [
+        "完成 onboarding → 邀请团队成员：{{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].rate_baseline|pct}} → {{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].rate_current|pct}}（{{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].test.p_value|p}}），贡献整体下降的 {{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].share_of_change|pct.0}}",
+        "注册试用 → 完成 onboarding：{{funnel:comparison.steps[transition=注册试用 → 完成 onboarding].rate_baseline|pct}} → {{funnel:comparison.steps[transition=注册试用 → 完成 onboarding].rate_current|pct}}，贡献 {{funnel:comparison.steps[transition=注册试用 → 完成 onboarding].share_of_change|pct.0}}",
+        "后两步的变化都不显著（{{funnel:comparison.steps[transition=邀请团队成员 → 创建核心工作流].test.p_value|p.2}}、{{funnel:comparison.steps[transition=创建核心工作流 → 升级付费].test.p_value|p.2}}）",
+        "如果邀请这一步恢复到 3 月水平，整体转化可回到 {{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].counterfactual_overall|pct}}"
+      ],
+      "chart": {
+        "preset": "contribution",
+        "source": "funnel",
+        "title": "各步对整体转化变化的贡献"
+      },
+      "interpretation": "邀请这一步的下降与「{{invite_release}}」在时间上重合，但汇总数据无法区分是新流程的影响还是同期用户构成的影响。",
+      "impact": "邀请是付费前最大的可干预环节，优先级最高。"
+    },
+    {
+      "title": "信息流广告用户变多、且自身转化变差，两件事叠加",
+      "type": "fact",
+      "confidence": "medium",
+      "evidence": [
+        "按注册渠道拆：结构效应 {{funnel:comparison.segments.注册渠道.mix_effect|pp}}，各渠道自身转化效应 {{funnel:comparison.segments.注册渠道.rate_effect|pp}}",
+        "信息流广告：占比 {{funnel:comparison.segments.注册渠道.rows[segment=信息流广告].share_baseline|pct.0}} → {{funnel:comparison.segments.注册渠道.rows[segment=信息流广告].share_current|pct.0}}，自身转化 {{funnel:comparison.segments.注册渠道.rows[segment=信息流广告].conv_baseline|pct}} → {{funnel:comparison.segments.注册渠道.rows[segment=信息流广告].conv_current|pct}}",
+        "同期信息流广告消耗环比 {{ad_spend_mom|spct.0}}"
+      ],
+      "chart": {
+        "preset": "segments",
+        "source": "funnel",
+        "dim": "注册渠道"
+      },
+      "interpretation": "放量后新增的信息流用户购买意向可能更弱；但自然搜索的自身转化也在下降，说明不全是渠道问题。",
+      "impact": "如果只看渠道，会低估产品流程的问题；如果只看流程，会高估改版的影响。"
+    }
+  ],
+  "hypotheses": [
+    {
+      "hypothesis": "新版邀请流程的企业邮箱验证让一部分用户放弃邀请",
+      "evidence": "邀请步骤下降最多，且与发版时间重合",
+      "verify": "按注册日期拆分 4 月 8 日前后的邀请转化；对个人邮箱注册用户单独看",
+      "status": "pending"
+    },
+    {
+      "hypothesis": "信息流放量带来了意向更弱的试用用户",
+      "evidence": "信息流占比上升，且其自身转化下降",
+      "verify": "按投放计划和素材拆信息流用户的 onboarding 完成率；对比放量前后的人群定向",
+      "status": "pending"
+    },
+    {
+      "hypothesis": "邀请事件埋点在新流程中有变化，导致少记",
+      "evidence": "暂无，属于必须排除的口径风险",
+      "verify": "用服务端邀请记录核对 4 月埋点数量",
+      "status": "pending"
+    }
+  ],
+  "actions": [
+    {
+      "priority": "P0",
+      "action": "用服务端邀请记录核对埋点，确认邀请步骤下降不是少记",
+      "expected": "排除口径风险，避免基于错误数据改产品",
+      "cost": "半天数据开发",
+      "owner": "数据分析",
+      "due": "本周三"
+    },
+    {
+      "priority": "P0",
+      "action": "对比 4 月 8 日前后注册用户的邀请转化；若确认下降，把企业邮箱验证改为可跳过，并做 A/B 实验验证",
+      "expected": "若邀请恢复到 3 月水平，整体转化可回到 {{funnel:comparison.steps[transition=完成 onboarding → 邀请团队成员].counterfactual_overall|pct}}",
+      "cost": "需要和安全团队确认验证的必要性",
+      "owner": "增长产品经理",
+      "due": "下周一出结论"
+    },
+    {
+      "priority": "P1",
+      "action": "信息流广告按投放计划拆转化，停掉 onboarding 完成率最低的计划，预算不再上调",
+      "expected": "减少低意向试用，降低获客成本",
+      "cost": "短期试用量会下降",
+      "owner": "投放负责人",
+      "due": "两周内"
+    }
+  ],
+  "limitations": [
+    "{{funnel:checks[id=definition].title}}：{{funnel:checks[id=definition].detail}}",
+    "月度对比会受工作日数量和节假日影响，建议补充按周的趋势",
+    "分群拆解只说明相关；邀请流程是否是原因，需要实验确认"
+  ],
+  "next_steps": [
+    "拿到服务端邀请记录后，重跑 funnel-analysis 的事件明细模式，按注册日期拆 4 月 8 日前后",
+    "邀请流程实验上线后，用 ab-test-analysis 评估"
+  ]
+}

@@ -77,3 +77,4 @@
 ## 使用说明
 
 这个示例强调安全边界：Skill 可以规划配置，但不能要求用户粘贴明文密码或 Token。
+- 用 `skills/data-tool-integration-planner/scripts/validate_integration_config.mjs` 校验配置。任何位置出现明文凭据都会报错。

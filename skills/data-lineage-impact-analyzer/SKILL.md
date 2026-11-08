@@ -1,6 +1,9 @@
 ---
 name: data-lineage-impact-analyzer
-description: Use when analyzing upstream and downstream impact for table changes, metric changes, field deprecation, pipeline migration, dashboard breakage, data governance review, or data asset dependency communication.
+description: Use when analyzing upstream and downstream impact for table changes, metric changes, field deprecation, pipeline migration, dashboard breakage, data governance review, or data asset dependency communication. 中文触发词：血缘分析、影响评估、字段下线、改口径的影响范围、下游影响。
+metadata:
+  category: 数据开发
+  aliases: 血缘分析、影响评估、字段下线评估
 ---
 
 # Data Lineage Impact Analyzer
@@ -44,7 +47,8 @@ description: Use when analyzing upstream and downstream impact for table changes
 - 表结构、字段说明、分区和更新频率
 - 上游来源、调度依赖、任务名
 - 下游表、看板、报表、指标、模型、接口
-- SQL 片段或血缘导出
+- 血缘边表 CSV（`upstream`、`downstream`，可选 `upstream_column`）、dbt 的 `manifest.json`，或生产 SQL 文件
+- 资产表 CSV（`name`、`type`、`owner`、`importance`），用于分级和通知清单
 - 变更时间、灰度策略、回滚方案
 - 业务负责人、数据负责人、通知对象
 
@@ -63,10 +67,30 @@ description: Use when analyzing upstream and downstream impact for table changes
 
 1. 明确变更对象和变更类型。
 2. 拆分影响面：字段、指标、任务、表、看板、报表、接口、模型、业务流程。
-3. 识别影响等级：P0 阻断、P1 口径变化、P2 展示变化、P3 无直接影响。
+3. 识别影响等级：P0 下游会立刻报错，或核心对象的数字含义改变；P1 需要同步修改或口径变化；P2 间接影响；P3 无直接影响。
 4. 判断是否需要兼容期、双跑、回滚和补数。
 5. 输出通知对象和沟通节奏。
 6. 列出上线前检查、上线后验证和回滚条件。
+
+## 可用脚本
+
+有血缘数据时，用脚本算下游闭包，不要靠记忆列举：
+
+```bash
+# 从 SQL 文件提取表级血缘（可选）
+python3 scripts/lineage.py edges --sql job_a.sql --sql job_b.sql --out edges.csv
+
+# 计算影响。字段级写成 表名:字段名
+python3 scripts/lineage.py impact --edges edges.csv --assets assets.csv \
+  --target dwd_order_detail_d:old_channel_id --change drop_column
+
+# dbt 项目
+python3 scripts/lineage.py impact --manifest target/manifest.json --target fct_orders --change semantic_change
+```
+
+示例见 `assets/`，全部参数见 [命令行参数](references/cli.md)。
+
+结果只覆盖已知血缘。临时 SQL、Excel 和外部系统通常不在血缘里，字段或表下线前要用查询日志核对最近的读取记录。
 
 ## 输出格式
 
@@ -86,6 +110,11 @@ description: Use when analyzing upstream and downstream impact for table changes
 
 ## 上线 / 下线计划
 
+## 回滚触发条件与操作
+
+| 触发条件 | 回滚操作 | 验证方式 |
+| --- | --- | --- |
+
 ## 通知与协作清单
 
 ## 待确认信息
@@ -96,11 +125,20 @@ description: Use when analyzing upstream and downstream impact for table changes
 输出必须：
 
 - 区分已知影响和待确认影响
+- 有血缘数据时，影响清单来自脚本，并说明血缘覆盖不到的范围
 - 不凭空编造下游对象
 - 影响等级要说明原因
 - 对破坏性变更给出兼容、双跑或回滚建议
 - 明确需要通知谁、什么时候通知、通知什么
 - 给出上线后验证指标或检查点
+
+## 完成后的下一步
+
+- 需要修改下游 SQL：`sql-reviewer`
+- 上线后验证：`data-quality-rule-generator`
+- 更新文档和变更记录：`data-doc-writer`
+- 同步进展：`daily-report-writer`、`weekly-monthly-report-writer`
+- 变更已造成错误：`data-incident-postmortem-writer`
 
 ## 示例 Prompt
 
@@ -116,4 +154,18 @@ description: Use when analyzing upstream and downstream impact for table changes
 - 经营日报渠道模块读取 ads_channel_gmv_1d
 - 渠道投放复盘 SQL 中有历史查询使用 old_channel_id
 希望输出：影响等级、兼容方案、通知对象、上线前检查和回滚条件。
+```
+
+```text
+请用 data-lineage-impact-analyzer 评估下面这个口径变更的下游影响。
+
+变更对象：SaaS 活跃用户认定口径
+变更类型：口径调整
+变化内容：活跃用户从"30 天内有任意登录"改为"30 天内完成核心任务至少一次"
+计划时间：下月 1 日起生效，需要历史数据回填
+已知下游：
+- 客户健康度评分模型（使用活跃用户数作为核心特征）
+- CSM 续费风险看板活跃度模块
+- NPS 触发条件（活跃 30 天以上才触发调研）
+希望输出：影响等级、回填方案、兼容窗口、通知清单和回滚触发条件。
 ```

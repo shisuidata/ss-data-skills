@@ -1,0 +1,20 @@
+{
+  "table": "ads_channel_new_user_conversion_d",
+  "partition": "dt",
+  "grain": ["dt", "channel_id"],
+  "freshness": {"deadline": "08:00"},
+  "row_count": {"min": 5},
+  "columns": [
+    {"name": "dt", "type": "string", "nullable": false},
+    {"name": "channel_id", "type": "string", "nullable": false, "ref": "dim_channel.channel_id"},
+    {"name": "register_user_cnt", "type": "bigint", "nullable": false, "min": 0},
+    {"name": "first_purchase_user_cnt", "type": "bigint", "nullable": false, "min": 0},
+    {"name": "conversion_rate", "type": "decimal(10,4)", "min": 0, "max": 1, "numerator": "first_purchase_user_cnt", "denominator": "register_user_cnt"}
+  ],
+  "metrics": [
+    {"name": "注册用户数", "expr": "sum(register_user_cnt)", "window_days": 7}
+  ],
+  "reconcile": [
+    {"name": "注册用户数与明细对账", "target_expr": "sum(register_user_cnt)", "source": "dwd_user_register_d", "source_expr": "count(distinct user_id)", "source_filter": "dt = :biz_date", "tolerance_pct": 0.001}
+  ]
+}

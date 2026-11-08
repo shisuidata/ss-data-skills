@@ -1,0 +1,7 @@
+name,type,owner,importance
+dws_channel_gmv_1d,table,数据开发组,normal
+ads_channel_gmv_1d,table,数据开发组,core
+经营日报渠道模块,dashboard,运营分析组,core
+渠道投放复盘报表,report,投放团队,normal
+dws_user_order_1d,table,数据开发组,normal
+客户价值模型,model,算法组,core

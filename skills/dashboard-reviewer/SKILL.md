@@ -1,6 +1,9 @@
 ---
 name: dashboard-reviewer
-description: Use when reviewing whether a BI dashboard, management dashboard, metric board, or data product page can support business decisions with clear metrics, trustworthy definitions, and actionable drill-down paths.
+description: Use when reviewing whether a BI dashboard, management dashboard, metric board, or data product page can support business decisions with clear metrics, trustworthy definitions, and actionable drill-down paths. 中文触发词：看板审查、BI 看板优化、经营看板改版、报表没人看。
+metadata:
+  category: BI 与数据产品
+  aliases: BI 看板审查、经营看板审查、看板优化
 ---
 
 # Dashboard Reviewer
@@ -35,6 +38,7 @@ description: Use when reviewing whether a BI dashboard, management dashboard, me
 - 审查具体 SQL 逻辑，应使用 `sql-reviewer`
 - 写完整分析报告，应使用 `data-analysis-report-writer`
 - 制作 PPT 叙事，应使用 `data-presentation-architect`
+- 只调整单张图的选型或配色，应使用 `data-viz-kit`
 - 对没有目标受众、指标说明和图表描述的看板做最终结论
 
 ## 输入信息
@@ -80,10 +84,33 @@ description: Use when reviewing whether a BI dashboard, management dashboard, me
 5. 检查指标口径、统计粒度、刷新频率和数据延迟风险。
 6. 给出改版优先级：必须改、建议改、可后续改。
 
+## 可用脚本
+
+把看板整理成结构化描述后运行，得到评分、问题清单和改版原型：
+
+```bash
+python3 scripts/dashboard_kit.py review --spec dashboard.json --html prototype.html
+```
+
+格式见 [看板描述格式](references/spec-format.md)，示例见 `assets/example_spec.json`，全部参数见 [命令行参数](references/cli.md)。
+
+脚本只检查结构问题，比如没有主指标、没有下钻路径、用了双轴图。指标对不对、业务上该不该看，由你结合上下文判断。原型里的数字只能来自用户材料，没有数据时写“待接入”，不要编造。
+
+## 审查截图时
+
+1. 先写出看到的内容：模块、指标、时间范围、筛选项、图表类型。
+2. 看不清或被截断的内容标记为“无法确认”，不要猜数字。
+3. 把观察结果整理成上面的结构化描述，缺失字段留空。
+4. 截图只能判断结构和展示，口径、刷新频率和权限要向用户确认。
+
+图表选型、配色和数字格式按 `data-viz-kit` 的规则判断。
+
 ## 输出格式
 
 ```markdown
 ## 看板审查结论
+
+<评分：决策服务、指标层级、图表匹配、定位与行动、数据可信，各 2 分>
 
 ## 看板目标与受众
 
@@ -107,6 +134,10 @@ description: Use when reviewing whether a BI dashboard, management dashboard, me
 
 ### P2 后续优化
 
+## 改版原型
+
+<HTML 原型路径；没有运行脚本时给出首屏和第二屏的结构>
+
 ## 待确认问题
 ```
 
@@ -120,6 +151,15 @@ description: Use when reviewing whether a BI dashboard, management dashboard, me
 - 明确口径、刷新频率、粒度和权限等数据风险
 - 给出可以落地的改版建议，而不是泛泛说“优化展示”
 - 在缺少截图或指标说明时标记假设
+- 原型中的数字只来自用户材料
+
+## 完成后的下一步
+
+- 指标口径有问题：`metric-definition-reviewer`
+- 图表选型和配色：`data-viz-kit`
+- 需要新的底表：`table-design-advisor`
+- 看板 SQL 要审查：`sql-reviewer`
+- 写看板说明：`data-doc-writer`
 
 ## 示例 Prompt
 
@@ -138,4 +178,19 @@ description: Use when reviewing whether a BI dashboard, management dashboard, me
 已知反馈：运营说看板能看结果，但定位不了问题。
 
 请输出看板问题、风险和改版建议。
+```
+
+```text
+请用 dashboard-reviewer 审查这个 SaaS 客户成功看板。
+
+目标受众：客户成功团队（CSM），共 8 人，每人负责约 30 家企业客户。
+业务问题：在续费日前 60 天主动识别高风险客户，优先跟进。
+看板模块：
+1. 本月到期客户列表（按 MRR 排序）
+2. 客户 30 天活跃度趋势
+3. 功能使用覆盖率（已使用功能数/总功能数）
+4. 最近 NPS 评分
+5. 到期 MRR 总额和预测续费率
+刷新频率：每日更新。
+当前反馈：CSM 说数据很全但不知道该先联系哪些客户，每天打开只是滚动看列表。
 ```

@@ -1,0 +1,8 @@
+upstream,downstream,upstream_column
+ods_order,dwd_order_detail_d,
+dwd_order_detail_d,dws_channel_gmv_1d,old_channel_id
+dwd_order_detail_d,dws_user_order_1d,user_id
+dws_channel_gmv_1d,ads_channel_gmv_1d,
+ads_channel_gmv_1d,经营日报渠道模块,
+ads_channel_gmv_1d,渠道投放复盘报表,
+dws_user_order_1d,客户价值模型,

@@ -1,6 +1,9 @@
 ---
 name: market-research-analyst
-description: Use when planning or writing market research for a specific industry, product category, competitor set, business opportunity, user segment, or go-to-market question with structured evidence and clear assumptions.
+description: Use when planning or writing market research for a specific industry, product category, competitor set, business opportunity, user segment, or go-to-market question with structured evidence and clear assumptions. 中文触发词：市场调研、行业研究、竞品分析、市场规模。
+metadata:
+  category: 市场研究
+  aliases: 市场调研、行业研究、竞品调研
 ---
 
 # Market Research Analyst
@@ -62,7 +65,7 @@ description: Use when planning or writing market research for a specific industr
 - [SaaS 行业上下文](../../context/industries/saas.md)
 - [内容社区行业上下文](../../context/industries/content-community.md)
 
-如果需要最新事实，应要求用户提供资料、链接或允许联网检索；没有来源时只能输出研究框架和待验证假设。
+如果需要最新事实，应要求用户提供资料、链接或允许联网检索；没有来源时只能输出研究框架和待验证假设。检索和引用按下面的“信息搜集规则”执行。
 
 ## 研究流程
 
@@ -73,6 +76,41 @@ description: Use when planning or writing market research for a specific industr
 5. 区分事实、推断、假设和待验证问题。
 6. 输出研究计划或报告框架。
 7. 如已有资料，整理成结论、证据和建议。
+
+## 信息搜集规则
+
+能联网检索时：
+
+1. 先列要回答的问题，再按问题检索，不做泛搜。
+2. 每条事实记录来源、发布方和发布时间。
+3. 关键判断至少有两个独立来源。只有一个来源时标为“单一来源”。
+4. 媒体转述的数字要回溯原始出处，找不到就降级。
+5. 市场规模、价格、融资这类信息优先使用近一年的资料，旧资料要注明年份。
+
+不能联网，用户也没提供资料时，只输出研究框架和待验证假设，不写具体数字。
+
+## 来源等级
+
+| 等级 | 来源 | 用法 |
+| --- | --- | --- |
+| A | 监管和统计机构、财报、招股书、官方文档 | 可作为事实依据 |
+| B | 行业协会、知名研究机构报告 | 可用，注明样本和方法 |
+| C | 媒体报道、行业文章、公众号 | 只作线索，要回溯原始来源 |
+| D | 无出处的数字、论坛、AI 生成内容 | 不能作为依据 |
+
+## 证据状态
+
+- 已验证：A 级来源，或两个独立的 B 级来源
+- 部分验证：单一 B 级来源，或多个 C 级来源
+- 待验证：目前只是假设
+- 有冲突：来源之间不一致，列出分歧和可能原因
+
+## 市场规模
+
+- 按 TAM、SAM、SOM 分层，说明每层的边界。
+- 至少用自上而下和自下而上两种方法测算，写明每个假设。
+- 两种结果差距超过 2 倍时，解释差异来源。
+- 给区间，不给单点数字。
 
 ## 输出格式
 
@@ -88,12 +126,17 @@ description: Use when planning or writing market research for a specific industr
 
 ## 调研框架
 
+## 市场规模（TAM / SAM / SOM，需要时）
+
 ## 竞品 / 标杆分析
 
 | 对象 | 定位 | 客群 | 商业模式 | 优势 | 风险 |
 | --- | --- | --- | --- | --- | --- |
 
 ## 信息源清单
+
+| 来源 | 等级 | 发布时间 | 支撑的判断 |
+| --- | --- | --- | --- |
 
 ## 机会与风险
 
@@ -106,10 +149,15 @@ description: Use when planning or writing market research for a specific industr
 
 - 先定义研究边界，再写判断
 - 不编造市场规模、排名、融资、营收等事实
-- 每个关键判断都标记证据状态
+- 每个关键判断都标记证据状态，事实都能追溯到具体来源
 - 给出可执行的信息源和调研路径
 - 竞品分析要服务决策，不做百科式罗列
 - 如果资料不足，输出假设和待验证清单
+
+## 完成后的下一步
+
+- 写成报告：`data-analysis-report-writer`
+- 做成汇报：`data-presentation-architect`
 
 ## 示例 Prompt
 
@@ -117,13 +165,28 @@ description: Use when planning or writing market research for a specific industr
 请用 market-research-analyst 做一个行业市场调研框架。
 
 研究对象：国内中小企业 BI 和数据分析工具市场。
-研究目的：判断拾穗数据是否适合做“数据团队 AI 工作流模板库”这个产品方向。
-目标读者：工作室内部决策。
+研究目的：判断某数据工具团队是否适合做“数据团队 AI 工作流模板库”这个产品方向。
+目标读者：团队内部决策。
 重点问题：
 1. 目标用户是谁？
 2. 他们现在用什么工具？
 3. 现有工具解决了什么，没解决什么？
 4. 我们可以切入哪些场景？
-已有资料：暂时只有我们对数据从业者的内容和会员反馈。
+已有资料：暂时只有目标用户的访谈反馈。
 输出形式：研究框架 + 需要补充的信息源清单 + 初步机会判断。
+```
+
+```text
+请用 market-research-analyst 做一个市场调研框架。
+
+研究对象：国内内容创作者数据分析工具市场（面向 B 站、小红书、抖音创作者）。
+研究目的：判断是否适合做"创作者数据分析助手"产品方向。
+目标读者：团队内部产品决策。
+重点问题：
+1. 创作者现在如何分析自己的内容数据？
+2. 平台官方数据工具解决了什么，没解决什么？
+3. 现有第三方工具在这个市场的格局如何？
+4. 目标用户的付费意愿和典型使用场景是什么？
+已有资料：只有目标用户的访谈反馈，无第三方报告。
+输出形式：竞品框架 + 信息源清单 + 机会假设。
 ```

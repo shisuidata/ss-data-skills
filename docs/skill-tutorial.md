@@ -334,7 +334,7 @@ Skill 库不是“好用提示词合集”。
 - 依赖未脱敏的内部数据或系统规则
 - 无法判断输出质量
 
-如果你要贡献新 Skill，可以继续看 [贡献指南](../CONTRIBUTING.md) 和 [Skill 生产 SOP](../SOP.md)。
+如果你要贡献新 Skill，可以继续看 [贡献指南](../CONTRIBUTING.md)。
 
 ## 最小行动清单
 

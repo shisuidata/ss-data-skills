@@ -50,4 +50,4 @@ group by r.dt, r.channel_id;
 ## 使用说明
 
 这个示例展示了数据 SQL 中非常常见的坑：left join 后在 where 里过滤右表字段。
-
+- 能执行代码时先运行 `python3 skills/sql-reviewer/scripts/sql_lint.py check --sql query.sql --dialect spark --partition-col dt`。左连接右表过滤会标为 P0，`confidence=low` 的结果要结合表结构确认。

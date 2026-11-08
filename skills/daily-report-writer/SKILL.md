@@ -1,6 +1,9 @@
 ---
 name: daily-report-writer
-description: Use when writing a concise daily report, daily worklog, standup update, shift handoff, or end-of-day summary for data analysis, data development, BI, governance, or operations work.
+description: Use when writing a concise daily report, daily worklog, standup update, shift handoff, or end-of-day summary for data analysis, data development, BI, governance, or operations work. 中文触发词：日报、日终同步、站会发言、值班交接。
+metadata:
+  category: 表达交付
+  aliases: 日报、日终同步、Standup 更新
 ---
 
 # Daily Report Writer
@@ -75,32 +78,42 @@ description: Use when writing a concise daily report, daily worklog, standup upd
 3. 把动作改写为结果，说明产出和影响。
 4. 删除流水账、情绪表达和过细过程。
 5. 对阻塞事项写清需要谁做什么。
-6. 输出一个可直接发送的版本。
+6. 输出一个可直接发送的版本。默认只给这个版本，读者明确需要结构化表格时再给。
 
 ## 输出格式
 
 ```markdown
-## 今日日报
+**今日日报 · YYYY-MM-DD**
 
-### 今日完成
+今日完成
+1. <事项>：<产出或结果>，<影响>
 
-| 事项 | 产出/结果 | 影响 |
-| --- | --- | --- |
+进行中
+1. <事项>：<当前进展>，下一步 <动作>
 
-### 进行中
+风险与阻塞
+1. <问题>：<影响>，需要 <谁> 在 <时间> 前 <做什么>
 
-| 事项 | 当前进展 | 下一步 |
-| --- | --- | --- |
+明日计划
+1. <事项>
 
-### 风险与阻塞
-
-| 问题 | 影响 | 需要支持 |
-| --- | --- | --- |
-
-### 明日计划
-
-### 可直接发送版本
+待确认
+1. <用户没有提供、需要补充的信息>
 ```
+
+这个格式可以直接贴进飞书、钉钉或企业微信。没有内容的小节直接省略。
+
+## 按读者调整
+
+| 读者 | 篇幅 | 重点 |
+| --- | --- | --- |
+| 直属主管 | 200 字以内 | 先结果，再风险和需要的支持 |
+| 项目群 | 150 字以内 | 只写和这个项目相关的进展和协作需求 |
+| 业务方 | 100 字以内 | 不写技术细节，只写对他们的影响和交付时间 |
+| 团队内部 | 不限 | 可以保留表名、任务名和排查细节 |
+| 值班交接 | 不限 | 当前状态、未完成事项、下一班要盯什么 |
+
+读者没有说明时，按直属主管处理，并标记这个假设。
 
 ## 质量标准
 
@@ -110,8 +123,12 @@ description: Use when writing a concise daily report, daily worklog, standup upd
 - 把“做了什么”写成“产出了什么”
 - 风险和阻塞要可行动
 - 语气适合职场同步，避免夸张和邀功
-- 读者不同，篇幅和重点要不同
+- 按“按读者调整”的规则控制篇幅和重点
 - 保留待确认项，不强行写成已完成
+
+## 完成后的下一步
+
+- 汇总成周报或月报：`weekly-monthly-report-writer`
 
 ## 示例 Prompt
 
@@ -129,4 +146,18 @@ description: Use when writing a concise daily report, daily worklog, standup upd
 - 补充护栏指标埋点校验。
 - 完成激活表文档。
 - 和前端确认移动端支付页性能数据。
+```
+
+```text
+请用 daily-report-writer 帮我写今天的数据项目日报。
+
+日期：2026-06-16
+读者：数据团队 Lead 和产品 Group。
+今天事项：
+- 完成 NRR 指标口径与财务团队对齐，确认扩展收入计入、Downgrade 扣减。
+- 发现客户健康度模型训练数据中 30% 的 company_id 无法关联到最新订阅表，已提 Bug。
+- 搭好 Trial 转化漏斗看板基础结构，维度筛选项待产品确认。
+明天计划：
+- 修复 company_id 映射问题，确认是否需要历史补数。
+- 和产品完成漏斗维度最终确认，推进看板上线。
 ```

@@ -45,3 +45,4 @@
 ## 使用说明
 
 这个示例展示如何区分已知影响和待确认影响，并给出兼容、双跑、通知和回滚建议。
+- 有边表或 dbt manifest 时用 `skills/data-lineage-impact-analyzer/scripts/lineage.py impact` 计算下游和通知清单。结果只覆盖已知血缘，下线前要用查询日志核对。

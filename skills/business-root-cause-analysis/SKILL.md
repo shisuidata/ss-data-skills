@@ -1,6 +1,9 @@
 ---
 name: business-root-cause-analysis
-description: Use when diagnosing business metric changes or anomalies such as GMV decline, conversion drop, retention loss, churn increase, revenue change, lead decline, or active user fluctuation with a structured root cause analysis plan.
+description: Use when diagnosing business metric changes or anomalies such as GMV decline, conversion drop, retention loss, churn increase, revenue change, lead decline, or active user fluctuation with a structured root cause analysis plan. 中文触发词：指标归因、为什么下降、异常排查、GMV 下滑、指标波动原因。
+metadata:
+  category: 数据分析
+  aliases: 指标归因、异常归因、业务指标诊断
 ---
 
 # Business Root Cause Analysis
@@ -30,6 +33,10 @@ description: Use when diagnosing business metric changes or anomalies such as GM
 - 只做留存矩阵，应使用 `retention-cohort-analysis`
 - 只写最终报告，应使用 `data-analysis-report-writer`
 - 需要判断 SQL 是否算错，应使用 `sql-reviewer`
+- 有随机分组的实验结果，应使用 `ab-test-analysis`
+- 指标口径本身有争议，先用 `metric-definition-reviewer`
+- 数据能不能用还不清楚，先用 `exploratory-data-analysis`
+- 需要行业或竞品的外部信息，应使用 `market-research-analyst`
 
 ## 输入信息
 
@@ -47,6 +54,7 @@ description: Use when diagnosing business metric changes or anomalies such as GM
 - 相关业务事件：活动、改版、投放、价格、库存、算法、系统故障
 - 历史波动范围
 - 数据表、看板或 SQL 结果
+- 日粒度时间序列 CSV、按时期和维度汇总的 CSV（可以直接用脚本计算）
 - 业务方已经排除或怀疑的原因
 
 ## 上下文建议
@@ -74,6 +82,29 @@ description: Use when diagnosing business metric changes or anomalies such as GM
 5. 为每个假设设计验证指标、查询维度和所需数据。
 6. 按影响大小、可验证性、可行动性排序。
 7. 输出结论边界：哪些能确认，哪些只是待验证。
+
+## 可用脚本
+
+有数据且能执行代码时，数字由 `scripts/decompose.py` 计算，不要心算：
+
+```bash
+# 1. 异常是否真实：和同星期的历史窗口比较
+python3 scripts/decompose.py confirm --csv daily.csv --date-col dt --value-col gmv --start 2026-05-13 --end 2026-05-19
+
+# 2. 乘法公式拆解：GMV = 流量 × 转化率 × 客单价
+python3 scripts/decompose.py factors --factor 流量=120000,131000 --factor 转化率=0.042,0.031 --factor 客单价=180,176 --target GMV
+
+# 3. 维度贡献排序，比率指标拆成结构效应和转化效应
+python3 scripts/decompose.py dimensions --csv segments.csv --period-col period --base 上期 --current 本期 \
+  --dim channel --dim device --numerator paid --denominator uv --html rca.html
+```
+
+示例数据见 `assets/`，全部参数见 [命令行参数](references/cli.md)。
+
+- `confirm` 的结论是 `data_issue` 时先排查数据；是 `normal` 时说明这可能只是正常波动，不要进入业务归因。
+- `dimensions` 要求同一粒度的数据。各维度合计不一致时会报错，这通常是数据被重复计算。
+- `dimensions` 只说明变化集中在哪里，不等于原因。原因要靠假设树继续验证。
+- 不能执行代码时，按同样的结构人工计算，并写明“未经脚本计算”。
 
 ## 输出格式
 
@@ -111,8 +142,18 @@ description: Use when diagnosing business metric changes or anomalies such as GM
 - 明确指标公式和拆解维度
 - 不把相关性直接写成因果
 - 每个假设都要对应验证数据
+- 有数据时，异常确认和贡献拆解的数字来自脚本
 - 建议要区分“立刻能做”和“验证后再做”
 - 对数据口径、样本量、季节性和业务事件保持敏感
+
+## 完成后的下一步
+
+- 定位到转化路径或留存：`funnel-analysis`、`retention-cohort-analysis`
+- 结论需要因果验证：`ab-test-analysis`
+- 怀疑 SQL 算错：`sql-reviewer`
+- 把排查路径固化到看板：`dashboard-reviewer`
+- 写报告：`data-analysis-report-writer`
+- 同步进展：`daily-report-writer`、`weekly-monthly-report-writer`、`data-presentation-architect`
 
 ## 示例 Prompt
 
@@ -129,4 +170,16 @@ description: Use when diagnosing business metric changes or anomalies such as GM
 可用维度：渠道、设备、地区、注册类型、是否进入引导页。
 
 请输出归因假设树、验证路径和下一步建议。
+```
+
+```text
+请用 business-root-cause-analysis 分析这个问题。
+
+背景：SaaS 产品 5 月 ARR 增速从 18% 降到 11%，Churn 率同期从 3.2% 升到 4.8%。
+对比基准：Q1 季度均值。
+已知变化：
+- 4 月底新了一批付费投放带来的中小企业客户
+- 产品 5 月上线功能权限分级，部分用户主动降级套餐
+- 客户成功团队 4 月有 2 名 CSM 离职
+可用维度：客户规模、行业、套餐类型、注册渠道、使用活跃度分层。
 ```

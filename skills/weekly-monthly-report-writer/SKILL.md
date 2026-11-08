@@ -1,6 +1,9 @@
 ---
 name: weekly-monthly-report-writer
-description: Use when writing or polishing weekly reports, monthly reports, project updates, work summaries, performance reviews, or upward status reports for data, analytics, engineering, or operations work.
+description: Use when writing or polishing weekly reports, monthly reports, project updates, work summaries, performance reviews, or upward status reports for data, analytics, engineering, or operations work. 中文触发词：周报、月报、项目进展、向上汇报、绩效素材。
+metadata:
+  category: 表达交付
+  aliases: 周报、月报、项目进展汇报
 ---
 
 # Weekly Monthly Report Writer
@@ -35,7 +38,8 @@ description: Use when writing or polishing weekly reports, monthly reports, proj
 
 - 专题数据分析报告，请使用 `data-analysis-report-writer`
 - PPT 大纲或演示稿，请使用 `data-presentation-architect`
-- 数据事故复盘，后续应使用 `data-incident-postmortem-writer`
+- 数据事故复盘，请使用 `data-incident-postmortem-writer`
+- 单日工作同步，请使用 `daily-report-writer`
 
 如果用户只提供零散事项，要先归类，不要按原顺序机械排列。
 
@@ -105,15 +109,32 @@ description: Use when writing or polishing weekly reports, monthly reports, proj
 - “参加会议” -> “完成跨团队口径对齐，明确 XX 指标后续归属”
 - “还没做完” -> “当前阻塞在 XX，已完成 YY，下一步需要 ZZ”
 
+改写只换表达，不加事实。XX 必须来自用户材料。用户没说支撑了什么决策，就写“待确认”，不要替用户想一个。
+
+## 月报额外要求
+
+- 写清本月目标和达成情况，没有目标时标记“未提供”
+- 和上月比较关键结果，数字来自用户材料
+- 按项目或方向归纳，不要把四份周报拼在一起
+- 下月计划只列最重要的 3 项
+
+用于绩效材料时，只写有证据的结果，把团队的工作和个人贡献分开。
 ## 质量标准
 
 输出必须：
 
 - 不写流水账
-- 不夸大成果
+- 不夸大成果，基于用户提供的事实，不编造成果、数字和影响
+- 用户没提供的信息列为待确认
+- 结果里有数字且有数据来源时，可以用 `data-analysis-report-writer` 的 `report.py lint` 核对
 - 每项工作尽量对应目标、影响或风险
 - 明确下一步计划
 - 能被上级快速扫读
+
+## 完成后的下一步
+
+- 需要做成汇报：`data-presentation-architect`
+- 某个专题需要深入分析：`data-analysis-report-writer`
 
 ## 示例 Prompt
 
@@ -126,4 +147,18 @@ description: Use when writing or polishing weekly reports, monthly reports, proj
 - 和产品确认会员页实验指标
 - 写了活动复盘 SQL，但还差退款口径确认
 读者：直属 Leader
+```
+
+```text
+请用 weekly-monthly-report-writer 帮我写本周数据团队周报：
+
+角色：数据分析负责人，SaaS 公司，团队 3 人。
+读者：产品 VP 和技术 VP。
+本周事项：
+- 完成 NRR 指标口径与财务对齐，上线 NRR 指标看板
+- 发现并修复客户健康度模型数据映射 Bug，影响约 30% 客户记录
+- 完成 4 月 Trial 到付费转化漏斗专题分析，发现 onboarding 是主要流失点
+- 配合产品设计续费预测模型特征方案初稿
+本周风险：客户流失事件存在 T+2 延迟，影响 CSM 实时干预能力
+下周计划：推进漏斗看板上线，启动续费预测模型数据准备
 ```

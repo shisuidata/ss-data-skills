@@ -45,4 +45,4 @@
 ## 使用说明
 
 指标口径一旦进入看板，后续修改成本很高。这个 Skill 应该尽量在开发前使用。
-
+- 口径要被 SQL、质量规则或文档复用时，按 `skills/metric-definition-reviewer/assets/metric_template.yaml` 输出机器可读定义。

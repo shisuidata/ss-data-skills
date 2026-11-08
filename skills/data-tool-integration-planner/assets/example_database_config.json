@@ -1,0 +1,20 @@
+{
+  "toolName": "PostgreSQL",
+  "toolType": "database",
+  "owner": "data-platform",
+  "environment": "test",
+  "connection": {
+    "engine": "postgresql",
+    "host": "pg-test.internal",
+    "port": 5432,
+    "database": "analytics_demo"
+  },
+  "auth": {
+    "method": "password",
+    "usernameEnv": "PG_TEST_USER",
+    "passwordEnv": "PG_TEST_PASSWORD"
+  },
+  "permissions": {
+    "mode": "read_only"
+  }
+}

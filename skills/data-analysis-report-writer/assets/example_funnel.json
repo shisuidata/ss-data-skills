@@ -1,0 +1,367 @@
+{
+  "funnel": {
+    "name": "SaaS 试用到付费漏斗",
+    "steps": [
+      "注册试用",
+      "完成 onboarding",
+      "邀请团队成员",
+      "创建核心工作流",
+      "升级付费"
+    ],
+    "transitions": [
+      "注册试用 → 完成 onboarding",
+      "完成 onboarding → 邀请团队成员",
+      "邀请团队成员 → 创建核心工作流",
+      "创建核心工作流 → 升级付费"
+    ],
+    "current": "4 月",
+    "baseline": "3 月",
+    "source": "summary",
+    "window_days": null,
+    "data_end": null
+  },
+  "periods": {
+    "3 月": {
+      "counts": [
+        4200,
+        1890,
+        1020,
+        760,
+        290
+      ],
+      "table": [
+        {
+          "count": 4200,
+          "step_rate": 1.0,
+          "step_ci": null,
+          "cum_rate": 1.0,
+          "drop": 0
+        },
+        {
+          "count": 1890,
+          "step_rate": 0.45,
+          "step_ci": [
+            0.435007,
+            0.465085
+          ],
+          "cum_rate": 0.45,
+          "drop": 2310
+        },
+        {
+          "count": 1020,
+          "step_rate": 0.539683,
+          "step_ci": [
+            0.517154,
+            0.56205
+          ],
+          "cum_rate": 0.242857,
+          "drop": 870
+        },
+        {
+          "count": 760,
+          "step_rate": 0.745098,
+          "step_ci": [
+            0.717468,
+            0.770889
+          ],
+          "cum_rate": 0.180952,
+          "drop": 260
+        },
+        {
+          "count": 290,
+          "step_rate": 0.381579,
+          "step_ci": [
+            0.34772,
+            0.416629
+          ],
+          "cum_rate": 0.069048,
+          "drop": 470
+        }
+      ],
+      "overall": 0.069048,
+      "segments": {
+        "注册渠道": {
+          "自然搜索": {
+            "counts": [
+              2100,
+              1029,
+              590,
+              450,
+              182
+            ],
+            "overall": 0.086667
+          },
+          "信息流广告": {
+            "counts": [
+              1300,
+              481,
+              230,
+              160,
+              52
+            ],
+            "overall": 0.04
+          },
+          "合作伙伴": {
+            "counts": [
+              800,
+              380,
+              200,
+              150,
+              56
+            ],
+            "overall": 0.07
+          }
+        }
+      }
+    },
+    "4 月": {
+      "counts": [
+        5100,
+        2091,
+        1004,
+        742,
+        281
+      ],
+      "table": [
+        {
+          "count": 5100,
+          "step_rate": 1.0,
+          "step_ci": null,
+          "cum_rate": 1.0,
+          "drop": 0
+        },
+        {
+          "count": 2091,
+          "step_rate": 0.41,
+          "step_ci": [
+            0.396574,
+            0.423561
+          ],
+          "cum_rate": 0.41,
+          "drop": 3009
+        },
+        {
+          "count": 1004,
+          "step_rate": 0.480153,
+          "step_ci": [
+            0.458795,
+            0.501584
+          ],
+          "cum_rate": 0.196863,
+          "drop": 1087
+        },
+        {
+          "count": 742,
+          "step_rate": 0.739044,
+          "step_ci": [
+            0.711005,
+            0.765261
+          ],
+          "cum_rate": 0.14549,
+          "drop": 262
+        },
+        {
+          "count": 281,
+          "step_rate": 0.378706,
+          "step_ci": [
+            0.344514,
+            0.414148
+          ],
+          "cum_rate": 0.055098,
+          "drop": 461
+        }
+      ],
+      "overall": 0.055098,
+      "segments": {
+        "注册渠道": {
+          "自然搜索": {
+            "counts": [
+              2150,
+              1032,
+              560,
+              430,
+              172
+            ],
+            "overall": 0.08
+          },
+          "信息流广告": {
+            "counts": [
+              2200,
+              739,
+              296,
+              202,
+              63
+            ],
+            "overall": 0.028636
+          },
+          "合作伙伴": {
+            "counts": [
+              750,
+              320,
+              148,
+              110,
+              46
+            ],
+            "overall": 0.061333
+          }
+        }
+      }
+    }
+  },
+  "drop_points": {
+    "lowest_step_rate": {
+      "transition": "创建核心工作流 → 升级付费",
+      "step_rate": 0.378706
+    },
+    "largest_loss": {
+      "transition": "注册试用 → 完成 onboarding",
+      "lost": 3009
+    }
+  },
+  "comparison": {
+    "overall": {
+      "diff": -0.01395,
+      "ci": [
+        -0.023849,
+        -0.00405
+      ],
+      "p_value": 0.005291
+    },
+    "steps": [
+      {
+        "transition": "注册试用 → 完成 onboarding",
+        "rate_current": 0.41,
+        "rate_baseline": 0.45,
+        "test": {
+          "diff": -0.04,
+          "ci": [
+            -0.060213,
+            -0.019787
+          ],
+          "p_value": 0.000105
+        },
+        "log_ratio": -0.09309,
+        "counterfactual_overall": 0.060473,
+        "share_of_change": 0.412484,
+        "contribution_pp": -0.005754
+      },
+      {
+        "transition": "完成 onboarding → 邀请团队成员",
+        "rate_current": 0.480153,
+        "rate_baseline": 0.539683,
+        "test": {
+          "diff": -0.05953,
+          "ci": [
+            -0.09057,
+            -0.028489
+          ],
+          "p_value": 0.000176
+        },
+        "log_ratio": -0.116876,
+        "counterfactual_overall": 0.061929,
+        "share_of_change": 0.517879,
+        "contribution_pp": -0.007224
+      },
+      {
+        "transition": "邀请团队成员 → 创建核心工作流",
+        "rate_current": 0.739044,
+        "rate_baseline": 0.745098,
+        "test": {
+          "diff": -0.006054,
+          "ci": [
+            -0.044175,
+            0.032067
+          ],
+          "p_value": 0.755583
+        },
+        "log_ratio": -0.008159,
+        "counterfactual_overall": 0.055549,
+        "share_of_change": 0.036151,
+        "contribution_pp": -0.000504
+      },
+      {
+        "transition": "创建核心工作流 → 升级付费",
+        "rate_current": 0.378706,
+        "rate_baseline": 0.381579,
+        "test": {
+          "diff": -0.002873,
+          "ci": [
+            -0.051973,
+            0.046228
+          ],
+          "p_value": 0.908707
+        },
+        "log_ratio": -0.007557,
+        "counterfactual_overall": 0.055516,
+        "share_of_change": 0.033485,
+        "contribution_pp": -0.000467
+      }
+    ],
+    "decomposable": true,
+    "segments": {
+      "注册渠道": {
+        "mix_effect": -0.004963,
+        "rate_effect": -0.008987,
+        "rows": [
+          {
+            "segment": "信息流广告",
+            "n_current": 2200,
+            "n_baseline": 1300,
+            "share_current": 0.431373,
+            "share_baseline": 0.309524,
+            "conv_current": 0.028636,
+            "conv_baseline": 0.04,
+            "mix_effect": -0.003539,
+            "rate_effect": -0.004902
+          },
+          {
+            "segment": "自然搜索",
+            "n_current": 2150,
+            "n_baseline": 2100,
+            "share_current": 0.421569,
+            "share_baseline": 0.5,
+            "conv_current": 0.08,
+            "conv_baseline": 0.086667,
+            "mix_effect": -0.001382,
+            "rate_effect": -0.00281
+          },
+          {
+            "segment": "合作伙伴",
+            "n_current": 750,
+            "n_baseline": 800,
+            "share_current": 0.147059,
+            "share_baseline": 0.190476,
+            "conv_current": 0.061333,
+            "conv_baseline": 0.07,
+            "mix_effect": -4.1e-05,
+            "rate_effect": -0.001275
+          }
+        ]
+      }
+    }
+  },
+  "timing": null,
+  "maturity": null,
+  "checks": [
+    {
+      "id": "definition",
+      "status": "info",
+      "title": "汇总数据无法验证顺序和窗口",
+      "detail": "请确认上游 SQL 按用户有序统计、两期使用相同的转化窗口，并且按入口时间划分时期"
+    }
+  ],
+  "verdict": {
+    "level": "bad",
+    "title": "整体转化 6.9% → 5.5%（−1.4pp）",
+    "reasons": [
+      "变化最大的来源：完成 onboarding → 邀请团队成员，单步转化 54.0% → 48.0%，贡献整体变化的 52%",
+      "若这一步恢复到3 月水平，整体转化可回到 6.2%",
+      "按 注册渠道 拆：结构变化贡献 −0.5pp，各分群自身转化变化贡献 −0.9pp；主要来自 信息流广告 自身转化 4.0% → 2.9%"
+    ],
+    "next_steps": [
+      "优先排查「完成 onboarding → 邀请团队成员」：页面改版、加载性能、价格或库存、埋点变更",
+      "重点看 注册渠道=信息流广告 的体验和流程，这更像产品或流程问题",
+      "分群差异只说明相关，不说明因果；要确认因果，用 A/B 实验验证改动"
+    ]
+  }
+}

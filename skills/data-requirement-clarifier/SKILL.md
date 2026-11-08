@@ -1,6 +1,9 @@
 ---
 name: data-requirement-clarifier
-description: Use when a vague data analysis or data development request needs to be turned into a clear, buildable task. Clarifies business goal, metrics, dimensions, time range, data sources, output format, acceptance criteria, risks, and open questions.
+description: Use when a vague data analysis or data development request needs to be turned into a clear, buildable task. Clarifies business goal, metrics, dimensions, time range, data sources, output format, acceptance criteria, risks, and open questions. 中文触发词：需求澄清、模糊需求、临时取数、需求拆解、业务想看。
+metadata:
+  category: 数据开发
+  aliases: 需求澄清、数据需求分析、需求转开发任务
 ---
 
 # Data Requirement Clarifier
@@ -43,6 +46,7 @@ description: Use when a vague data analysis or data development request needs to
 - 指标口径专项审查，请使用 `metric-definition-reviewer`
 - 表结构设计，请使用 `table-design-advisor`
 - 数据质量规则生成，请使用 `data-quality-rule-generator`
+- 指标已确认异常、要定位原因，请使用 `business-root-cause-analysis`。只有问题本身还说不清时才用本 Skill
 
 如果用户已经给出非常明确的指标、表结构和 SQL，这个 Skill 只需要做简短确认，不要重新发散需求。
 
@@ -80,6 +84,15 @@ description: Use when a vague data analysis or data development request needs to
 7. 定义产出形式：明细表、汇总表、SQL、Excel、看板、图表、结论说明。
 8. 给出开发拆解：按可执行任务列出步骤。
 9. 标记风险和待确认问题：把影响结论的问题提前暴露。
+
+## 输出长度
+
+先判断材料多少，不要对一句话需求输出完整模板：
+
+- 只有一句话：输出一句话目标、需求类型、最多 5 个阻塞问题（按对结论的影响排序）和建议的下一步，然后等用户回答。
+- 已回答阻塞问题，或材料基本完整：输出下面的完整模板。
+
+阻塞问题是指答案不同、任务就不同的问题。可以先假设的问题写进假设，不要问。
 
 ## 输出格式
 
@@ -123,6 +136,16 @@ description: Use when a vague data analysis or data development request needs to
 - 不编造表名、字段名和业务规则
 - 明确指标、维度、时间范围和产出形式
 - 给出下一步可以直接执行的开发拆解
+- 只问答案会改变任务的问题，一轮最多 5 个
+
+## 完成后的下一步
+
+- 指标口径还说不清：`metric-definition-reviewer`
+- 需要新建或改造表：`table-design-advisor`
+- 已确认某个指标异常，要定位原因：`business-root-cause-analysis`
+- 拿到数据要先看能不能用：`exploratory-data-analysis`
+- 属于转化路径、留存或实验问题：`funnel-analysis`、`retention-cohort-analysis`、`ab-test-analysis`
+- 要做看板：`dashboard-reviewer`；需要行业或竞品信息：`market-research-analyst`
 
 ## 示例 Prompt
 
@@ -130,4 +153,10 @@ description: Use when a vague data analysis or data development request needs to
 请用 data-requirement-clarifier 帮我澄清这个需求：
 
 业务想看最近两周新用户购买转化为什么下降，最好能拆到渠道和首购品类。
+```
+
+```text
+请用 data-requirement-clarifier 帮我澄清这个需求：
+
+客户成功团队想在企业客户续费日前 30 天，识别出活跃度最低的高风险客户，提前介入防止流失。目前有行为日志和订阅表，但不知道从哪里开始。
 ```

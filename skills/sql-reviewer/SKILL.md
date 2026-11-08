@@ -1,6 +1,9 @@
 ---
 name: sql-reviewer
-description: Use when reviewing SQL for data development. Checks logic correctness, metric consistency, joins, aggregations, deduplication, null handling, date boundaries, partition filters, performance risks, engine-specific issues, and safer rewrite suggestions.
+description: Use when reviewing SQL for data development. Checks logic correctness, metric consistency, joins, aggregations, deduplication, null handling, date boundaries, partition filters, performance risks, engine-specific issues, and safer rewrite suggestions. 中文触发词：SQL 审查、SQL Review、SQL 算错、慢 SQL。
+metadata:
+  category: 数据开发
+  aliases: SQL Review、SQL 检查、SQL 逻辑审查
 ---
 
 # SQL Reviewer
@@ -87,6 +90,18 @@ description: Use when reviewing SQL for data development. Checks logic correctne
 11. 检查可维护性：命名、CTE 拆分、注释、硬编码。
 12. 给出修复建议：优先修正会导致结果错误的问题。
 
+## 可用脚本
+
+有 SQL 且能执行代码时，先跑静态检查，再做人工审查：
+
+```bash
+python3 scripts/sql_lint.py check --sql query.sql --dialect spark --partition-col dt
+```
+
+全部参数见 [命令行参数](references/cli.md)。接入 CI 时加 `--fail-on P0`。
+
+脚本能发现左连接被 WHERE 变成内连接、`= NULL`、缺关联条件、`NOT IN` 子查询、窗口函数缺排序、时间边界漏数、分区裁剪失效等写法。`confidence=low` 的结果依赖表结构，必须结合表结构确认。脚本没有发现问题，不代表口径正确，业务逻辑仍要按审查流程看。
+
 ## 输出格式
 
 ````markdown
@@ -131,6 +146,8 @@ description: Use when reviewing SQL for data development. Checks logic correctne
 - ClickHouse：分区键、排序键、FINAL、去重表引擎、分布式表
 - MySQL/PostgreSQL：索引、执行计划、隐式类型转换、锁和临时表
 
+其他引擎（Trino、Doris、StarRocks、dbt）和更多细节见 [引擎注意事项](references/engine-notes.md)。
+
 ## 质量标准
 
 输出必须：
@@ -140,6 +157,14 @@ description: Use when reviewing SQL for data development. Checks logic correctne
 - 区分确定问题和基于缺失信息的风险
 - 能改写时给出可运行方向的 SQL
 - 不因为缺少表结构就假装知道字段唯一性或数据分布
+- 能执行代码时运行静态检查，并逐条确认 `confidence=low` 的结果
+
+## 完成后的下一步
+
+- SQL 上线前补校验：`data-quality-rule-generator`
+- 改动影响已有下游：`data-lineage-impact-analyzer`
+- 沉淀任务逻辑：`data-doc-writer`
+- 发现已经产出错误数据：`data-incident-postmortem-writer`
 
 ## 示例 Prompt
 
@@ -149,6 +174,16 @@ description: Use when reviewing SQL for data development. Checks logic correctne
 背景：计算每天每个渠道的新用户首购转化率。
 结果粒度：dt + channel_id。
 分区字段：dt。
+
+[粘贴 SQL]
+```
+
+```text
+请用 sql-reviewer 审查下面这段 PostgreSQL SQL。
+
+背景：计算每个 SaaS 企业客户本月 MRR（月度经常性收入），需要排除已流失和冻结状态的订阅。
+结果粒度：month + company_id。
+表结构：subscription(company_id, plan, amount, start_date, end_date, status)，status 枚举值：active / churned / suspended / trial。
 
 [粘贴 SQL]
 ```

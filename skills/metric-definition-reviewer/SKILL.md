@@ -1,6 +1,9 @@
 ---
 name: metric-definition-reviewer
-description: Use when reviewing or defining a business metric, KPI, or analytics indicator. Checks business intent, population, event definition, time window, grain, filters, edge cases, status lifecycle, consistency, and questions that must be confirmed.
+description: Use when reviewing or defining a business metric, KPI, or analytics indicator. Checks business intent, population, event definition, time window, grain, filters, edge cases, status lifecycle, consistency, and questions that must be confirmed. 中文触发词：指标口径、口径审查、指标定义、分子分母。
+metadata:
+  category: 数据开发
+  aliases: 指标审查、口径审查、指标定义检查
 ---
 
 # Metric Definition Reviewer
@@ -20,7 +23,7 @@ description: Use when reviewing or defining a business metric, KPI, or analytics
 - 对齐业务方和数据团队对同一指标的理解
 - 检查看板指标是否容易误导
 - 分析 GMV、DAU、留存、转化率、复购率、活跃率、履约率等指标
-- 在口径变更前识别影响范围
+- 在口径变更前明确新旧口径差异（下游影响范围请转 `data-lineage-impact-analyzer`）
 
 典型输入：
 
@@ -40,6 +43,7 @@ GMV 现在按支付成功订单金额统计，退款是否扣减还没定。
 - 表结构设计，请使用 `table-design-advisor`
 - SQL 审查，请使用 `sql-reviewer`
 - 数据质量规则生成，请使用 `data-quality-rule-generator`
+- 评估口径变更对下游的影响，请使用 `data-lineage-impact-analyzer`
 
 如果用户只提供了一个指标名，必须先列出待确认问题，不能直接给出确定口径。
 
@@ -84,6 +88,8 @@ GMV 现在按支付成功订单金额统计，退款是否扣减还没定。
 10. 可解释性：业务方看到数值后是否能理解它代表什么。
 11. 一致性：是否与已有指标、上游系统或财务口径冲突。
 
+常见指标的提问清单见 [常见指标陷阱](references/metric-pitfalls.md)。里面是提问角度，不是标准答案。
+
 ## 输出格式
 
 ```markdown
@@ -116,7 +122,13 @@ GMV 现在按支付成功订单金额统计，退款是否扣减还没定。
 ### 5. 待确认问题
 
 ### 6. 可选 SQL 伪逻辑
+
+### 7. 机器可读定义
+
+<按 assets/metric_template.yaml 输出，未确认的项写“待确认”>
 ```
+
+口径要被 SQL 审查、质量规则或数据文档复用时，输出第 7 节。
 
 ## 风险等级
 
@@ -133,6 +145,15 @@ GMV 现在按支付成功订单金额统计，退款是否扣减还没定。
 - 暴露分子、分母、时间窗口、过滤条件和去重规则
 - 标记不能确定的业务规则
 - 避免把常见行业口径当成用户公司的确定事实
+- 机器可读定义里没有确认的项写“待确认”，不要补全
+
+## 完成后的下一步
+
+- 口径确定后建表：`table-design-advisor`
+- 检查 SQL 是否实现了这个口径：`sql-reviewer`
+- 把口径落成校验：`data-quality-rule-generator`
+- 修改已有口径：`data-lineage-impact-analyzer` 评估下游
+- 沉淀定义：`data-doc-writer`
 
 ## 示例 Prompt
 
@@ -143,4 +164,13 @@ GMV 现在按支付成功订单金额统计，退款是否扣减还没定。
 当前口径：注册后 7 天内完成支付的新用户数 / 新注册用户数
 使用场景：渠道投放效果看板
 疑问：退款订单要不要算转化？
+```
+
+```text
+请用 metric-definition-reviewer 审查这个指标：
+
+指标：NRR（净收入留存率）
+当前口径：本期 MRR / 上期同批客户 MRR，包含扩展收入和降级损失，排除新签合同
+使用场景：投资人月报和季度经营分析
+疑问：客户升级套餐的扩展收入算不算 NRR？订阅部分取消但仍有剩余席位时如何处理？
 ```

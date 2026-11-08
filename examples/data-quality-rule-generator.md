@@ -40,4 +40,4 @@
 ## 使用说明
 
 质量规则不要只做非空检查。核心指标表至少要覆盖产出、唯一、范围、逻辑一致性和波动。
-
+- 能执行代码时用 `skills/data-quality-rule-generator/scripts/dq_rules.py generate`，可同时输出 SQL、dbt 和 Great Expectations。阈值不是用户给的规则会列进 `assumptions`。

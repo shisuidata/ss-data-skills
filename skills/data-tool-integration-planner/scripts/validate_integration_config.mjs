@@ -41,6 +41,42 @@ try {
   fail(`cannot read or parse JSON: ${error.message}`);
 }
 
+// 只要键名或取值看起来是明文凭据就拒绝，位置不限于 auth。
+const SECRET_KEY = /pass(word|wd|phrase)?|pwd|secret|token|api[-_]?key|access[-_]?key|private[-_]?key|credential|authorization|cookie/i;
+const REFERENCE_KEY = /(env|ref|url|uri|endpoint|policy|type|method|name|path|file|ttl|expiry|expires)$/i;
+const REFERENCE_VALUE = /^(\$\{?[A-Za-z_][A-Za-z0-9_]*\}?|env:[A-Za-z_][A-Za-z0-9_]*|vault:.+|secretsmanager:.+)$/;
+const INLINE_URL_PASSWORD = /[a-z][a-z0-9+.-]*:\/\/[^/\s:@]+:([^/\s@]+)@/i;
+const INLINE_AUTH_HEADER = /\b(bearer|basic)\s+[A-Za-z0-9._~+/=-]{8,}/i;
+
+function scanForSecrets(value, path) {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => scanForSecrets(item, `${path}[${index}]`));
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const [key, child] of Object.entries(value)) {
+      const childPath = path ? `${path}.${key}` : key;
+      if (typeof child === "string" && child.trim() !== "" && SECRET_KEY.test(key)
+        && !REFERENCE_KEY.test(key) && !REFERENCE_VALUE.test(child.trim())) {
+        fail(`${childPath} looks like a raw secret; store it in an environment variable and reference the name, for example passwordEnv`);
+      }
+      scanForSecrets(child, childPath);
+    }
+    return;
+  }
+  if (typeof value === "string") {
+    const url = value.match(INLINE_URL_PASSWORD);
+    if (url && !REFERENCE_VALUE.test(url[1])) {
+      fail(`${path} contains a password inside a connection URL; use host and auth fields with env references`);
+    }
+    if (INLINE_AUTH_HEADER.test(value)) {
+      fail(`${path} contains an inline Bearer or Basic credential; use an env reference`);
+    }
+  }
+}
+
+scanForSecrets(config, "");
+
 requireString(config.toolName, "toolName");
 requireString(config.toolType, "toolType");
 if (!allowedToolTypes.has(config.toolType)) {
